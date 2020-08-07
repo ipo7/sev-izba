@@ -256,4 +256,40 @@ body {
   background: url("../img/main-background.jpg") 0 0/contain no-repeat;
 }
 
+.main__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.main__topic {
+  text-align: center;
+  font-family: FS-Demi;
+}
+
+.main__topic-title {
+  font-size: 100px;
+  color: #244959;
+}
+
+.main__topic-text {
+  color: #447185;
+  font-size: 40px;
+}
+
+.main__topic-button {
+  font-size: 20px;
+  color: #fff;
+  width: 279px;
+  height: 48px;
+  background-color: #69bbf3;
+}
+
 .webp .main{ background: url(../img/main-background.webp) 0 0/contain no-repeat; }
