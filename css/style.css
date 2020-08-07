@@ -228,6 +228,31 @@ h6 {
   padding-bottom: 18px;
 }
 
+.menu {
+  font-family: FS-Medium;
+}
+
+.menu__top {
+  color: #244959;
+  font-size: 28px;
+  line-height: 48px;
+}
+
+.menu__top li {
+  cursor: pointer;
+}
+
+.menu__bottom {
+  color: #2c6b97;
+  font-size: 20px;
+  padding-top: 17px;
+  line-height: 48px;
+}
+
+.menu__bottom li {
+  cursor: pointer;
+}
+
 body {
   font-family: FS-Medium;
 }
@@ -267,11 +292,13 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: relative;
 }
 
 .main__topic {
   text-align: center;
   font-family: FS-Demi;
+  padding-top: 71px;
 }
 
 .main__topic-title {
@@ -290,6 +317,20 @@ body {
   width: 279px;
   height: 48px;
   background-color: #69bbf3;
+  margin-top: 63px;
+}
+
+.main__menu {
+  position: absolute;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  left: 20px;
+  top: 233px;
 }
 
 .webp .main{ background: url(../img/main-background.webp) 0 0/contain no-repeat; }
