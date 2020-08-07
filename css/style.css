@@ -155,17 +155,38 @@ h6 {
   cursor: pointer;
 }
 
+.callback {
+  font-family: FS-Medium;
+}
+
 .callback__text {
   color: #2c6b97;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 9px;
+}
+
+.callback__text::after {
+  position: absolute;
+  content: "";
+  width: 226px;
+  border-bottom: 1px dashed #2c6b97;
+  left: 0;
+  top: 28px;
 }
 
 .callback__number {
   color: #244959;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .language {
+  font-family: FS-Medium;
   font-size: 20px;
   color: #2c6b97;
+  cursor: pointer;
 }
 
 .header {
@@ -194,6 +215,16 @@ h6 {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
+  width: 385px;
+  height: 65px;
+}
+
+.header__callback {
+  padding-bottom: 12px;
+}
+
+.header__language {
+  padding-bottom: 18px;
 }
 
 body {
