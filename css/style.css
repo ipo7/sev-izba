@@ -254,6 +254,25 @@ h6 {
   font-size: 20px;
 }
 
+.social-nets {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 -29px;
+}
+
+.social-nets__vk {
+  margin: 0 29px;
+}
+
+.social-nets__fb {
+  margin: 0 29px;
+}
+
+.social-nets__inst {
+  margin: 0 29px;
+}
+
 body {
   font-family: FS-Medium;
 }
@@ -279,7 +298,7 @@ body {
   position: relative;
   width: 100vw;
   height: 1080px;
-  background: url("../img/main-background.jpg") 0 0/contain no-repeat;
+  background: url("../img/main-background.jpg") 0 0/cover no-repeat;
 }
 
 .main__container {
@@ -333,4 +352,10 @@ body {
   top: 244px;
 }
 
-.webp .main{ background: url(../img/main-background.webp) 0 0/contain no-repeat; }
+.main .social-nets {
+  position: absolute;
+  left: 32px;
+  bottom: -603px;
+}
+
+.webp .main{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
