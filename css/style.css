@@ -276,6 +276,7 @@ body {
 }
 
 .main {
+  position: relative;
   width: 100vw;
   height: 1080px;
   background: url("../img/main-background.jpg") 0 0/contain no-repeat;
@@ -321,16 +322,15 @@ body {
 }
 
 .main__menu {
-  position: relative;
-  width: 100%;
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: start;
-  left: 2px;
-  top: -186px;
+  left: 21px;
+  top: 244px;
 }
 
 .webp .main{ background: url(../img/main-background.webp) 0 0/contain no-repeat; }
