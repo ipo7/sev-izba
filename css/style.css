@@ -294,6 +294,19 @@ body {
   justify-content: space-between;
 }
 
+.scroll {
+  text-align: center;
+}
+
+.scroll__logo {
+  padding-bottom: 10px;
+}
+
+.scroll__text {
+  font-size: 20px;
+  color: #2c6b97;
+}
+
 .main {
   position: relative;
   width: 100vw;
@@ -355,7 +368,13 @@ body {
 .main .social-nets {
   position: absolute;
   left: 32px;
-  bottom: -603px;
+  bottom: -545px;
+}
+
+.main__scroll {
+  position: relative;
+  bottom: -554px;
+  left: -3px;
 }
 
 .webp .main{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
