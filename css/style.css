@@ -232,25 +232,26 @@ h6 {
   font-family: FS-Medium;
 }
 
-.menu__top {
-  color: #244959;
-  font-size: 28px;
-  line-height: 48px;
+.menu__top li {
+  padding-bottom: 20px;
 }
 
-.menu__top li {
-  cursor: pointer;
+.menu__top li a {
+  color: #244959;
+  font-size: 28px;
 }
 
 .menu__bottom {
-  color: #2c6b97;
-  font-size: 20px;
   padding-top: 17px;
-  line-height: 48px;
 }
 
 .menu__bottom li {
-  cursor: pointer;
+  padding-bottom: 28px;
+}
+
+.menu__bottom li a {
+  color: #2c6b97;
+  font-size: 20px;
 }
 
 body {
@@ -262,7 +263,6 @@ body {
   width: 100vw;
   padding: 0 20px;
   margin: 0 auto;
-  background-color: #7a7373;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -321,7 +321,7 @@ body {
 }
 
 .main__menu {
-  position: absolute;
+  position: relative;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -329,8 +329,8 @@ body {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: start;
-  left: 20px;
-  top: 233px;
+  left: 2px;
+  top: -186px;
 }
 
 .webp .main{ background: url(../img/main-background.webp) 0 0/contain no-repeat; }
