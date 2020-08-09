@@ -295,6 +295,7 @@ h6 {
   bottom: 27px;
   left: 0;
   right: 0;
+  cursor: pointer;
   text-align: center;
 }
 
@@ -339,6 +340,10 @@ h6 {
   background-color: #69bbf3;
   margin-top: 63px;
   padding-bottom: 5px;
+}
+
+.topic__button:hover {
+  background-color: #6fb0dc;
 }
 
 body {
