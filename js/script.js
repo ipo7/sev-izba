@@ -11,7 +11,7 @@ $(function () {
 			let left = offset.left;
 			console.log(left);
 			if ($(window).width() > 1786) {
-				$('.main__menu, .social-nets').offset({ left: left });
+				$('.menu, .social-nets').offset({ left: left });
 			} return;
 		};
 		rr();
