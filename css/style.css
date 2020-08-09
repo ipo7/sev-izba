@@ -321,6 +321,8 @@ body {
   width: 100vw;
   padding: 0 20px;
   margin: 0 auto;
+  left: 0;
+  right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -352,9 +354,6 @@ body {
 }
 
 .main {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 1080px;
 }
@@ -371,29 +370,29 @@ body {
   -ms-flex-align: center;
   align-items: center;
   position: relative;
+  position: fixed;
+}
+
+.main__header {
+  position: fixed;
 }
 
 .main__menu {
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  left: 21px;
+  position: fixed;
+  max-width: calc(1746px + 40px);
+  left: 20px;
   top: 244px;
 }
 
 .main .social-nets {
-  position: absolute;
+  position: fixed;
   left: 36px;
-  bottom: -859px;
+  bottom: 44px;
 }
 
 .main__scroll {
-  position: relative;
-  bottom: -877px;
+  position: fixed;
+  bottom: 22px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -564,11 +563,11 @@ body {
 
   .main .social-nets {
     left: 14px;
-    bottom: -632px;
+    bottom: 23px;
   }
 
   .main__scroll {
-    bottom: -635px;
+    bottom: 13px;
   }
 }
 
