@@ -274,16 +274,13 @@ h6 {
   margin: 0 -29px;
 }
 
-.social-nets__vk {
+.social-nets div {
   margin: 0 29px;
 }
 
-.social-nets__fb {
-  margin: 0 29px;
-}
-
-.social-nets__inst {
-  margin: 0 29px;
+.social-nets__image {
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 body {
@@ -313,6 +310,11 @@ body {
 
 .scroll__logo {
   padding-bottom: 10px;
+}
+
+.scroll__image {
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .scroll__text {
@@ -440,10 +442,10 @@ body {
     height: 32px;
     border: solid 2px #2c6b97;
     text-align: center;
-    padding-top: 7px;
+    padding-top: 5px;
     position: relative;
     left: 9px;
-    top: 17px;
+    top: 9px;
   }
 
   .callback__number {
@@ -468,7 +470,7 @@ body {
   .header__language-table {
     display: block;
     position: relative;
-    top: -6px;
+    top: -14px;
     left: -4px;
     font-size: 13px;
   }
@@ -490,6 +492,40 @@ body {
   }
 
   .menu__bottom li a {
+    font-size: 13px;
+  }
+
+  .social-nets {
+    margin: 0 -23px;
+  }
+
+  .social-nets div {
+    margin: 0 23px;
+  }
+
+  .social-nets__image {
+    width: 18px;
+    height: 18px;
+  }
+
+  .social-nets__image_vk {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top: -3px;
+    left: 4px;
+  }
+
+  .scroll__logo {
+    padding-bottom: 6px;
+  }
+
+  .scroll__image {
+    width: 24px;
+    height: 28.5px;
+  }
+
+  .scroll__text {
     font-size: 13px;
   }
 
@@ -523,8 +559,12 @@ body {
   }
 
   .main .social-nets {
-    left: -6px;
-    bottom: -355px;
+    left: 14px;
+    bottom: -377px;
+  }
+
+  .main__scroll {
+    bottom: -380px;
   }
 }
 
