@@ -283,6 +283,35 @@ h6 {
   object-fit: contain;
 }
 
+.topic {
+  text-align: center;
+  font-family: FS-Demi;
+  padding-top: 179px;
+  background: url("../img/main-background.jpg") 0 0/cover no-repeat;
+  height: 1080px;
+}
+
+.topic__title {
+  font-size: 100px;
+  color: #244959;
+}
+
+.topic__text {
+  color: #447185;
+  font-size: 40px;
+}
+
+.topic__button {
+  font-family: FS-Medium;
+  font-size: 20px;
+  color: #fff;
+  width: 279px;
+  height: 48px;
+  background-color: #69bbf3;
+  margin-top: 63px;
+  padding-bottom: 5px;
+}
+
 body {
   font-family: FS-Medium;
 }
@@ -323,10 +352,11 @@ body {
 }
 
 .main {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 1080px;
-  background: url("../img/main-background.jpg") 0 0/cover no-repeat;
 }
 
 .main__container {
@@ -341,33 +371,6 @@ body {
   -ms-flex-align: center;
   align-items: center;
   position: relative;
-}
-
-.main__topic {
-  text-align: center;
-  font-family: FS-Demi;
-  padding-top: 71px;
-}
-
-.main__topic-title {
-  font-size: 100px;
-  color: #244959;
-}
-
-.main__topic-text {
-  color: #447185;
-  font-size: 40px;
-}
-
-.main__topic-button {
-  font-family: FS-Medium;
-  font-size: 20px;
-  color: #fff;
-  width: 279px;
-  height: 48px;
-  background-color: #69bbf3;
-  margin-top: 63px;
-  padding-bottom: 5px;
 }
 
 .main__menu {
@@ -385,12 +388,12 @@ body {
 .main .social-nets {
   position: absolute;
   left: 36px;
-  bottom: -536px;
+  bottom: -859px;
 }
 
 .main__scroll {
   position: relative;
-  bottom: -554px;
+  bottom: -877px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -400,7 +403,7 @@ body {
 }
 
 @media screen and (max-width: 1220px) {
-  .main__topic-title {
+  .topic__title {
     font-size: 68px;
   }
 }
@@ -444,7 +447,7 @@ body {
     text-align: center;
     padding-top: 5px;
     position: relative;
-    left: 9px;
+    left: 8px;
     top: 9px;
   }
 
@@ -516,6 +519,27 @@ body {
     left: 4px;
   }
 
+  .topic {
+    padding-top: 159px;
+    height: 768px;
+  }
+
+  .topic__title {
+    font-size: 48px;
+    padding-bottom: 11px;
+  }
+
+  .topic__text {
+    font-size: 21px;
+    margin-bottom: -25px;
+  }
+
+  .topic__button {
+    font-size: 18px;
+    width: 316px;
+    height: 48px;
+  }
+
   .scroll__logo {
     padding-bottom: 6px;
   }
@@ -533,26 +557,6 @@ body {
     height: 768px;
   }
 
-  .main__topic {
-    padding-top: 89px;
-  }
-
-  .main__topic-title {
-    font-size: 48px;
-    padding-bottom: 11px;
-  }
-
-  .main__topic-text {
-    font-size: 21px;
-    margin-bottom: -25px;
-  }
-
-  .main__topic-button {
-    font-size: 18px;
-    width: 316px;
-    height: 48px;
-  }
-
   .main__menu {
     left: 18px;
     top: 131px;
@@ -560,12 +564,12 @@ body {
 
   .main .social-nets {
     left: 14px;
-    bottom: -377px;
+    bottom: -632px;
   }
 
   .main__scroll {
-    bottom: -380px;
+    bottom: -635px;
   }
 }
 
-.webp .main{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
+.webp .topic{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
