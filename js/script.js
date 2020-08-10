@@ -9,7 +9,7 @@ $(function () {
 			let offset = $('.logo-main__image').offset();
 			let top = offset.top;
 			let left = offset.left;
-			console.log(left);
+			// console.log(left);
 			if ($(window).width() > 1786) {
 				$('.menu, .social-nets').offset({ left: left });
 			} return;
