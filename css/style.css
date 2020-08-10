@@ -355,7 +355,20 @@ h6 {
   justify-content: center;
   position: fixed;
   top: 20%;
-  right: 0;
+  right: -336px;
+}
+
+.feedback:hover,
+.feedback:active {
+  -webkit-transform: translate(-336px, 0);
+  -ms-transform: translate(-336px, 0);
+  transform: translate(-336px, 0);
+  -webkit-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .feedback__before {
@@ -380,7 +393,7 @@ h6 {
 .feedback__before p::before {
   position: absolute;
   content: "";
-  background: url("../img/mail_icon.svg") no-repeat;
+  background: url("../img/mail_icon.svg") 0 0/contain no-repeat;
   width: 32px;
   height: 32px;
   bottom: -5px;
@@ -776,73 +789,106 @@ body {
     width: 316px;
     height: 48px;
   }
-}
 
-@media screen and (max-width: 375px) {
-  .feedback-form label[for="yourname"] {
-    font-size: 10px;
-    top: 163px;
+  .feedback {
+    right: -265px;
   }
 
-  .feedback-form label[for="telephone"] {
-    font-size: 10px;
-    top: 221px;
+  .feedback:hover,
+  .feedback:active,
+  .feedback:focus {
+    -webkit-transform: translate(-265px, 0);
+    -ms-transform: translate(-265px, 0);
+    transform: translate(-265px, 0);
+  }
+
+  .feedback__before {
+    width: 60px;
+    height: 576px;
+  }
+
+  .feedback__before p {
+    font-size: 13px;
+    bottom: -457px;
+    left: -37px;
+  }
+
+  .feedback__before p::before {
+    width: 24px;
+    height: 24px;
+    bottom: -6px;
+    left: -25px;
+  }
+
+  .feedback-form {
+    width: 265px;
+    height: 576px;
   }
 
   .feedback-form__exit-image {
-    width: 14px;
-    height: 14px;
-    right: 16px;
+    width: 16px;
+    height: 16px;
+    right: 14px;
     top: 16px;
   }
 
   .feedback-form__title {
     font-size: 21px;
-    margin-bottom: 14px;
+    line-height: 24px;
+    margin-bottom: 6px;
   }
 
   .feedback-form__text {
-    font-size: 12px;
-    margin-bottom: 19px;
+    font-size: 14px;
+    line-height: 24px;
+    width: 233px;
+    height: 79px;
+    margin-bottom: 12px;
+  }
+
+  .feedback-form textarea {
+    width: 233px;
+    height: 130px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feedback-form__input::-webkit-input-placeholder {
+    font-size: 11px;
+  }
+
+  .feedback-form__input::-moz-placeholder {
+    font-size: 11px;
+  }
+
+  .feedback-form__input:-ms-input-placeholder {
+    font-size: 11px;
+  }
+
+  .feedback-form__input::-ms-input-placeholder {
+    font-size: 11px;
+  }
+
+  .feedback-form__input::placeholder {
+    font-size: 11px;
   }
 
   .feedback-form__input {
-    width: 311px;
-    height: 42px;
-    font-size: 14px;
-    line-height: 16px;
+    width: 233px;
+    height: 32px;
+    padding-left: 8px;
+  }
+
+  .feedback-form__accept {
+    width: 265px;
+    height: 96px;
   }
 
   .feedback-form__button {
-    width: 311px;
-    height: 46px;
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .feedback-form_succses {
-    width: 343px;
-    height: 346px;
-    padding: 41px 0 0;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-  }
-
-  .feedback-form_succses__image {
-    width: 130px;
-    height: 130px;
-    margin-bottom: 21px;
-  }
-
-  .feedback-form_succses .feedback-form__text {
-    font-size: 14px;
-    padding-top: 0;
-    line-height: 25px;
-  }
-
-  .feedback-form_succses .feedback-form__text_bottom {
-    padding-bottom: 22px;
+    width: 233px;
+    height: 48px;
+    line-height: 32px;
+    top: -121px;
   }
 }
 
