@@ -416,6 +416,15 @@ h6 {
   font-size: 13px;
 }
 
+.menu-disable__footer {
+  position: absolute;
+  bottom: 63px;
+  left: 0;
+  height: 76px;
+  width: 100vw;
+  background-color: #e9f1f5;
+}
+
 .social-nets {
   position: fixed;
   display: -webkit-box;
@@ -1103,10 +1112,6 @@ body {
 
   .menu {
     display: none;
-  }
-
-  .menu-disable {
-    display: block;
   }
 
   .social-nets {
