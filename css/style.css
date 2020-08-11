@@ -378,6 +378,41 @@ h6 {
   font-size: 20px;
 }
 
+.menu-disable {
+  display: none;
+  z-index: 1;
+  font-family: FS-Medium;
+  position: fixed;
+  max-width: calc(1746px + 40px);
+  left: 0px;
+  top: 65px;
+  background-color: #fff;
+  width: 100vw;
+  height: 100vh;
+}
+
+.menu-disable__top li {
+  padding-bottom: 20px;
+}
+
+.menu-disable__top li a {
+  color: #244959;
+  font-size: 28px;
+}
+
+.menu-disable__bottom {
+  padding-top: 17px;
+}
+
+.menu-disable__bottom li {
+  padding-bottom: 28px;
+}
+
+.menu-disable__bottom li a {
+  color: #2c6b97;
+  font-size: 20px;
+}
+
 .social-nets {
   position: fixed;
   display: -webkit-box;
@@ -453,6 +488,7 @@ h6 {
 }
 
 .topic__footer {
+  z-index: 0;
   display: none;
   position: absolute;
   bottom: 0;
@@ -857,6 +893,26 @@ body {
     font-size: 13px;
   }
 
+  .menu-disable__top li {
+    padding-bottom: 24px;
+  }
+
+  .menu-disable__top li a {
+    font-size: 24px;
+  }
+
+  .menu-disable__bottom {
+    padding-top: 6px;
+  }
+
+  .menu-disable__bottom li {
+    padding-bottom: 17px;
+  }
+
+  .menu-disable__bottom li a {
+    font-size: 13px;
+  }
+
   .social-nets {
     left: 14px;
     bottom: 23px;
@@ -1021,12 +1077,6 @@ body {
   }
 }
 
-@media screen and (max-width: 720px) {
-  .burger-disable {
-    display: block;
-  }
-}
-
 @media screen and (max-width: 414px) {
   .logo-main {
     width: auto;
@@ -1064,8 +1114,16 @@ body {
     display: block;
   }
 
+  .burger-disable {
+    display: block;
+  }
+
   .menu {
     display: none;
+  }
+
+  .menu-disable {
+    display: block;
   }
 
   .social-nets {
