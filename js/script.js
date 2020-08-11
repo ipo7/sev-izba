@@ -20,6 +20,13 @@ $(function () {
 	$(window).resize();
 
 
+	$('.burger').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$(this).toggleClass('burger burger-disable');
+		// $('.header__menu_disable').toggle(200);
+
+	});
 
 
 
