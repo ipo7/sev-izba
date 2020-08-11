@@ -385,32 +385,35 @@ h6 {
   position: fixed;
   max-width: calc(1746px + 40px);
   left: 0px;
-  top: 65px;
+  top: 64px;
   background-color: #fff;
   width: 100vw;
   height: 100vh;
 }
 
+.menu-disable__top {
+  padding-bottom: 24px;
+}
+
 .menu-disable__top li {
-  padding-bottom: 20px;
+  padding-bottom: 23px;
+  padding-left: 89px;
 }
 
 .menu-disable__top li a {
   color: #244959;
   font-size: 28px;
-}
-
-.menu-disable__bottom {
-  padding-top: 17px;
+  font-size: 24px;
 }
 
 .menu-disable__bottom li {
-  padding-bottom: 28px;
+  padding-bottom: 32px;
+  padding-left: 89px;
 }
 
 .menu-disable__bottom li a {
   color: #2c6b97;
-  font-size: 20px;
+  font-size: 13px;
 }
 
 .social-nets {
@@ -890,26 +893,6 @@ body {
   }
 
   .menu__bottom li a {
-    font-size: 13px;
-  }
-
-  .menu-disable__top li {
-    padding-bottom: 24px;
-  }
-
-  .menu-disable__top li a {
-    font-size: 24px;
-  }
-
-  .menu-disable__bottom {
-    padding-top: 6px;
-  }
-
-  .menu-disable__bottom li {
-    padding-bottom: 17px;
-  }
-
-  .menu-disable__bottom li a {
     font-size: 13px;
   }
 

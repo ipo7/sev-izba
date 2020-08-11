@@ -27,7 +27,11 @@ $(function () {
 		$('.header__mail, .logo-main').toggle();
 		$('.menu-disable').toggle(200);
 
-		function ee() { $('.header__container').css('justify-content') == 'right' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'right' }) };
+		function ee() {
+			$('.header__container').css('justify-content') == 'right' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'right' });
+
+			console.log($('.header__container').css('justify-content'))
+		};
 		ee();
 
 	});
