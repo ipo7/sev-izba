@@ -216,6 +216,7 @@ h6 {
 
 .header__mail {
   display: none;
+  cursor: pointer;
 }
 
 .header__mail-image {
@@ -449,6 +450,31 @@ h6 {
 
 .topic__button:hover {
   background-color: #6fb0dc;
+}
+
+.topic__footer {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 65px;
+  width: 100vw;
+  background-color: #d6e8f0;
+}
+
+.topic__footer-button {
+  width: 329px;
+  height: 40px;
+  background-color: #d6e8f0;
+  border: 1px solid #2c6b97;
+  color: #2c6b97;
+  font-size: 18px;
+}
+
+.topic__footer-button:hover {
+  background-color: #69bbf3;
+  border: 1px solid #69bbf3;
+  color: #fff;
 }
 
 .feedback {
@@ -1069,6 +1095,18 @@ body {
 
   .topic__button {
     display: none;
+  }
+
+  .topic__footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 
   .feedback {
