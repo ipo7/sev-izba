@@ -500,7 +500,6 @@ h6 {
 }
 
 .topic__footer {
-  z-index: 1;
   display: none;
   height: 65px;
   width: 100vw;
@@ -1120,7 +1119,7 @@ body {
   }
 
   .topic {
-    min-height: 100vh;
+    height: 100vh;
     background: url("../img/main-background.jpg") 50% 50%/cover no-repeat;
     padding-top: 116px;
     display: -webkit-box;
