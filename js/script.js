@@ -36,6 +36,20 @@ $(function () {
 
 	});
 
+	$('.header__mail').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.feedback').toggle(200);
+
+	});
+
+	$('.feedback-form__exit').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.feedback').toggle(200);
+
+	});
+
 
 
 });
