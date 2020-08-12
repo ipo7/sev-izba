@@ -388,7 +388,7 @@ h6 {
   top: 64px;
   background-color: #fff;
   width: 100vw;
-  min-height: 100vh;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -427,8 +427,6 @@ h6 {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
-  bottom: 0;
-  left: 0;
   height: 76px;
   width: 100vw;
   background-color: #e9f1f5;
