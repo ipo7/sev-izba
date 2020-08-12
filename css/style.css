@@ -597,7 +597,7 @@ h6 {
 .feedback-form {
   width: 336px;
   height: 687px;
-  background-color: #fff;
+  background-color: #0aa785;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -1222,26 +1222,58 @@ body {
   .feedback-form {
     width: 100vw;
     height: 100vh;
+    padding: 71px 0 19px;
   }
 
   .feedback-form__title {
     font-size: 26px;
     line-height: 32px;
+    margin-bottom: 23px;
   }
 
   .feedback-form__text {
     font-size: 15px;
+    line-height: 24px;
+    width: 312px;
+    height: 70px;
+    margin-bottom: 29px;
+  }
+
+  .feedback-form textarea::-webkit-input-placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feedback-form textarea::-moz-placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feedback-form textarea:-ms-input-placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feedback-form textarea::-ms-input-placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .feedback-form textarea::placeholder {
+    font-size: 16px;
     line-height: 24px;
   }
 
   .feedback-form textarea {
     width: 328px;
     height: 137px;
+    margin-bottom: 23px;
   }
 
   .feedback-form__input {
     width: 328px;
     height: 40px;
+    margin-bottom: 23px;
   }
 
   .feedback-form input:last-of-type {
@@ -1251,6 +1283,7 @@ body {
   .feedback-form__accept {
     width: 414px;
     height: 128px;
+    font-size: 12px;
   }
 
   .feedback-form__button {
