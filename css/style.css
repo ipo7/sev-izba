@@ -1208,10 +1208,12 @@ body {
   }
 
   .feedback {
-    position: relative;
+    position: fixed;
+    height: 100%;
+    overflow: scroll;
     right: 0;
     left: 0;
-    top: -639px;
+    top: 65px;
   }
 
   .feedback__before {
