@@ -560,20 +560,6 @@ h6 {
   justify-content: center;
   position: fixed;
   top: 20%;
-  right: -336px;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-}
-
-.feedback:hover,
-.feedback:active {
-  -webkit-transform: translate(-336px, 0);
-  -ms-transform: translate(-336px, 0);
-  transform: translate(-336px, 0);
-  -webkit-transition-delay: 0.1s;
-  -o-transition-delay: 0.1s;
-  transition-delay: 0.1s;
 }
 
 .feedback__before {
@@ -824,6 +810,25 @@ body {
   justify-content: space-between;
 }
 
+@media screen and (min-width: 1024px) {
+  .feedback {
+    right: -336px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+  }
+
+  .feedback:hover,
+  .feedback:active {
+    -webkit-transform: translate(-336px, 0);
+    -ms-transform: translate(-336px, 0);
+    transform: translate(-336px, 0);
+    -webkit-transition-delay: 0.1s;
+    -o-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+  }
+}
+
 @media screen and (min-width: 1025px) {
   .callback__text-tablet {
     display: none;
@@ -991,18 +996,6 @@ body {
     font-size: 18px;
     width: 316px;
     height: 48px;
-  }
-
-  .feedback {
-    right: -265px;
-  }
-
-  .feedback:hover,
-  .feedback:active,
-  .feedback:focus {
-    -webkit-transform: translate(-265px, 0);
-    -ms-transform: translate(-265px, 0);
-    transform: translate(-265px, 0);
   }
 
   .feedback__before {
@@ -1215,7 +1208,67 @@ body {
   }
 
   .feedback {
+    right: 0;
+    left: 0;
+    top: 65px;
+  }
+
+  .feedback__before {
     display: none;
+  }
+
+  .feedback-form {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .feedback-form__title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .feedback-form__text {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .feedback-form textarea {
+    width: 328px;
+    height: 137px;
+  }
+
+  .feedback-form__input {
+    width: 328px;
+    height: 40px;
+  }
+
+  .feedback-form input:last-of-type {
+    margin-bottom: 56px;
+  }
+
+  .feedback-form__accept {
+    width: 414px;
+    height: 128px;
+  }
+
+  .feedback-form__button {
+    width: 312px;
+    height: 40px;
+    top: -147px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 415px) {
+  .feedback {
+    right: -265px;
+  }
+
+  .feedback:hover,
+  .feedback:active,
+  .feedback:focus {
+    -webkit-transform: translate(-265px, 0);
+    -ms-transform: translate(-265px, 0);
+    transform: translate(-265px, 0);
   }
 }
 
