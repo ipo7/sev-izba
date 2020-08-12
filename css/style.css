@@ -448,6 +448,10 @@ h6 {
   color: #37739c;
 }
 
+.menu-disable__footer-text a {
+  text-decoration: none;
+}
+
 .social-nets {
   position: fixed;
   display: -webkit-box;
