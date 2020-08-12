@@ -1208,9 +1208,10 @@ body {
   }
 
   .feedback {
+    position: relative;
     right: 0;
     left: 0;
-    top: 65px;
+    top: -639px;
   }
 
   .feedback__before {
