@@ -24,7 +24,7 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		$(this).toggleClass('burger burger-disable');
-		$('.header__mail, .logo-main, .topic').toggle();
+		$('.header__mail, .logo-main').toggle();
 		$('.menu-disable').toggle(200);
 
 		function ee() {
