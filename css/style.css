@@ -1143,6 +1143,8 @@ body {
     -ms-flex-direction: column;
     flex-direction: column;
     top: -1px;
+    position: -webkit-sticky;
+    position: sticky;
   }
 
   .menu-disable .social-nets {
