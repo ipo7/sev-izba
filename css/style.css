@@ -1596,7 +1596,8 @@ body {
     width: 100vw;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 71px 0 19px;
+    height: auto;
+    padding: 28px 0 0;
     left: 0;
     bottom: 0;
     background-color: #e7eb08;
