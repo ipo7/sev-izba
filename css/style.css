@@ -1141,7 +1141,7 @@ body {
     flex-direction: column;
     top: 65px;
     position: fixed;
-    height: calc(100vh+65px);
+    height: auto;
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 100;
