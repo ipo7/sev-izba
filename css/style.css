@@ -1588,7 +1588,7 @@ body {
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
-    height: 100vh;
+    height: 100%;
     background-color: #0fe43d;
   }
 
@@ -1596,11 +1596,12 @@ body {
     width: 100vw;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 360px;
+    height: auto;
     padding: 28px 0 0;
-    left: 0;
-    bottom: 0;
     background-color: #e7eb08;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
 
   .callback-form__exit-image {
