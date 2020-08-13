@@ -1229,10 +1229,13 @@ body {
 
   .feedback-form {
     width: 100vw;
-    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: fixed;
+    height: 100%;
     padding: 71px 0 19px;
-    background-color: #0aa785;
-    display: none;
+    left: 0;
+    top: 0;
   }
 
   .feedback-form__exit-image {
