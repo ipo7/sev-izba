@@ -1142,8 +1142,9 @@ body {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    top: 63px;
+    top: 65px;
     position: fixed;
+    height: calc(100%-65px);
   }
 
   .menu-disable .social-nets {
@@ -1230,6 +1231,7 @@ body {
     height: 100vh;
     padding: 71px 0 19px;
     background-color: #0aa785;
+    display: none;
   }
 
   .feedback-form__exit-image {
