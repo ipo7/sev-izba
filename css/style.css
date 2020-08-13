@@ -1145,7 +1145,7 @@ body {
     top: 65px;
     position: fixed;
     height: calc(100vh-65px);
-    overflow-y: scroll;
+    overflow: scroll;
     z-index: 100;
   }
 
