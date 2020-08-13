@@ -1141,12 +1141,11 @@ body {
     flex-direction: column;
     top: 65px;
     position: fixed;
-    height: 800px;
     overflow-y: scroll;
     overflow-x: hidden;
     z-index: 100;
     width: 100vw;
-    background-color: #7a6f6f;
+    min-height: 100%;
   }
 
   .menu-disable .social-nets {
