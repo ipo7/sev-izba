@@ -1145,6 +1145,7 @@ body {
     top: 65px;
     position: fixed;
     height: calc(100%-65px);
+    overflow-y: scroll;
   }
 
   .menu-disable .social-nets {
