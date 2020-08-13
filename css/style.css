@@ -1234,6 +1234,7 @@ body {
     position: fixed;
     height: 100%;
     padding: 71px 0 19px;
+    display: none;
     left: 0;
     top: 0;
   }
