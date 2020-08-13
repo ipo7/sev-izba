@@ -388,7 +388,6 @@ h6 {
   top: 64px;
   background-color: #fff;
   width: 100vw;
-  overflow-y: auto;
 }
 
 .menu-disable__container {
@@ -1144,8 +1143,9 @@ body {
     flex-direction: column;
     top: 65px;
     position: fixed;
-    overflow: scroll;
+    overflow-y: scroll;
     z-index: 100;
+    min-width: 100vw;
   }
 
   .menu-disable .social-nets {
