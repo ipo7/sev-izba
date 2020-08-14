@@ -794,20 +794,22 @@ h6 {
   -ms-flex-pack: center;
   justify-content: center;
   position: fixed;
-  top: 20%;
 }
 
 .callback-form {
   width: 336px;
   height: 687px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: #fff;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
@@ -1578,6 +1580,7 @@ body {
   }
 
   .callback {
+    display: none;
     right: 0;
     left: 0;
     top: 65px;
@@ -1589,7 +1592,7 @@ body {
     -ms-flex-pack: end;
     justify-content: flex-end;
     height: 100%;
-    background-color: #0fe43d;
+    background-color: #fff;
   }
 
   .callback-form {
@@ -1598,7 +1601,7 @@ body {
     overflow-x: hidden;
     height: auto;
     padding: 28px 0 0;
-    background-color: #e7eb08;
+    margin-bottom: 23px;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
@@ -1638,12 +1641,12 @@ body {
   .callback-form__input {
     width: 328px;
     height: 40px;
-    margin-bottom: 23px;
+    margin-bottom: 24px;
     padding-left: 14px;
   }
 
   .callback-form input:last-of-type {
-    margin-bottom: 56px;
+    margin-bottom: 45px;
   }
 
   .callback-form__accept {

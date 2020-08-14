@@ -1,7 +1,7 @@
 
 $(function () {
 
-
+	//Выравнивание отступов menu по отступам header
 	$(window).resize(function () {
 
 		function rr(e) {
@@ -50,6 +50,26 @@ $(function () {
 
 	});
 
+
+	//Нажатие на кнопку "Заказать обратный звонок"
+	$('.topic__footer-button').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		function ee() {
+			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
+
+			console.log($('.callback').css('display'))
+		};
+		ee();
+
+	});
+
+	$('.callback-form__exit').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.callback').toggle(200);
+
+	});
 
 
 });
