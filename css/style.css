@@ -753,6 +753,10 @@ h6 {
   background-color: #6fb0dc;
 }
 
+.feedback-form-succses {
+  display: none;
+}
+
 .callback {
   display: -webkit-box;
   display: -ms-flexbox;
