@@ -46,7 +46,16 @@ $(function () {
 	$('.feedback-form__exit').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
-		$('.feedback').toggle(200);
+		// $('.feedback').toggle(200);
+
+		if (window.matchMedia('(max-width: 414px)').matches) {
+			$('.feedback').toggle(200);
+		} else if (window.matchMedia('(max-width: 1024px)').matches) {
+			// $('.feedback').toggle(200);
+			// 
+			$('.feedback').css({ 'right': '-265px' });
+			console.log($('.feedback').css('right'));
+		}
 
 	});
 
