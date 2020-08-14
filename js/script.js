@@ -30,7 +30,7 @@ $(function () {
 		function ee() {
 			$('.header__container').css('justify-content') == 'flex-end' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'flex-end' });
 
-			console.log($('.header__container').css('justify-content'))
+
 		};
 		ee();
 
@@ -39,8 +39,8 @@ $(function () {
 	$('.header__mail').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
+		console.log($('.feedback').css('display'));
 		$('.feedback').toggle(200);
-
 	});
 
 	$('.feedback-form__exit').on('click touchend', function (e) {
@@ -57,8 +57,6 @@ $(function () {
 		e.preventDefault();
 		function ee() {
 			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
-
-			console.log($('.callback').css('display'))
 		};
 		ee();
 
@@ -71,6 +69,33 @@ $(function () {
 
 	});
 
+
+	//Временная заглушка на нажатие кнопки "Перезвонить"
+	$('.callback-form__button').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.callback').toggle(200);
+
+	});
+
+
+	//Временная заглушка на нажатие кнопки "Отправить"
+	$('.feedback-form__button').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.feedback').toggle();
+		function ee() {
+			$('.feedback-form-succses').css('display') == 'none' ? $('.feedback-form-succses').css({ 'display': 'flex' }) : $('.feedback-form-succses').css({ 'display': 'none' });
+		};
+		ee();
+
+	});
+
+	$('.feedback-form-succses__image').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.feedback-form-succses').toggle(200);
+	});
 
 });
 
