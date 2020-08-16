@@ -221,7 +221,7 @@ h6 {
   font-family: FS-Medium;
 }
 
-.header__callback__text {
+.header__callback-text {
   color: #2c6b97;
   font-size: 20px;
   cursor: pointer;
@@ -229,7 +229,7 @@ h6 {
   padding-bottom: 9px;
 }
 
-.header__callback__text::after {
+.header__callback-text::after {
   position: absolute;
   content: "";
   width: 226px;
@@ -238,12 +238,12 @@ h6 {
   top: 28px;
 }
 
-.header__callback__text-tablet {
+.header__callback-text-tablet {
   color: #2c6b97;
   cursor: pointer;
 }
 
-.header__callback__number {
+.header__callback-number {
   color: #244959;
   font-size: 28px;
   cursor: pointer;
@@ -862,6 +862,17 @@ h6 {
   margin-bottom: 48px;
 }
 
+.callback-form__accept-container {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #e9f1f5;
+}
+
 .callback-form__accept {
   width: 336px;
   height: 111px;
@@ -951,27 +962,10 @@ body {
   .feedback {
     right: -336px;
   }
-
-  .callback {
-    right: -336px;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-  }
-
-  .callback:hover,
-  .callback:active {
-    -webkit-transform: translate(-336px, 0);
-    -ms-transform: translate(-336px, 0);
-    transform: translate(-336px, 0);
-    -webkit-transition-delay: 0.1s;
-    -o-transition-delay: 0.1s;
-    transition-delay: 0.1s;
-  }
 }
 
 @media screen and (min-width: 1025px) {
-  .header__callback__text-tablet {
+  .header__callback-text-tablet {
     display: none;
   }
 }
@@ -1007,7 +1001,7 @@ body {
     width: 500px;
   }
 
-  .header__callback__text {
+  .header__callback-text {
     font-size: 16px;
     width: 249px;
     height: 32px;
@@ -1017,11 +1011,11 @@ body {
     display: none;
   }
 
-  .header__callback__text::after {
+  .header__callback-text::after {
     display: none;
   }
 
-  .header__callback__text-tablet {
+  .header__callback-text-tablet {
     font-size: 16px;
     width: 249px;
     height: 32px;
@@ -1033,7 +1027,7 @@ body {
     top: 9px;
   }
 
-  .header__callback__number {
+  .header__callback-number {
     font-size: 24px;
     font-family: FS-Demi;
     padding-right: 21px;
@@ -1229,21 +1223,42 @@ body {
   }
 
   .callback-form {
-    width: 265px;
-    height: 576px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .callback-form__exit {
+    font-size: 13px;
+    line-height: 15px;
+    color: #2c6b97;
+    pointer-events: none;
+  }
+
+  .callback-form__exit::before {
+    content: "Закрыть";
+    position: absolute;
+    top: 42px;
+    right: 47px;
+    cursor: pointer;
+    pointer-events: all;
   }
 
   .callback-form__exit-image {
-    width: 16px;
-    height: 16px;
-    right: 14px;
-    top: 16px;
+    width: 10px;
+    height: 10px;
+    right: 27px;
+    top: 46px;
   }
 
   .callback-form__title {
-    font-size: 21px;
-    line-height: 24px;
-    margin-bottom: 6px;
+    font-size: 48px;
+    line-height: 56px;
+    font-family: FS-Demi;
+    color: #244959;
+    margin-bottom: 48px;
   }
 
   .callback-form__input::-webkit-input-placeholder {
@@ -1267,21 +1282,31 @@ body {
   }
 
   .callback-form__input {
-    width: 233px;
-    height: 32px;
+    width: 321px;
+    height: 41px;
     padding-left: 8px;
   }
 
+  .callback-form input:last-of-type {
+    margin: 7px 0 35px;
+  }
+
+  .callback-form__accept-container {
+    height: 56px;
+    position: fixed;
+    bottom: 0;
+  }
+
   .callback-form__accept {
-    width: 265px;
-    height: 96px;
+    width: 320px;
+    padding: 12px 0 0;
   }
 
   .callback-form__button {
-    width: 233px;
+    width: 321px;
     height: 48px;
     line-height: 32px;
-    top: -121px;
+    top: -13px;
   }
 }
 
@@ -1651,21 +1676,29 @@ body {
   }
 
   .callback-form input:last-of-type {
-    margin-bottom: 45px;
+    margin-bottom: 171px;
+  }
+
+  .callback-form__accept-container {
+    height: 128px;
   }
 
   .callback-form__accept {
-    width: 100vw;
-    height: 128px;
     font-size: 12px;
-    padding: 52px 49px 0;
+    padding: 42px 49px 0;
     text-align: left;
   }
 
   .callback-form__button {
     width: 168px;
     height: 40px;
-    top: -147px;
+    top: -150px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .callback-form input:first-of-type {
+    margin-bottom: 13px;
   }
 }
 
@@ -1681,15 +1714,11 @@ body {
   }
 
   .callback {
-    right: -265px;
-  }
-
-  .callback:hover,
-  .callback:active,
-  .callback:focus {
-    -webkit-transform: translate(-265px, 0);
-    -ms-transform: translate(-265px, 0);
-    transform: translate(-265px, 0);
+    right: 0;
+    left: 0;
+    top: 0px;
+    width: 100vw;
+    height: 100%;
   }
 }
 

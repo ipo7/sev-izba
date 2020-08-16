@@ -46,7 +46,7 @@ $(function () {
 		$('.feedback').toggle(200);
 	});
 
-
+	//Наведение на блок "Напишите нам"
 	$('.feedback').on('click mouseenter touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -76,7 +76,6 @@ $(function () {
 
 	});
 
-
 	$('.feedback-form__exit').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -89,7 +88,7 @@ $(function () {
 	});
 
 
-	//Нажатие на кнопку "Заказать обратный звонок"
+	//Нажатие на кнопку "Заказать обратный звонок" в мобильной версии
 	$('.topic__footer-button').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -97,7 +96,16 @@ $(function () {
 			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
 		};
 		ee();
+	});
 
+	$('.header__callback-text-tablet').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		function ee() {
+			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
+		};
+		ee();
+		console.log($('.callback').css('display'));
 	});
 
 	$('.callback-form__exit').on('click touchend', function (e) {
