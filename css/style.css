@@ -562,6 +562,9 @@ h6 {
   justify-content: center;
   position: fixed;
   top: 20%;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .feedback__before {
@@ -947,19 +950,6 @@ body {
 @media screen and (min-width: 1024px) {
   .feedback {
     right: -336px;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-  }
-
-  .feedback:hover,
-  .feedback:active {
-    -webkit-transform: translate(-336px, 0);
-    -ms-transform: translate(-336px, 0);
-    transform: translate(-336px, 0);
-    -webkit-transition-delay: 0.1s;
-    -o-transition-delay: 0.1s;
-    transition-delay: 0.1s;
   }
 
   .callback {
@@ -1680,16 +1670,14 @@ body {
 }
 
 @media screen and (max-width: 1024px) and (min-width: 415px) {
-  .feedback {
-    right: -265px;
+  .feedback_tablet {
+    -webkit-transform: translate(265px, 0);
+    -ms-transform: translate(265px, 0);
+    transform: translate(265px, 0);
   }
 
-  .feedback:hover,
-  .feedback:active,
-  .feedback:focus {
-    -webkit-transform: translate(-265px, 0);
-    -ms-transform: translate(-265px, 0);
-    transform: translate(-265px, 0);
+  .feedback {
+    right: -265px;
   }
 
   .callback {
