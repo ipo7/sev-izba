@@ -63,7 +63,7 @@ $(function () {
 
 	});
 
-	$('.feedback').on('click mouseleave touchend', function (e) {
+	$('.feedback').on('click mouseleave', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 
