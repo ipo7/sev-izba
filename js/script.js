@@ -18,6 +18,20 @@ $(function () {
 			} return;
 		};
 		rr();
+		//Выравнивание отступов projects по отступам menu
+		function menu(e) {
+			// e.preventDefault();
+			let offset = $('.menu').offset();
+			let top = offset.top;
+			let left = offset.left;
+			let width = $('.menu').width();
+			console.log(left + width);
+			if ($(window).width() > mobile) {
+				$('.projects__container').css({ 'padding-left': left + width + 20 });
+			} return;
+		};
+		menu();
+
 	});
 
 	$(window).resize();
@@ -98,6 +112,7 @@ $(function () {
 		ee();
 	});
 
+	//Нажатие на кнопку "Заказать обратный звонок" в tablet версии
 	$('.header__callback-text-tablet').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -105,13 +120,26 @@ $(function () {
 			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
 		};
 		ee();
-		console.log($('.callback').css('display'));
+
+	});
+
+	//Нажатие на кнопку "Заказать обратный звонок" в desktop версии
+	$('.header__callback-text').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.header__callback').css({ 'opacity': '0', 'pointer-events': 'none' });
+		function ee() {
+			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
+		};
+		ee();
+
 	});
 
 	$('.callback-form__exit').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		$('.callback').toggle(200);
+		$('.header__callback').css({ 'opacity': '1', 'pointer-events': 'all' });
 
 	});
 
@@ -141,6 +169,19 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		$('.feedback-form-succses').toggle(200);
+	});
+
+	//Белый фон шапки при достижении блока "Проекты"
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y = $('.projects').offset().top;
+		let y1 = $(document).scrollTop();
+		let y2 = $('.header__container').height();
+		function ee() {
+			if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
+		}
+		ee();
 	});
 
 });
