@@ -983,6 +983,7 @@ h6 {
   height: 400px;
   right: 216px;
   top: 48px;
+  z-index: 3;
 }
 
 .callback-form {
@@ -1787,7 +1788,6 @@ body {
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
     align-self: center;
-    z-index: 0;
   }
 
   .topic__footer-button {
