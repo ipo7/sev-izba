@@ -1447,6 +1447,7 @@ body {
 
   .projects__container {
     padding-top: 20px;
+    padding-bottom: 40px;
   }
 
   .projects__title {
