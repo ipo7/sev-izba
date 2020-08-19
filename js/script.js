@@ -25,7 +25,7 @@ $(function () {
 			let top = offset.top;
 			let left = offset.left;
 			let width = $('.menu').width();
-			console.log(left + width);
+			// console.log(left + width);
 			if ($(window).width() > mobile) {
 				$('.projects__container').css({ 'padding-left': left + width + 20 });
 			} return;
@@ -180,6 +180,20 @@ $(function () {
 		let y2 = $('.header__container').height();
 		function ee() {
 			if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
+		}
+		ee();
+	});
+
+	//Disable scroll-block
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y = $('.projects').offset().top;
+		let y1 = $(document).scrollTop() + $(window).height();
+		let y2 = $('.projects').height();
+		console.log(y, ' ', y1, y2);
+		function ee() {
+			{ y <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
 		ee();
 	});
