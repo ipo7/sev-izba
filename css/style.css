@@ -559,6 +559,10 @@ h6 {
   color: #fff;
 }
 
+div [hidden] {
+  display: none;
+}
+
 .main-item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -983,7 +987,7 @@ h6 {
   height: 400px;
   right: 216px;
   top: 48px;
-  z-index: 3;
+  z-index: 1000;
 }
 
 .callback-form {
@@ -1195,7 +1199,7 @@ body {
   }
 
   .projects__container {
-    padding-top: 60px;
+    padding-top: 100px;
   }
 
   .callback {

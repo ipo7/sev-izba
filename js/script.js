@@ -191,11 +191,34 @@ $(function () {
 		let y = $('.projects').offset().top;
 		let y1 = $(document).scrollTop() + $(window).height();
 		let y2 = $('.projects').height();
-		console.log(y, ' ', y1, y2);
 		function ee() {
 			{ y <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
 		ee();
+	});
+
+	//Переключение класса active в меню
+	$('.projects__menu-item').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.projects__menu-item').removeClass('projects__menu-item_active');
+		$(this).addClass('projects__menu-item_active');
+	});
+
+
+	$('.projects__menu-item[data-type="bath"]').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.projects__item:not([data-type="bath"])').attr('hidden', 'true');
+		$('.projects__item[data-type="bath"]').attr('hidden', null);
+	});
+
+	$('.projects__menu-item[data-type="house"]').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.projects__item:not([data-type="house"])').attr('hidden', 'true');
+		$('.projects__item[data-type="house"]').attr('hidden', null);
+
 	});
 
 });
