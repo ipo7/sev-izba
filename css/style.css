@@ -657,7 +657,6 @@ h6 {
 
 .projects {
   left: 0;
-  background-color: #dad4d4;
   z-index: -1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -746,7 +745,6 @@ h6 {
   display: grid;
   grid-template: auto/repeat(auto-fit, minmax(464px, 1fr));
   grid-gap: 20px;
-  background-color: #99e4d7;
   justify-items: center;
 }
 
