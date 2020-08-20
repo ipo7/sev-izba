@@ -205,12 +205,29 @@ $(function () {
 		$(this).addClass('projects__menu-item_active');
 	});
 
-
+	//Подгружаем блок Бани через AJAX-запрос из файла bath.html
 	$('.projects__menu-item[data-type="bath"]').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
+
+		let q = $(document).scrollTop(); //Фиксируем положение экрана
+
 		$('.projects__item:not([data-type="bath"])').attr('hidden', 'true');
-		$('.projects__item[data-type="bath"]').attr('hidden', null);
+
+		$.get('bath.html', function (data) {
+
+			let y = $.parseHTML(data); //Преобразуем HTML-строку в массив
+			let i = $('.projects__item[data-type="bath"]').length;
+			function ee() {
+				if (i < y.length) {
+					$('.projects__body').append(y)
+				}
+				else $('.projects__item[data-type="bath"]').attr('hidden', null);
+			}
+			ee();
+			$(document).scrollTop(q); //Возвращаем положение экрана в исходное положение
+		});
+
 	});
 
 	$('.projects__menu-item[data-type="house"]').on('click touchend', function (e) {
