@@ -192,11 +192,22 @@ $(function () {
 		// e.preventDefault();
 		let y = $('.projects').offset().top;
 		let y1 = $(document).scrollTop() + $(window).height();
-		let y2 = $('.projects').height();
+
 		function ee() {
 			{ y <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
 		ee();
+	});
+
+	//Disable topic-footer on mobile scroll
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y1 = $(document).scrollTop();
+		if ($(window).width() <= mobile) {
+
+			{ 10 <= y1 ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+		} return;
 	});
 
 	//Переключение класса active в меню
@@ -215,10 +226,16 @@ $(function () {
 		//Фиксируем положение экрана
 		$('.projects__body').css({
 			// overflow: 'hidden',
-			height: '100vh'
+			'min-height': '100vh'
 		});
 
-		// let q = $(document).scrollTop(); //Фиксируем положение экрана
+		//Отмена предыдущего действия
+		// $('html, body').css({
+		// 	overflow: 'auto',
+		// 	height: 'auto'
+		// });
+
+		// let q = $(document).scrollTop(); //Фиксируем координаты положение экрана
 
 		$('.projects__item:not([data-type="bath"])').attr('hidden', 'true');
 
@@ -240,12 +257,27 @@ $(function () {
 
 	});
 
+
+	//Отработка клика на пункт "Дома" в разделе "Проекты"
 	$('.projects__menu-item[data-type="house"]').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		$('.projects__item:not([data-type="house"])').attr('hidden', 'true');
 		$('.projects__item[data-type="house"]').attr('hidden', null);
 
+	});
+
+
+	//Отработка клика на пункт "Проекты" в Menu
+	$('.menu__top-link[data-type="projects"]').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		let y = $('.projects').offset().top;
+		let y1 = $('.header').height();
+		function ee() {
+			$(document).scrollTop(y - y1);
+		}
+		ee();
 	});
 
 });
