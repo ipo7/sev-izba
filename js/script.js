@@ -77,7 +77,8 @@ $(function () {
 
 	});
 
-	$('.feedback').on('click mouseleave', function (e) {
+	//Покидаем блок "Напишите нам"
+	$('.feedback').on('mouseleave', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 
@@ -90,6 +91,7 @@ $(function () {
 
 	});
 
+	//Нажимаем на крестик блока "Напишите нам"
 	$('.feedback-form__exit').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -101,6 +103,18 @@ $(function () {
 		}
 	});
 
+	//Временная заглушка на нажатие кнопки "Отправить"
+	$('.feedback-form__button').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		if (window.matchMedia('(max-width: 414px)').matches) {
+			// $('.feedback').toggle();
+			return;
+		} else {
+			$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+		}
+	});
 
 	//Нажатие на кнопку "Заказать обратный звонок" в мобильной версии
 	$('.topic__footer-button').on('click touchend', function (e) {
@@ -153,18 +167,6 @@ $(function () {
 	});
 
 
-	//Временная заглушка на нажатие кнопки "Отправить"
-	$('.feedback-form__button').on('click touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
-		$('.feedback').toggle();
-		function ee() {
-			$('.feedback-form-succses').css('display') == 'none' ? $('.feedback-form-succses').css({ 'display': 'flex' }) : $('.feedback-form-succses').css({ 'display': 'none' });
-		};
-		ee();
-
-	});
-
 	$('.feedback-form-succses__image').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -210,7 +212,13 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 
-		let q = $(document).scrollTop(); //Фиксируем положение экрана
+		//Фиксируем положение экрана
+		$('.projects__body').css({
+			// overflow: 'hidden',
+			height: '100vh'
+		});
+
+		// let q = $(document).scrollTop(); //Фиксируем положение экрана
 
 		$('.projects__item:not([data-type="bath"])').attr('hidden', 'true');
 
@@ -218,6 +226,7 @@ $(function () {
 
 			let y = $.parseHTML(data); //Преобразуем HTML-строку в массив
 			let i = $('.projects__item[data-type="bath"]').length;
+
 			function ee() {
 				if (i < y.length) {
 					$('.projects__body').append(y)
@@ -225,7 +234,8 @@ $(function () {
 				else $('.projects__item[data-type="bath"]').attr('hidden', null);
 			}
 			ee();
-			$(document).scrollTop(q); //Возвращаем положение экрана в исходное положение
+
+			// $(document).scrollTop(q); //Возвращаем положение экрана в исходное положение
 		});
 
 	});
