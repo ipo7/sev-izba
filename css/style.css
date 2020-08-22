@@ -1576,10 +1576,12 @@ body {
     width: 24px;
     height: 24px;
     left: 4px;
+    top: 4px;
   }
 
   .footer__office .footer__item-email::before {
     left: 0;
+    top: 2px;
   }
 
   .footer__map {
