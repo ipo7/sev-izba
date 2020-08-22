@@ -210,6 +210,22 @@ $(function () {
 		} return;
 	});
 
+	//Disable menu on footer
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y = $('.footer').offset().top;
+		let y1 = $(document).scrollTop() + $(window).height();
+		let y2 = $('.footer').height();
+		let y3 = $('.menu').css('top');
+		// console.log(y3);
+		function ee() {
+			{ y <= y1 ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
+
+		}
+		ee();
+	});
+
 	//Переключение класса active в меню
 	$('.projects__menu-item').on('click touchend', function (e) {
 		e.stopPropagation();
@@ -269,7 +285,7 @@ $(function () {
 
 
 	//Отработка клика на пункт "Проекты" в Menu
-	$('.menu__top-link[data-type="projects"]').on('click touchend', function (e) {
+	$('.menu__top-link[data-type="projects"], .menu-disable__top-link[data-type="projects"], .scroll').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		let y = $('.projects').offset().top;
@@ -278,6 +294,7 @@ $(function () {
 			$(document).scrollTop(y - y1);
 		}
 		ee();
+		// $('.menu-disable').css('display', 'none');
 	});
 
 });
