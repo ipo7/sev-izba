@@ -779,7 +779,7 @@ div [hidden] {
 }
 
 .footer .container {
-  padding-right: 0;
+  padding: 60px 0 0;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(246px, 1fr))[3] minmax(auto, 2fr);
