@@ -813,7 +813,7 @@ div [hidden] {
   content: "";
   background: url("../img/phone_icon.svg") 0 0/contain no-repeat;
   top: 6px;
-  left: 0;
+  left: 5px;
   width: 32px;
   height: 32px;
 }
@@ -821,6 +821,7 @@ div [hidden] {
 .footer__office .footer__item-email::before {
   background-image: url("../img/mail_icon.svg");
   top: 4px;
+  left: 0;
 }
 
 .footer__office .footer__item-address::before {
@@ -1571,6 +1572,16 @@ body {
     line-height: 15px;
   }
 
+  .footer__office .footer__item::before {
+    width: 24px;
+    height: 24px;
+    left: 4px;
+  }
+
+  .footer__office .footer__item-email::before {
+    left: 0;
+  }
+
   .footer__map {
     display: none;
   }
@@ -1975,8 +1986,6 @@ body {
   }
 
   .footer__office .footer__item::before {
-    width: 24px;
-    height: 24px;
     top: 8px;
   }
 
