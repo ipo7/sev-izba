@@ -356,23 +356,21 @@ h6 {
   display: none;
 }
 
-.menu-footer {
-  position: absolute;
-  bottom: 0;
-  top: auto;
-}
-
 .menu-wrapper {
   position: relative;
-  background-color: #18d618;
 }
 
 .menu {
   font-family: FS-Medium;
   position: fixed;
-  max-width: calc(1746px + 40px);
   left: 20px;
   top: 244px;
+  height: calc(100vh - 244px);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto 1fr auto;
+  -ms-grid-columns: auto;
+  grid-template: auto 1fr auto / auto;
 }
 
 .menu__top li {
@@ -395,6 +393,25 @@ h6 {
 .menu__bottom li a {
   color: #2c6b97;
   font-size: 20px;
+}
+
+.menu .social-nets {
+  -ms-grid-row: 3;
+  grid-row: 3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+  -ms-grid-columns: (1fr)[3];
+  grid-template: auto/repeat(3, 1fr);
+  justify-items: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.menu .social-nets__image {
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .menu-disable {
@@ -468,24 +485,6 @@ h6 {
 .menu-disable__footer-text a {
   text-decoration: none;
   color: #37739c;
-}
-
-.social-nets {
-  position: fixed;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 -29px;
-  bottom: 44px;
-}
-
-.social-nets div {
-  margin: 0 29px;
-}
-
-.social-nets__image {
-  -o-object-fit: contain;
-  object-fit: contain;
 }
 
 .scroll {
@@ -1386,6 +1385,7 @@ body {
   .menu {
     left: 18px;
     top: 131px;
+    height: calc(100vh - 140px);
   }
 
   .menu__top li {
@@ -1408,27 +1408,14 @@ body {
     font-size: 13px;
   }
 
-  .social-nets {
-    left: 14px;
-    bottom: 23px;
-    margin: 0 -23px;
-  }
-
-  .social-nets div {
-    margin: 0 23px;
-  }
-
-  .social-nets__image {
+  .menu .social-nets__image {
     width: 18px;
     height: 18px;
   }
 
-  .social-nets__image_vk {
+  .menu .social-nets__image_vk {
     width: 24px;
     height: 24px;
-    position: relative;
-    top: -3px;
-    left: 4px;
   }
 
   .scroll {
@@ -1812,6 +1799,10 @@ body {
     display: none;
   }
 
+  .menu .social-nets {
+    display: none;
+  }
+
   .menu-disable {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1834,10 +1825,6 @@ body {
     margin: 0 -29px;
     bottom: -70px;
     left: 91px;
-  }
-
-  .social-nets {
-    display: none;
   }
 
   .scroll {
