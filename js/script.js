@@ -211,6 +211,7 @@ $(function () {
 	});
 
 	//Disable menu on footer
+
 	// $(document).on('scroll', function (e) {
 	// 	// e.stopPropagation();
 	// 	// e.preventDefault();
