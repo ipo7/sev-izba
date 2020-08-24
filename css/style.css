@@ -171,6 +171,10 @@ h6 {
 }
 
 .header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: head;
   position: fixed;
   padding-top: 43px;
   min-width: 100%;
@@ -372,6 +376,7 @@ h6 {
 
 .menu-wrapper {
   position: relative;
+  grid-area: aside;
 }
 
 .menu {
@@ -379,7 +384,8 @@ h6 {
   position: fixed;
   left: 20px;
   top: 244px;
-  height: calc(100vh - 244px);
+  height: calc(100vh - 278px);
+  background-color: #f3bbbb;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: auto 1fr auto;
@@ -528,6 +534,11 @@ h6 {
 }
 
 .topic {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: main;
+  min-width: 100vw;
   text-align: center;
   font-family: FS-Demi;
   padding-top: 179px;
@@ -792,6 +803,13 @@ div [hidden] {
   background-color: #fff;
   border: 2px solid #2c6b97;
   margin: 48px auto 0;
+}
+
+.footer {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: foot;
 }
 
 .footer .container {
@@ -1254,23 +1272,10 @@ body {
   height: 100%;
 }
 
-.container {
-  max-width: calc(1746px + 40px);
-  width: 100vw;
-  padding: 0 20px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+.main-wrapper {
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "head head head head" "main main main main" "foot foot foot foot";
 }
 
 @media screen and (min-width: 1024px) {
