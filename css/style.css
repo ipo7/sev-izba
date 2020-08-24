@@ -447,6 +447,7 @@ h6 {
   background-color: #fff;
   width: 100vw;
   height: 100vh;
+  position: fixed;
 }
 
 .menu-disable__container {

@@ -48,10 +48,10 @@ $(function () {
 		}
 		$('.menu-disable').toggle(200);
 
-		function ee() {
-			$('.header__container').css('justify-content') == 'flex-end' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'flex-end' });
-		};
-		ee();
+		// function ee() {
+		// 	$('.header__container').css('justify-content') == 'flex-end' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'flex-end' });
+		// };
+		// ee();
 
 	});
 
