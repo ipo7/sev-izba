@@ -446,7 +446,9 @@ h6 {
   font-family: FS-Medium;
   background-color: #fff;
   width: 100vw;
-  height: 100vh;
+  overflow-y: scroll;
+  min-height: 100vh;
+  height: 100%;
   position: fixed;
 }
 
