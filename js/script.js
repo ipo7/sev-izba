@@ -178,27 +178,46 @@ $(function () {
 	});
 
 	//Белый фон шапки при достижении блока "Проекты"
-	$(document).on('scroll', function (e) {
-		// e.stopPropagation();
-		// e.preventDefault();
-		let y = $('.projects').offset().top;
-		let y1 = $(document).scrollTop();
-		let y2 = $('.header__container').height();
-		function ee() {
-			if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
-		}
-		ee();
-	});
+
+	// $(document).on('scroll', function (e) {
+	// 	// e.stopPropagation();
+	// 	// e.preventDefault();
+	// 	let y = $('.projects').offset().top;
+	// 	let y1 = $(document).scrollTop();
+	// 	let y2 = $('.header__container').height();
+	// 	function ee() {
+	// 		if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
+	// 	}
+	// 	ee();
+	// });
 
 	//Disable scroll-block
+	$(document).ready(function () {
+
+		// let y1 = $(document).scrollTop() + $(window).height();
+		let y1 = $(window).height();
+		let y2 = $('.topic').height();
+		let y3 = parseInt($('.topic').css('padding-top'));
+		console.log('.topic + padding ' + (y2 + y3), 'window height() ' + y1, y3);
+		console.log(y2 <= y1);
+		function ee() {
+			{ y2 + y3 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+		}
+		ee();
+
+	});
+
+
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
-		let y = $('.projects').offset().top;
+		// let y = $('.projects').offset().top;
 		let y1 = $(document).scrollTop() + $(window).height();
+		let y2 = $('.topic').height();
+		console.log(y2, y1);
 
 		function ee() {
-			{ y <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+			{ y2 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
 		ee();
 	});
@@ -208,6 +227,7 @@ $(function () {
 		// e.stopPropagation();
 		// e.preventDefault();
 		let y1 = $(document).scrollTop();
+		console.log(10 <= y1);
 		if ($(window).width() <= mobile) {
 
 			{ 10 <= y1 ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }

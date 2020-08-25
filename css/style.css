@@ -828,9 +828,13 @@ div [hidden] {
   padding: 60px 0 0;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(246px, 1fr))[3] minmax(auto, 2fr);
-  grid-template-columns: repeat(3, minmax(246px, 1fr)) minmax(auto, 2fr);
-  grid-gap: 20px;
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  white-space: nowrap;
+  -ms-grid-rows: auto;
+  -ms-grid-columns: 1fr 20px minmax(auto, 279px) 20px minmax(auto, 279px) 20px minmax(auto, 279px) 20px 1fr 20px minmax(auto, 792px) 20px 1fr;
+  grid-template: auto/1fr repeat(3, minmax(auto, 279px)) 1fr minmax(auto, 792px) 1fr;
 }
 
 .footer__title {
@@ -847,6 +851,24 @@ div [hidden] {
   color: #2c6b97;
   display: inline-block;
   margin-bottom: 16px;
+}
+
+.footer__category {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: 1/2;
+}
+
+.footer__representations {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: 1/3;
+}
+
+.footer__office {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: 1/4;
 }
 
 .footer__office .footer__item {
@@ -873,6 +895,12 @@ div [hidden] {
 .footer__office .footer__item-address::before {
   background-image: url("../img/location_icon.svg");
   top: 7px;
+}
+
+.footer__map {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: 1/6;
 }
 
 .footer__map-image {
@@ -1340,6 +1368,29 @@ body {
   }
 }
 
+@media screen and (max-width: 1440px) {
+  .footer .container {
+    -ms-grid-rows: auto auto;
+    -ms-grid-columns: 0 (minmax(auto, 1fr))[3] 72px;
+    grid-template: auto auto/0 repeat(3, minmax(auto, 1fr)) 72px;
+  }
+
+  .footer__map {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-area: 2/2/2/5;
+    -ms-grid-column-align: center;
+    justify-self: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+  }
+
+  .footer__map-image {
+    max-width: 450px;
+  }
+}
+
 @media screen and (max-width: 1220px) {
   .topic__title {
     font-size: 68px;
@@ -1589,10 +1640,10 @@ body {
   }
 
   .footer .container {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     grid-auto-rows: 1fr;
-    padding-right: 60px;
-    justify-items: center;
+    margin: 0 60px 0 20px;
+    justify-items: start;
   }
 
   .footer__title {
@@ -1602,6 +1653,18 @@ body {
   .footer__item {
     font-size: 13px;
     line-height: 15px;
+  }
+
+  .footer__category {
+    grid-area: auto;
+  }
+
+  .footer__representations {
+    grid-area: auto;
+  }
+
+  .footer__office {
+    grid-area: auto;
   }
 
   .footer__office .footer__item::before {
@@ -2078,6 +2141,7 @@ body {
 
   .feedback {
     display: none;
+    z-index: 100;
     position: fixed;
     max-height: 100%;
     right: 0;
