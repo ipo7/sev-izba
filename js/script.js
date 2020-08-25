@@ -46,7 +46,9 @@ $(function () {
 		} else {
 			$('.header__callback, .logo-main').toggle();
 		}
+
 		$('.menu-disable').toggle(200);
+
 
 		// function ee() {
 		// 	$('.header__container').css('justify-content') == 'flex-end' ? $('.header__container').css({ 'justify-content': 'space-between' }) : $('.header__container').css({ 'justify-content': 'flex-end' });
