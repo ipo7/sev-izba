@@ -191,15 +191,15 @@ $(function () {
 	// 	ee();
 	// });
 
-	//Disable scroll-block
+	//Disable scroll-block если высота экрана больше, чем высота блока Topic
 	$(document).ready(function () {
 
 		// let y1 = $(document).scrollTop() + $(window).height();
 		let y1 = $(window).height();
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
-		console.log('.topic + padding ' + (y2 + y3), 'window height() ' + y1, y3);
-		console.log(y2 <= y1);
+		// console.log('.topic + padding ' + (y2 + y3), 'window height() ' + y1, y3);
+		// console.log(y2 <= y1);
 		function ee() {
 			{ y2 + y3 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
@@ -207,30 +207,38 @@ $(function () {
 
 	});
 
-
+	//Disable scroll-block if scrolling
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
 		// let y = $('.projects').offset().top;
+		let y = $(document).scrollTop();
 		let y1 = $(document).scrollTop() + $(window).height();
 		let y2 = $('.topic').height();
-		console.log(y2, y1);
+		// console.log(y2, y1);
 
-		function ee() {
-			{ y2 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
-		}
-		ee();
+		if ($(window).width() <= mobile) {
+
+			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+		} else {
+			function ee() {
+				{ y2 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+			}
+			ee();
+		};
+
+
 	});
 
 	//Disable topic-footer on mobile scroll
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
-		let y1 = $(document).scrollTop();
-		console.log(10 <= y1);
+		let y = $(document).scrollTop();
+		// console.log(10 <= y1);
 		if ($(window).width() <= mobile) {
 
-			{ 10 <= y1 ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} return;
 	});
 
