@@ -19,18 +19,18 @@ $(function () {
 		};
 		rr();
 		//Выравнивание отступов projects по отступам menu
-		function menu(e) {
-			// e.preventDefault();
-			let offset = $('.menu').offset();
-			let top = offset.top;
-			let left = offset.left;
-			let width = $('.menu').width();
-			// console.log(left + width);
-			if ($(window).width() > mobile) {
-				$('.projects__container').css({ 'padding-left': left + width + 20 });
-			} return;
-		};
-		menu();
+		// function menu(e) {
+		// 	// e.preventDefault();
+		// 	let offset = $('.menu').offset();
+		// 	let top = offset.top;
+		// 	let left = offset.left;
+		// 	let width = $('.menu').width();
+		// 	// console.log(left + width);
+		// 	if ($(window).width() > mobile) {
+		// 		$('.projects__container').css({ 'padding-left': left + width + 20 });
+		// 	} return;
+		// };
+		// menu();
 
 	});
 	$(window).resize();
@@ -224,7 +224,6 @@ $(function () {
 		let y1 = $(document).scrollTop() + $(window).height();
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
-		console.log(y2, y1);
 
 		//Disable topic-footer on mobile scroll
 		if ($(window).width() <= mobile) {
@@ -240,21 +239,39 @@ $(function () {
 
 
 	//Disable menu on footer
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y = $('.footer').offset().top;
+		let y1 = $(document).scrollTop();
+		let y2 = $('.menu').height();
+		let y3 = parseInt($('.menu').css('top'));
+		// console.log("footer top " + y, "menu top " + y3, "menu height " + y2, "scroll " + y1);
+		// console.log("footer top " + y, "menu top+height " + (y2 + y3), "scroll " + y1);
 
-	// $(document).on('scroll', function (e) {
-	// 	// e.stopPropagation();
-	// 	// e.preventDefault();
-	// 	let y = $('.footer').offset().top;
-	// 	let y1 = $(document).scrollTop() + $(window).height();
-	// 	let y2 = $('.footer').height();
-	// 	let y3 = $('.menu').css('top');
-	// 	// console.log(y3);
-	// 	function ee() {
-	// 		{ y <= y1 ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
+		function ee() {
+			// console.log(y);
+			console.log(y <= (y1 + y2 + y3 - 1));
+			// console.log(y1 + y2 + y3);
+			// console.log(y1 + y2 + y3 - 1);
+			// { y <= (y1 + y2 + y3) ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
 
-	// 	}
-	// 	ee();
-	// });
+
+			if (y <= (y1 + y2 + y3)) {
+				// $('.menu').css({ 'position': 'absolute', 'top': y - y2 });
+
+			} else
+				$('.menu').css({ 'position': 'fixed', 'top': '224px' })
+
+
+		}
+		ee();
+
+		// function ee() {
+		// 	{ y <= y1 ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
+		// }
+		// ee();
+	});
 
 	//Переключение класса active в меню
 	$('.projects__menu-item').on('click touchend', function (e) {
