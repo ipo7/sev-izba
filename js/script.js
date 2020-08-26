@@ -177,24 +177,23 @@ $(function () {
 	});
 
 	//Белый фон шапки при достижении блока "Проекты"
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		let y = $('.projects').offset().top;
+		let y1 = $(document).scrollTop();
+		let y2 = $('.header__container').height();
+		function ee() {
+			if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
+		}
+		ee();
+	});
 
-	// $(document).on('scroll', function (e) {
-	// 	// e.stopPropagation();
-	// 	// e.preventDefault();
-	// 	let y = $('.projects').offset().top;
-	// 	let y1 = $(document).scrollTop();
-	// 	let y2 = $('.header__container').height();
-	// 	function ee() {
-	// 		if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
-	// 	}
-	// 	ee();
-	// });
-
-	// $(window).on('load', function () {
-	// 	$('html body').scrollTop(0);
-	// 	$(document).scrollTop(0);
-	// 	$("html,body").animate({ scrollTop: 0 }, "slow");
-	// });
+	$(window).on('load', function () {
+		$('html body').scrollTop(0);
+		$(document).scrollTop(0);
+		$("html,body").animate({ scrollTop: 0 }, "slow");
+	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
 	$(document).ready(function () {
@@ -213,7 +212,8 @@ $(function () {
 		}
 		ee();
 
-		if ($(window).width() <= mobile) {
+		//Disable scroll-block на малых экранах
+		if ($(window).width() <= 600) {
 			$('.scroll').hide();
 		}
 
@@ -294,7 +294,7 @@ $(function () {
 		//Фиксируем положение экрана
 		$('.projects__body').css({
 			// overflow: 'hidden',
-			'min-height': '100vh'
+			// 'min-height': '100vh'
 		});
 
 		//Отмена предыдущего действия

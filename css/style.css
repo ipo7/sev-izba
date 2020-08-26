@@ -1483,6 +1483,7 @@ body {
     left: 18px;
     top: 131px;
     height: calc(100vh - 165px);
+    max-height: 630px;
   }
 
   .menu__top li {
@@ -2085,8 +2086,8 @@ body {
 
   .projects__container {
     -ms-grid-rows: (auto)[4];
-    -ms-grid-columns: 20px 1fr minmax(auto, 1500px) 1fr 20px;
-    grid-template: repeat(4, auto)/20px 1fr minmax(auto, 1500px) 1fr 20px;
+    -ms-grid-columns: 0px 1fr minmax(auto, 1500px) 1fr 0px;
+    grid-template: repeat(4, auto)/0px 1fr minmax(auto, 1500px) 1fr 0px;
     margin-right: 0;
   }
 
