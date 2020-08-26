@@ -213,6 +213,11 @@ $(function () {
 		}
 		ee();
 
+		if ($(window).width() <= mobile) {
+			$('.scroll').hide();
+		}
+
+
 	});
 
 	//Disable scroll-block if scrolling
