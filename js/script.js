@@ -192,7 +192,7 @@ $(function () {
 	// });
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
-	$(document).ready(function () {
+	$(window).ready(function () {
 
 		// let y1 = $(document).scrollTop() + $(window).height();
 		let y1 = $(window).height();
@@ -217,6 +217,7 @@ $(function () {
 		let y2 = $('.topic').height();
 		// console.log(y2, y1);
 
+		//Disable topic-footer on mobile scroll
 		if ($(window).width() <= mobile) {
 
 			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
@@ -226,21 +227,8 @@ $(function () {
 			}
 			ee();
 		};
-
-
 	});
 
-	//Disable topic-footer on mobile scroll
-	$(document).on('scroll', function (e) {
-		// e.stopPropagation();
-		// e.preventDefault();
-		let y = $(document).scrollTop();
-		// console.log(10 <= y1);
-		if ($(window).width() <= mobile) {
-
-			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
-		} return;
-	});
 
 	//Disable menu on footer
 
