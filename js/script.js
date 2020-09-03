@@ -18,6 +18,10 @@ $(function () {
 			} return;
 		};
 		rr();
+
+		console.log($('.projects-all__form').width());
+
+
 		//Выравнивание отступов projects по отступам menu
 		// function menu(e) {
 		// 	// e.preventDefault();
@@ -190,9 +194,10 @@ $(function () {
 	});
 
 	$(window).on('load', function () {
-		$('html body').scrollTop(0);
-		$(document).scrollTop(0);
+		// $('html body').scrollTop(0);
+		// $(document).scrollTop(0);
 		$("html,body").animate({ scrollTop: 0 }, "slow");
+		// $(".projects-all").hide();
 	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
