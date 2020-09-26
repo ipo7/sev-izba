@@ -455,7 +455,6 @@ $(function () {
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("map").
 	var myMap;
-
 	$(document).ready(function () {
 
 		// Дождёмся загрузки API и готовности DOM.
@@ -468,7 +467,8 @@ $(function () {
 				// При инициализации карты обязательно нужно указать
 				// её центр и коэффициент масштабирования.
 				center: [55.76, 37.64], // Москва
-				zoom: 10
+				zoom: 10,
+				controls: ['zoomControl']
 			}, {
 				// Зададим ограниченную область прямоугольником
 				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
@@ -566,6 +566,7 @@ $(function () {
 		$('.portfolio__map').addClass('portfolio__map-image_big');
 		$('.portfolio__map').addClass('portfolio__map-withoutAfter');
 		$('.portfolio__button').css({ 'display': 'none' });
+		$('.portfolio__map-exit').css({ 'display': 'block' });
 
 		setTimeout(function () {
 			myMap.container.fitToViewport();
@@ -587,6 +588,18 @@ $(function () {
 		});
 
 		myMap.setCenter([55.76, 37.64]);
+
+	});
+
+	//Нажатие на крест на карте
+	$('.portfolio__map-exit').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		$('.portfolio__map').removeClass('portfolio__map-image_big');
+		$('.portfolio__map').removeClass('portfolio__map-withoutAfter');
+		$('.portfolio__button').css({ 'display': 'block' });
+		$(this).css({ 'display': 'none' });
 
 	});
 

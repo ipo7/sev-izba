@@ -1830,7 +1830,7 @@ div [hidden] {
   grid-area: portfolio;
   display: -ms-grid;
   display: grid;
-  grid: repeat(2, auto)/18% [map] minmax(900px, 1fr) 95px;
+  grid: repeat(2, auto)/18% [map] 1fr 95px;
   grid-gap: 30px 0px;
 }
 
@@ -1980,7 +1980,7 @@ div [hidden] {
 .portfolio__map {
   position: relative;
   overflow: hidden;
-  width: 1456px;
+  max-width: 1456px;
   height: 224px;
   background-color: #e9f1f5;
   -webkit-transition: all 0.5s ease;
@@ -1996,6 +1996,19 @@ div [hidden] {
   background-color: rgba(36, 73, 89, 0.4);
   top: 0;
   left: 0;
+}
+
+.portfolio__map-exit {
+  z-index: 1;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  cursor: pointer;
+  display: none;
 }
 
 .portfolio__map-withoutAfter {
