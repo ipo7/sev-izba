@@ -19,7 +19,7 @@ $(function () {
 		};
 		rr();
 
-		console.log($('.projects-all__form').width());
+		// console.log($('.projects-all__form').width());
 
 
 		//Выравнивание отступов projects по отступам menu
@@ -39,7 +39,7 @@ $(function () {
 	});
 	$(window).resize();
 
-
+	//Нажатие на бургер
 	$('.burger').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -60,6 +60,7 @@ $(function () {
 
 	});
 
+	//Нажатие на иконку mail в шапке
 	$('.header__mail').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -151,12 +152,15 @@ $(function () {
 		$('.header__callback').css({ 'opacity': '0', 'pointer-events': 'none' });
 		function ee() {
 			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
+
+			$('.callback__form').css({ 'display': 'flex' });
 		};
 		ee();
 
 	});
 
-	$('.callback-form__exit').on('click touchend', function (e) {
+	//Закрытие формы обратного звонка
+	$('.callback__form .callback-form__exit').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		$('.callback').toggle(200);
@@ -164,16 +168,63 @@ $(function () {
 
 	});
 
-
-	//Временная заглушка на нажатие кнопки "Перезвонить"
-	$('.callback-form__button').on('click touchend', function (e) {
+	$('.callback-form_succses .callback-form__exit, .callback-form_succses .callback-form__button').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
+		$('.callback-form_succses').toggle(200);
 		$('.callback').toggle(200);
+		$('.header__callback').css({ 'opacity': '1', 'pointer-events': 'all' });
 
 	});
 
 
+	//Нажатие кнопки "Перезвонить" в форме обратного звонка
+	// $('.callback__form .callback-form__button').on('click touchend', function (e) {
+	// 	e.stopPropagation();
+	// 	e.preventDefault();
+
+	// 	function ee() {
+	// 		$('.callback__form').css({ 'display': 'none' });
+	// 		$('.callback-form_succses').css({ 'display': 'grid' });
+
+	// 	};
+	// 	ee();
+
+	// });
+
+	//Нажатие кнопки "Перезвонить" в форме обратного звонка с валидацией
+	$('.callback__form').validate({
+		rules: {
+			yourname: {
+				required: true,
+				minlength: 3
+			},
+
+			telephone: {
+				required: true,
+				minlength: 7,
+				number: true
+			}
+		},
+		messages: {
+			yourname: {
+				required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 3-х символов"
+			},
+			telephone: {
+				required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 7-и символов",
+				number: "Допустимы только цифры"
+			}
+
+		},
+		submitHandler: function () {
+			$('.callback__form').css({ 'display': 'none' });
+			$('.callback-form_succses').css({ 'display': 'grid' });
+		}
+	});
+
+	//Закрытие формы успешного обратного звонка
 	$('.feedback-form-succses__image').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -193,6 +244,7 @@ $(function () {
 		ee();
 	});
 
+	//Поднятие наверх при перезагрузке страницы
 	$(window).on('load', function () {
 		// $('html body').scrollTop(0);
 		// $(document).scrollTop(0);
@@ -248,39 +300,24 @@ $(function () {
 	});
 
 
-	//Disable menu on footer
+	//Disable scrolling menu on footer
+	const menuTop = parseInt($('.menu').css('top')); //добавляем в константу текущее положение menu
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
 		let y = $('.footer').offset().top;
 		let y1 = $(document).scrollTop();
 		let y2 = $('.menu').height();
-		let y3 = parseInt($('.menu').css('top'));
-		// console.log("footer top " + y, "menu top " + y3, "menu height " + y2, "scroll " + y1);
-		// console.log("footer top " + y, "menu top+height " + (y2 + y3), "scroll " + y1);
 
 		function ee() {
-			// console.log(y);
-			console.log(y <= (y1 + y2 + y3 - 1));
-			// console.log(y1 + y2 + y3);
-			// console.log(y1 + y2 + y3 - 1);
-			// { y <= (y1 + y2 + y3) ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
-
-
-			if (y <= (y1 + y2 + y3)) {
-				// $('.menu').css({ 'position': 'absolute', 'top': y - y2 });
-
-			} else
-				$('.menu').css({ 'position': 'fixed', 'top': '224px' })
-
-
+			if (y <= (y1 + y2 + menuTop)) {
+				$('.menu').css({ 'position': 'absolute', 'top': y - y2 });
+			}
+			else {
+				$('.menu').css({ 'position': 'fixed', 'top': menuTop });
+			}
 		}
 		ee();
-
-		// function ee() {
-		// 	{ y <= y1 ? $('.menu').css({ 'position': 'absolute', 'top': y - y2 }) : $('.menu').css({ 'position': 'fixed', 'top': '224px' }) }
-		// }
-		// ee();
 	});
 
 	//Переключение класса active в меню
@@ -341,18 +378,218 @@ $(function () {
 	});
 
 
-	//Отработка клика на пункт "Проекты" в Menu
+	//Отработка клика на пункт "Проекты" в Menu, на Scroll
 	$('.menu__top-link[data-type="projects"], .menu-disable__top-link[data-type="projects"], .scroll').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		let y = $('.projects').offset().top;
 		let y1 = $('.header').height();
 		function ee() {
-			$(document).scrollTop(y - y1);
+			// $(document).scrollTop(y - y1);
+			$("html, body").animate({ scrollTop: (y - y1) }, 300);
 		}
 		ee();
 		// $('.menu-disable').css('display', 'none');
 	});
+
+	//Отработка клика на пункт "фильтры +" в разделе "Проекты"
+	$('.projects-all__filter-mobile').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		// $('.projects-form').toggle();
+		// console.log('ggg');
+
+		function ee() {
+			{ $('.projects-form').css({ 'display': 'none' }) ? $('.projects-form').css({ 'display': 'grid' }) : $('.projects-form').css({ 'display': 'none' }) }
+		}
+		ee();
+	});
+
+	//Отработка клика на X в разделе "фильтры +"
+	$('.projects-form__clear-block-mobile-exit').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		function ee() {
+			{ $('.projects-form').css({ 'display': 'grid' }) ? $('.projects-form').css({ 'display': 'none' }) : $('.projects-form').css({ 'display': 'none' }) }
+		}
+		ee();
+	});
+
+	//Отработка клика на "Очистить фильтры" в разделе "фильтры +"
+	$('.projects-form__clear-block-mobile').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		$('.projects-all__form select').prop('selectedIndex', 0);
+		$('.projects-all__form input').val('');
+	});
+
+	//Слайдер в project-solo
+	$('.slider__container-image').slick({
+		infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		prevArrow: $('.slider__arrow'),
+		nextArrow: $('.slider__arrow_right'),
+		dots: false
+	});
+
+	//Слайдер в project-solo Plan
+	$('.plan__slider').slick({
+		// infinite: true,
+		slidesToShow: 2,
+		slidesToScroll: 1,
+		prevArrow: $('.plan__arrow'),
+		nextArrow: $('.plan__arrow_right'),
+		responsive: [
+			{
+				breakpoint: 650,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+				}
+			}]
+	});
+
+
+	// Создание экземпляра карты и его привязка к контейнеру с id("map").
+	var myMap;
+
+	$(document).ready(function () {
+
+		// Дождёмся загрузки API и готовности DOM.
+		ymaps.ready(init);
+
+		function init() {
+			// Создание экземпляра карты и его привязка к контейнеру с
+			// заданным id ("map").
+			myMap = new ymaps.Map('map', {
+				// При инициализации карты обязательно нужно указать
+				// её центр и коэффициент масштабирования.
+				center: [55.76, 37.64], // Москва
+				zoom: 10
+			}, {
+				// Зададим ограниченную область прямоугольником
+				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+				restrictMapArea: [
+					[56.15, 36], [55.3, 39]
+				]
+			});
+
+			// Создаём макет содержимого.
+			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+			),
+
+				//Создаем геометку
+				balashiha = new ymaps.Placemark([55.77, 37.92], {
+					//Свойства:
+
+					// hintContent: 'Собственный значок метки',
+					// balloonContent: 'Это красивая метка'
+					// name: 'balashiha'
+				}, {
+					// Опции:
+
+					// Необходимо указать данный тип макета.
+					iconLayout: 'default#image',
+					// Своё изображение иконки метки.
+					iconImageHref: '../img/placemark.png',
+					// Размеры метки.
+					iconImageSize: [56, 56],
+					name: 'balashiha'
+					// Смещение левого верхнего угла иконки относительно
+					// её "ножки" (точки привязки).
+					// iconImageOffset: [175, -50]
+
+				}),
+
+				//Создаем геометку
+				dolgoprudniy = new ymaps.Placemark([55.907, 37.49], {
+
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: '../img/placemark.png',
+					iconImageSize: [56, 56],
+					iconContentLayout: MyIconContentLayout,
+					name: 'dolgoprudniy'
+				});
+
+
+			//Добавляем геометки на карту
+			myMap.geoObjects
+				.add(balashiha)
+				.add(dolgoprudniy);
+
+			//Отработка клика на любую метку на карте
+			myMap.geoObjects.each(function (el, i) {
+
+
+
+				el.events.add('click', function (e) {
+
+					//Смещаем центр карты, в зависимости от выбранного объекта
+					el.options._options.name == 'dolgoprudniy' ? myMap.setCenter([55.76, 37.5]) : el.options._options.name == 'balashiha' ? myMap.setCenter([55.76, 37.72]) : myMap.setCenter([55.76, 37.64]);
+
+					//Всем меткам устанавливаем иконку по-умолчанию
+					myMap.geoObjects.each(function (elem, i) {
+						elem.options.set('iconImageHref', '../img/placemark.png');
+					});
+
+					//Целевой метке устанавливаем активную иконку
+					e.get('target').options.set('iconImageHref', '../img/placemark-light.png');
+
+
+					console.log(el.options._options.name == 'dolgoprudniy');
+
+					//Показываем item, соответствующий целевой метке
+					$(`.portfolio__item[data-place != "${el.options._options.name}"]`).css({ 'display': 'none' });
+					$(`.portfolio__item[data-place = "${el.options._options.name}"]`).css({ 'display': 'flex' });
+
+
+
+				});
+			});
+
+
+
+
+		}
+
+	});
+
+	//Нажатие на кнопку "Показать на карте"
+	$('.portfolio__button').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.portfolio__map').addClass('portfolio__map-image_big');
+		$('.portfolio__map').addClass('portfolio__map-withoutAfter');
+		$('.portfolio__button').css({ 'display': 'none' });
+
+		setTimeout(function () {
+			myMap.container.fitToViewport();
+		}, 501);
+
+	});
+
+
+	//Нажатие на крест item на карте
+	$('.main-item__exit').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		$(this).closest('.portfolio__item').css({ 'display': 'none' });
+
+		//Всем меткам устанавливаем иконку по-умолчанию
+		myMap.geoObjects.each(function (el, i) {
+			el.options.set('iconImageHref', '../img/placemark.png');
+		});
+
+		myMap.setCenter([55.76, 37.64]);
+
+	});
+
 
 });
 
