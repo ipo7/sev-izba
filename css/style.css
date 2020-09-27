@@ -2151,6 +2151,7 @@ div [hidden] {
 }
 
 .feedback {
+  z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
