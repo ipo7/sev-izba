@@ -335,8 +335,8 @@ $(function () {
 
 		//Фиксируем положение экрана
 		$('.projects__body').css({
-			// overflow: 'hidden',
-			// 'min-height': '100vh'
+			overflow: 'hidden',
+			'min-height': '100vh'
 		});
 
 		//Отмена предыдущего действия
@@ -454,110 +454,106 @@ $(function () {
 
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("map").
-	var myMap;
-	$(document).ready(function () {
+	// var myMap;
+	// $(document).ready(function () {
 
-		// Дождёмся загрузки API и готовности DOM.
-		ymaps.ready(init);
+	// 	// Дождёмся загрузки API и готовности DOM.
+	// 	ymaps.ready(init);
 
-		function init() {
-			// Создание экземпляра карты и его привязка к контейнеру с
-			// заданным id ("map").
-			myMap = new ymaps.Map('map', {
-				// При инициализации карты обязательно нужно указать
-				// её центр и коэффициент масштабирования.
-				center: [55.76, 37.64], // Москва
-				zoom: 10,
-				controls: ['zoomControl']
-			}, {
-				// Зададим ограниченную область прямоугольником
-				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
-				restrictMapArea: [
-					[56.15, 36], [55.3, 39]
-				]
-			});
+	// 	function init() {
+	// 		// Создание экземпляра карты и его привязка к контейнеру с
+	// 		// заданным id ("map").
+	// 		myMap = new ymaps.Map('map', {
+	// 			// При инициализации карты обязательно нужно указать
+	// 			// её центр и коэффициент масштабирования.
+	// 			center: [55.76, 37.64], // Москва
+	// 			zoom: 10,
+	// 			controls: ['zoomControl']
+	// 		}, {
+	// 			// Зададим ограниченную область прямоугольником
+	// 			// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+	// 			restrictMapArea: [
+	// 				[56.15, 36], [55.3, 39]
+	// 			]
+	// 		});
 
-			// Создаём макет содержимого.
-			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-			),
+	// 		// Создаём макет содержимого.
+	// 		MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+	// 			'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+	// 		),
 
-				//Создаем геометку
-				balashiha = new ymaps.Placemark([55.77, 37.92], {
-					//Свойства:
+	// 			//Создаем геометку
+	// 			balashiha = new ymaps.Placemark([55.77, 37.92], {
+	// 				//Свойства:
 
-					// hintContent: 'Собственный значок метки',
-					// balloonContent: 'Это красивая метка'
-					// name: 'balashiha'
-				}, {
-					// Опции:
+	// 				// hintContent: 'Собственный значок метки',
+	// 				// balloonContent: 'Это красивая метка'
+	// 				// name: 'balashiha'
+	// 			}, {
+	// 				// Опции:
 
-					// Необходимо указать данный тип макета.
-					iconLayout: 'default#image',
-					// Своё изображение иконки метки.
-					iconImageHref: '../img/placemark.png',
-					// Размеры метки.
-					iconImageSize: [56, 56],
-					name: 'balashiha'
-					// Смещение левого верхнего угла иконки относительно
-					// её "ножки" (точки привязки).
-					// iconImageOffset: [175, -50]
+	// 				// Необходимо указать данный тип макета.
+	// 				iconLayout: 'default#image',
+	// 				// Своё изображение иконки метки.
+	// 				iconImageHref: '../img/placemark.png',
+	// 				// Размеры метки.
+	// 				iconImageSize: [56, 56],
+	// 				name: 'balashiha'
+	// 				// Смещение левого верхнего угла иконки относительно
+	// 				// её "ножки" (точки привязки).
+	// 				// iconImageOffset: [175, -50]
 
-				}),
+	// 			}),
 
-				//Создаем геометку
-				dolgoprudniy = new ymaps.Placemark([55.907, 37.49], {
+	// 			//Создаем геометку
+	// 			dolgoprudniy = new ymaps.Placemark([55.907, 37.49], {
 
-				}, {
-					iconLayout: 'default#image',
-					iconImageHref: '../img/placemark.png',
-					iconImageSize: [56, 56],
-					iconContentLayout: MyIconContentLayout,
-					name: 'dolgoprudniy'
-				});
-
-
-			//Добавляем геометки на карту
-			myMap.geoObjects
-				.add(balashiha)
-				.add(dolgoprudniy);
-
-			//Отработка клика на любую метку на карте
-			myMap.geoObjects.each(function (el, i) {
+	// 			}, {
+	// 				iconLayout: 'default#image',
+	// 				iconImageHref: '../img/placemark.png',
+	// 				iconImageSize: [56, 56],
+	// 				iconContentLayout: MyIconContentLayout,
+	// 				name: 'dolgoprudniy'
+	// 			});
 
 
+	// 		//Добавляем геометки на карту
+	// 		myMap.geoObjects
+	// 			.add(balashiha)
+	// 			.add(dolgoprudniy);
 
-				el.events.add('click', function (e) {
-
-					//Смещаем центр карты, в зависимости от выбранного объекта
-					el.options._options.name == 'dolgoprudniy' ? myMap.setCenter([55.76, 37.5]) : el.options._options.name == 'balashiha' ? myMap.setCenter([55.76, 37.72]) : myMap.setCenter([55.76, 37.64]);
-
-					//Всем меткам устанавливаем иконку по-умолчанию
-					myMap.geoObjects.each(function (elem, i) {
-						elem.options.set('iconImageHref', '../img/placemark.png');
-					});
-
-					//Целевой метке устанавливаем активную иконку
-					e.get('target').options.set('iconImageHref', '../img/placemark-light.png');
-
-
-					console.log(el.options._options.name == 'dolgoprudniy');
-
-					//Показываем item, соответствующий целевой метке
-					$(`.portfolio__item[data-place != "${el.options._options.name}"]`).css({ 'display': 'none' });
-					$(`.portfolio__item[data-place = "${el.options._options.name}"]`).css({ 'display': 'flex' });
+	// 		//Отработка клика на любую метку на карте
+	// 		myMap.geoObjects.each(function (el, i) {
 
 
 
-				});
-			});
+	// 			el.events.add('click', function (e) {
+
+	// 				//Смещаем центр карты, в зависимости от выбранного объекта
+	// 				el.options._options.name == 'dolgoprudniy' ? myMap.setCenter([55.76, 37.5]) : el.options._options.name == 'balashiha' ? myMap.setCenter([55.76, 37.72]) : myMap.setCenter([55.76, 37.64]);
+
+	// 				//Всем меткам устанавливаем иконку по-умолчанию
+	// 				myMap.geoObjects.each(function (elem, i) {
+	// 					elem.options.set('iconImageHref', '../img/placemark.png');
+	// 				});
+
+	// 				//Целевой метке устанавливаем активную иконку
+	// 				e.get('target').options.set('iconImageHref', '../img/placemark-light.png');
 
 
+	// 				console.log(el.options._options.name == 'dolgoprudniy');
+
+	// 				//Показываем item, соответствующий целевой метке
+	// 				$(`.portfolio__item[data-place != "${el.options._options.name}"]`).css({ 'display': 'none' });
+	// 				$(`.portfolio__item[data-place = "${el.options._options.name}"]`).css({ 'display': 'flex' });
+
+	// 			});
+	// 		});
 
 
-		}
+	// 	}
 
-	});
+	// });
 
 	//Нажатие на кнопку "Показать на карте"
 	$('.portfolio__button').on('click touchend', function (e) {
@@ -603,6 +599,66 @@ $(function () {
 
 	});
 
+
+	//Слайдер triple-slider__slider-main
+	$('.slider-main').slick({
+		// infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		prevArrow: $('.triple-slider__arrow'),
+		nextArrow: $('.triple-slider__arrow_right'),
+		asNavFor: '.slider-title, .slider-text, .slider-left, .slider-right',
+		speed: 500,
+
+	});
+
+	//Слайдер triple-slider__slider-title
+	$('.slider-title').slick({
+		// infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		speed: 900,
+		// useTransform: true,
+		// cssEase: 'cubic-bezier(0.830, -0.040, 0.310, 1.355'
+
+	});
+
+	// $('.slider-title').on('beforeChange', function (event, slick, direction) {
+	// 	$('.slider-title__item').addClass('slider-title__item_active');
+	// });
+	// $('.slider-title').on('afterChange', function (event, slick, direction) {
+	// 	$('.slider-title__item').removeClass('slider-title__item_active');
+	// });
+
+	//Слайдер triple-slider__slider-text
+	$('.slider-text').slick({
+		// infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		speed: 900,
+	});
+
+	//Слайдер triple-slider__slider-left
+	$('.slider-left').slick({
+		// infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		speed: 900,
+	});
+
+	//Слайдер triple-slider__slider-right
+	$('.slider-right').slick({
+		// infinite: true,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		speed: 900,
+	});
 
 });
 
