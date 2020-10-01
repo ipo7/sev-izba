@@ -337,10 +337,13 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 
+		let rr = $('.projects__body').css('height');
+		console.log(rr);
+
 		//Фиксируем положение экрана
 		$('.projects__body').css({
 			overflow: 'hidden',
-			'min-height': '100vh'
+			'min-height': rr
 		});
 
 		//Отмена предыдущего действия
