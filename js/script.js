@@ -150,6 +150,10 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 		$('.header__callback').css({ 'opacity': '0', 'pointer-events': 'none' });
+
+		// $('.header__callback').css({ 'display': 'none' });
+
+
 		function ee() {
 			$('.callback').css('display') == 'none' ? $('.callback').css({ 'display': 'flex' }) : $('.callback').css({ 'display': 'none' });
 
@@ -265,7 +269,7 @@ $(function () {
 		// console.log('.topic + padding ' + (y2 + y3), 'window height() ' + y1, y3);
 		// console.log(y2 <= y1);
 		function ee() {
-			{ y2 + y3 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+			{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 		}
 		ee();
 
@@ -293,7 +297,7 @@ $(function () {
 			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} else {
 			function ee() {
-				{ y2 + y3 <= y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
 			}
 			ee();
 		};

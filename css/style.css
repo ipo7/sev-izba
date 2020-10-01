@@ -557,8 +557,8 @@ h6 {
   text-align: center;
   font-family: FS-Demi;
   padding-top: 179px;
-  background: url("../img/main-background.jpg") 0 0/cover no-repeat;
-  height: 1080px;
+  background: url("../img/main-background-new.jpg") 70% 30%/auto auto no-repeat;
+  height: 100vh;
 }
 
 .topic__text {
@@ -2552,7 +2552,7 @@ div [hidden] {
   height: 400px;
   right: 216px;
   top: 48px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .callback-form {
@@ -2895,6 +2895,18 @@ body {
     top: 257px;
     left: 48px;
     width: 160px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .topic {
+    background: url("../img/main-background-new.jpg") 45% 55%/120% auto no-repeat;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .topic {
+    background: url("../img/main-background-new.jpg") 80% 30%/130vw auto no-repeat;
   }
 }
 
@@ -3469,8 +3481,7 @@ body {
 
   .topic {
     padding-top: 159px;
-    height: 768px;
-    background: url("../img/main-background.jpg") 0 0/cover no-repeat;
+    background: url("../img/main-background-new.jpg") 60% 10%/150vw auto no-repeat;
   }
 
   .topic__title {
@@ -4596,7 +4607,6 @@ body {
 
   .topic {
     height: 100vh;
-    background: url("../img/main-background.jpg") 50% 50%/cover no-repeat;
     padding-top: 116px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5413,7 +5423,7 @@ body {
   }
 }
 
-.webp .topic{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
+.webp .topic{ background: url(../img/main-background-new.webp) 70% 30%/auto auto no-repeat; }
 
 .webp .projects-all .projects-form__clear-block-mobile-exit{ background: url(../img/close-button.webp) 0 0/cover no-repeat; }
 
@@ -5427,12 +5437,17 @@ body {
 
 .webp .project-solo__material{ background: url(../img/Show.webp) 95% 55% no-repeat; }
 
-@media screen and (max-width: 1024px){
+@media screen and (min-width: 2500px){
 
-  .webp .topic{ background: url(../img/main-background.webp) 0 0/cover no-repeat; }
+  .webp .topic{ background: url(../img/main-background-new.webp) 45% 55%/120% auto no-repeat; }
 }
 
-@media screen and (max-width: 414px){
+@media screen and (max-width: 1920px){
 
-  .webp .topic{ background: url(../img/main-background.webp) 50% 50%/cover no-repeat; }
+  .webp .topic{ background: url(../img/main-background-new.webp) 80% 30%/130vw auto no-repeat; }
+}
+
+@media screen and (max-width: 1024px){
+
+  .webp .topic{ background: url(../img/main-background-new.webp) 60% 10%/150vw auto no-repeat; }
 }
