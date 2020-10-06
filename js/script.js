@@ -256,6 +256,11 @@ $(function () {
 		// $(".projects-all").hide();
 	});
 
+	//Поднятие наверх при клике на лого в шапке
+	$('.logo-main').on('click touchend', function () {
+		$("html,body").animate({ scrollTop: 0 }, 300);
+	});
+
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
 	$(document).ready(function () {
 		// $('html body').scrollTop(0);
@@ -337,10 +342,8 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 
-		let rr = $('.projects__body').css('height');
-		console.log(rr);
-
 		//Фиксируем положение экрана
+		let rr = $('.projects__body').css('height');
 		$('.projects__body').css({
 			overflow: 'hidden',
 			'min-height': rr
