@@ -4,7 +4,7 @@ $(function () {
 	let tablet = 1024;
 	let mobile = 414;
 
-	//Выравнивание отступов menu по отступам header
+	//Выравнивание отступов menu по отступам header, выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).resize(function () {
 
 		function rr(e) {
@@ -12,12 +12,38 @@ $(function () {
 			let offset = $('.logo-main__image').offset();
 			let top = offset.top;
 			let left = offset.left;
-			// console.log(left);
+
 			if ($(window).width() > 1786) {
 				$('.menu, .social-nets').offset({ left: left });
-			} return;
+			} else { return; };
+
+			// console.log($('.feedback').offset());
+			let offset2 = $('.feedback').offset();
+			let top2 = offset2.top;
+			let height2 = $('.feedback').height();
+			// console.log(top2 + height2);
+
+			$('.button-to-top').width($('.feedback__before').width());
+			$('.button-to-top').css({ 'top': top2 + height2 });
 		};
 		rr();
+
+		//выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
+		function rr2(e) {
+			// e.preventDefault();
+
+			// console.log($('.feedback').offset());
+			let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
+			let top2 = offset2.top; //фиксируем top блока feedback
+			let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
+			// console.log(top2 + height2);
+
+			$('.button-to-top').width($('.feedback__before').width());
+			$('.button-to-top').css({ 'top': top2 + height2 });
+		};
+		rr2();
+
+
 
 		// console.log($('.projects-all__form').width());
 
@@ -264,7 +290,9 @@ $(function () {
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
 	$(document).ready(function () {
 		// $('html body').scrollTop(0);
+
 		$('body, html').animate({ scrollTop: 0 }, "fast");
+
 		// $(document).scrollTop(0);
 		// console.log($('body, html').scrollTop());
 		// let y1 = $(document).scrollTop() + $(window).height();
@@ -286,7 +314,7 @@ $(function () {
 
 	});
 
-	//Disable scroll-block if scrolling
+	//Disable scroll-block if scrolling & unable button-to-top
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
@@ -296,18 +324,27 @@ $(function () {
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
 
+		// console.log(y);
+
 		//Disable topic-footer on mobile scroll
 		if ($(window).width() <= mobile) {
 
 			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} else {
 			function ee() {
-				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
+				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
 			}
 			ee();
 		};
 	});
 
+
+	//Scrolling, when click on button-to-top
+	$('.button-to-top__image').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('body, html').animate({ scrollTop: 0 }, 500);
+	});
 
 	//Disable scrolling menu on footer
 	const menuTop = parseInt($('.menu').css('top')); //добавляем в константу текущее положение menu
@@ -318,15 +355,35 @@ $(function () {
 		let y1 = $(document).scrollTop();
 		let y2 = $('.menu').height();
 
-		function ee() {
-			if (y <= (y1 + y2 + menuTop)) {
-				$('.menu').css({ 'position': 'absolute', 'top': y - y2 });
-			}
-			else {
-				$('.menu').css({ 'position': 'fixed', 'top': menuTop });
-			}
+		// console.log(y);
+
+		//Функция фиксации положения Меню при достижении футера
+		// function ee() {
+		// 	if (y <= (y1 + y2 + menuTop)) {
+		// 		$('.menu').css({ 'position': 'absolute', 'top': y - y2 });
+		// 	}
+		// 	else {
+		// 		$('.menu').css({ 'position': 'fixed', 'top': menuTop });
+		// 	}
+		// }
+		// ee();
+
+		//Функция отключения Меню при достижении футера
+		function eee() {
+
+			//Проверяем не достигнута ли ширина экрана, при которой включается бургер и включен ли Foter
+			if (window.outerWidth > 770 && $('.footer').css('display') == 'grid') {
+
+				if (y <= (y1 + y2 + menuTop)) {
+					$('.menu').css({ 'display': 'none' });
+				}
+				else {
+					$('.menu').css({ 'position': 'fixed', 'top': menuTop, 'display': 'grid' });
+				}
+			} else { return }
 		}
-		ee();
+		eee();
+
 	});
 
 	//Переключение класса active в меню
@@ -388,15 +445,19 @@ $(function () {
 	});
 
 
-	//Отработка клика на пункт "Проекты" в Menu, на Scroll
-	$('.menu__top-link[data-type="projects"], .menu-disable__top-link[data-type="projects"], .scroll').on('click touchend', function (e) {
+	//Отработка клика на Scroll
+	$(' .scroll').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		let y = $('.projects').offset().top;
 		let y1 = $('.header').height();
 		function ee() {
 			// $(document).scrollTop(y - y1);
-			$("html, body").animate({ scrollTop: (y - y1) }, 300);
+
+			//Вычел вручную 37рх, чтобы не скакал блок при нажатии на пункт меню Проекты после отработки нажатия на скролл
+			$("html, body").animate({ scrollTop: (y - y1 - 37) }, 300);
+			// console.log($('.projects').css('padding-top'));
+			// console.log($('.projects').css('margin-top'));
 		}
 		ee();
 		// $('.menu-disable').css('display', 'none');
@@ -668,6 +729,204 @@ $(function () {
 		slidesToScroll: 1,
 		arrows: false,
 		speed: 900,
+	});
+
+
+	// Создание экземпляра карты и его привязка к контейнеру с id("mapFooter").
+	var myMapFooter;
+	$(document).ready(function () {
+
+		// Дождёмся загрузки API и готовности DOM.
+		ymaps.ready(init);
+
+		function init() {
+			// Создание экземпляра карты и его привязка к контейнеру с
+			// заданным id ("map").
+			myMapFooter = new ymaps.Map('mapFooter', {
+				// При инициализации карты обязательно нужно указать
+				// её центр и коэффициент масштабирования.
+				center: [59.211377, 39.898646], // Москва
+				zoom: 15,
+				controls: []
+			}, {
+				// Зададим ограниченную область прямоугольником
+				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+				restrictMapArea: [
+					[59.223262, 39.865416], [59.199428, 39.937064]
+				]
+			});
+
+			// Создаём макет содержимого.
+			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+			),
+
+				office = new ymaps.Placemark([59.211377, 39.898646], {
+					//Свойства:
+
+					// hintContent: 'Собственный значок метки',
+					// balloonContent: 'Это красивая метка'
+					// name: 'balashiha'
+					iconCaption: 'Первомайская улица, 12А'
+				}, {
+					// Опции:
+
+					// Необходимо указать данный тип макета.
+					// iconLayout: 'default#image',
+					preset: 'islands#redDotIcon',
+
+					// Своё изображение иконки метки.
+					// iconImageHref: '../img/placemark.png',
+					// Размеры метки.
+					// iconImageSize: [56, 56],
+					name: 'office'
+					// Смещение левого верхнего угла иконки относительно
+					// её "ножки" (точки привязки).
+					// iconImageOffset: [175, -50]
+
+				}),
+
+				//Добавляем геометки на карту
+				myMapFooter.geoObjects
+					.add(office)
+				;
+
+
+
+		}
+
+	});
+
+
+	//Нажатие на icon в Реквизитах
+	$('.office__item-text').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.item-text-closed').toggle();
+		$(this).toggleClass('office__item-text');
+		$(this).toggleClass('office__item-text_active');
+	});
+
+
+	// Создание экземпляра карты и его привязка к контейнеру с id("contacts-map").
+	var contactsMap;
+	$(document).ready(function () {
+
+		// Дождёмся загрузки API и готовности DOM.
+		ymaps.ready(init);
+
+		function init() {
+			// Создание экземпляра карты и его привязка к контейнеру с
+			// заданным id ("map").
+			contactsMap = new ymaps.Map('contacts-map', {
+				// При инициализации карты обязательно нужно указать
+				// её центр и коэффициент масштабирования.
+				center: [59.211377, 39.898646], // Москва
+				zoom: 15,
+				controls: []
+			}, {
+				// Зададим ограниченную область прямоугольником
+				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+				restrictMapArea: [
+					[59.223262, 39.865416], [59.199428, 39.937064]
+				]
+			});
+
+			// Создаём макет содержимого.
+			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+			),
+
+				office = new ymaps.Placemark([59.211377, 39.898646], {
+					//Свойства:
+
+					// hintContent: 'Собственный значок метки',
+					// balloonContent: 'Это красивая метка'
+					// name: 'balashiha'
+					iconCaption: 'Первомайская улица, 12А'
+				}, {
+					// Опции:
+
+					// Необходимо указать данный тип макета.
+					// iconLayout: 'default#image',
+					preset: 'islands#redDotIcon',
+
+					// Своё изображение иконки метки.
+					// iconImageHref: '../img/placemark.png',
+					// Размеры метки.
+					// iconImageSize: [56, 56],
+					name: 'office'
+					// Смещение левого верхнего угла иконки относительно
+					// её "ножки" (точки привязки).
+					// iconImageOffset: [175, -50]
+
+				}),
+
+				//Добавляем геометки на карту
+				contactsMap.geoObjects
+					.add(office)
+				;
+
+
+
+		}
+
+	});
+
+
+	//Переключение класса active в меню Услуги и замена содержимого блока Услуги
+	$('.services__menu-item').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.services__menu-item').removeClass('active');
+		$(this).addClass('active');
+		let attr = $(this).attr('data-type');
+		// let list = $('.services__content');
+		// console.log(list);
+
+		//Замена содержимого блока Услуги
+		$('.services__content').each(function (i, elem) {
+			if ($(elem).attr('data-type') == attr) {
+				$(elem).css({ 'display': 'grid' });
+			} else {
+				$(elem).css({ 'display': 'none' });
+			}
+		});
+
+	});
+
+	//Переключение класса active в Menu
+	$('.menu__top-link, .menu__bottom-link').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$('.menu__top-link, .menu__bottom-link').removeClass('active');
+		$(this).addClass('active');
+	});
+
+
+	//Pressing to Services in Menu
+	$('.menu__top-link').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		let attr = $(this).attr('data-type');
+		// let list = $('.services__content');
+		// console.log($("body").children().not('script'));
+
+		$(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
+			if ($(elem).attr('data-type') == attr) {
+				let marginTop = $(elem).css('margin-top');
+				let paddingTop = $(elem).css('padding-top');
+				$(elem).css({ 'display': 'grid' });
+				$(elem).css({ 'padding-top': 200 });
+				$('body, html').animate({ scrollTop: 0 }, 0);
+
+			} else {
+
+				$(elem).css({ 'display': 'none' });
+				$('.scroll').css({ 'opacity': '0' });
+			}
+		});
+
 	});
 
 });
