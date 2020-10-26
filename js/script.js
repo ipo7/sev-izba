@@ -96,8 +96,8 @@ $(function () {
 
 	//Наведение на блок "Напишите нам"
 	$('.feedback').on('click mouseenter touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
+		// e.stopPropagation();
+		// e.preventDefault();
 
 		if (window.matchMedia('(max-width: 414px)').matches) {
 			// $('.feedback').toggle();
@@ -113,10 +113,11 @@ $(function () {
 
 	//Покидаем блок "Напишите нам"
 	$('.feedback').on('mouseleave', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
+		// e.stopPropagation();
+		// e.preventDefault();
 
-		if (window.matchMedia('(max-width: 414px)').matches) {
+
+		if ((window.matchMedia('(max-width: 414px)').matches) || $("#feedbackForm input, #feedbackForm textarea").is(":focus")) {
 			// $('.feedback').toggle();
 			return;
 		} else {
@@ -137,18 +138,122 @@ $(function () {
 		}
 	});
 
-	//Временная заглушка на нажатие кнопки "Отправить"
-	$('.feedback-form__button').on('click touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
 
-		if (window.matchMedia('(max-width: 414px)').matches) {
-			// $('.feedback').toggle();
-			return;
-		} else {
-			$('.feedback').css({ 'transform': 'translate(0px, 0)' });
-		}
+	//Нажатие кнопки "Отправить" в форме feedback с валидацией
+	$('#feedbackForm').validate({
+		rules: {
+			text: {
+				required: true,
+				minlength: 10
+			},
+
+			yourname: {
+				required: true,
+				minlength: 3
+			},
+
+			telephone: {
+				// required: true,
+				minlength: 7,
+				number: true
+			},
+			email: {
+				required: true,
+				minlength: 7,
+				email: true
+			}
+		},
+		messages: {
+			text: {
+				required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 10-ти символов"
+			},
+			yourname: {
+				required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 3-х символов"
+			},
+			telephone: {
+				// required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 7-и символов",
+				number: "Допустимы только цифры"
+			},
+			email: {
+				required: "Поле обязательно к заполнению",
+				minlength: "Введите не менее 7-и символов",
+				email: "Формат: ххх@xx.xx"
+			}
+
+		},
+		// submitHandler: function () {
+		// 	$('.feedback__form.feedback-form').submit();
+		// }
 	});
+
+
+	//Отправка формы feedback
+	$('.feedback__form.feedback-form').on('submit', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+
+		// console.log($(this));
+		// alert($('#feedbackForm').valid());
+		if ($('#feedbackForm').valid()) {
+			let myFormData = $('#feedbackForm').serialize();
+			console.log(myFormData);
+
+			// $('#feedbackForm').load('./sendmail.php');
+
+			$.ajax({
+				type: "POST",
+				url: "./sendmail.php",
+				data: myFormData,
+				dataType: "json",
+				success: function () {
+					alert('Ваше сообщение успешно отправлено!');
+				}
+			});
+
+			return false; //Без этой строки будет происходить перезагрузка страницы
+
+		} else alert('Вы не заполнили все требуемые поля формы');
+
+
+		// let formData = new FormData($('#feedbackForm'));
+		// console.log(formData);
+
+		// let response = await fetch ('sendmail.php', {
+		// 	method: 'POST',
+		// 	body: formData
+		// })
+
+		// send(event, 'sendmail.php');
+
+		// if (window.matchMedia('(max-width: 414px)').matches) {
+		// 	// $('.feedback').toggle();
+		// 	return;
+		// } else {
+		// 	$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+		// }
+	});
+
+
+
+	//Временная заглушка на нажатие кнопки "Отправить"
+	// $('.feedback-form__button').on('click touchend', function (e) {
+	// 	e.stopPropagation();
+	// 	e.preventDefault();
+
+	// 	$('.feedback__form.feedback-form').submit();
+
+	// 	// console.log('hello');
+
+	// 	// if (window.matchMedia('(max-width: 414px)').matches) {
+	// 	// 	// $('.feedback').toggle();
+	// 	// 	return;
+	// 	// } else {
+	// 	// 	$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+	// 	// }
+	// });
 
 	//Нажатие на кнопку "Заказать обратный звонок" в мобильной версии
 	$('.topic__footer-button').on('click touchend', function (e) {
@@ -680,6 +785,7 @@ $(function () {
 		nextArrow: $('.triple-slider__arrow_right'),
 		asNavFor: '.slider-title, .slider-text, .slider-left, .slider-right',
 		speed: 500,
+		// waitForAnimate: false,
 
 	});
 
@@ -719,7 +825,16 @@ $(function () {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: false,
-		speed: 900,
+		// speed: 900,
+		// waitForAnimate: false,
+		cssEase: "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
+	});
+
+	$('.slider-left').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+
+		$($(`.slider-left__item.slick-slide[data-slick-index = "${nextSlide}"]`)).removeClass('opacity');
+		$($(`.slider-left__item.slick-slide[data-slick-index = "${currentSlide}"]`)).addClass('opacity');
+
 	});
 
 	//Слайдер triple-slider__slider-right
@@ -728,7 +843,17 @@ $(function () {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: false,
-		speed: 900,
+		// speed: 900,
+		// waitForAnimate: false,
+		cssEase: "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
+		// cssEase: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+	});
+
+	$('.slider-right').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+
+		$($(`.slider-right__item.slick-slide[data-slick-index = "${nextSlide}"]`)).removeClass('opacity');
+		$($(`.slider-right__item.slick-slide[data-slick-index = "${currentSlide}"]`)).addClass('opacity');
+
 	});
 
 
@@ -928,6 +1053,9 @@ $(function () {
 		});
 
 	});
+
+
+
 
 });
 

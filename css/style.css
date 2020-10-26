@@ -2304,6 +2304,14 @@ div [hidden] {
   object-fit: cover;
 }
 
+.triple-slider .slider-left .opacity,
+.triple-slider .slider-right .opacity {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  -o-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+}
+
 .triple-slider .slider-left {
   grid-column: text / span 2;
   -ms-grid-row: 3;
@@ -2934,9 +2942,16 @@ div [hidden] {
   padding: 37px 0 19px;
 }
 
+.feedback-form label[for="text"] {
+  position: absolute;
+  top: 48.5%;
+  left: 8%;
+  color: red;
+}
+
 .feedback-form label[for="yourname"] {
   position: absolute;
-  top: 43%;
+  top: 57.8%;
   left: 8%;
   color: red;
 }
@@ -2944,6 +2959,13 @@ div [hidden] {
 .feedback-form label[for="telephone"] {
   position: absolute;
   top: 61%;
+  left: 8%;
+  color: red;
+}
+
+.feedback-form label[for="email"] {
+  position: absolute;
+  top: 76.5%;
   left: 8%;
   color: red;
 }
@@ -3017,6 +3039,21 @@ div [hidden] {
   font-size: 14px;
   line-height: 16px;
   margin-bottom: 16px;
+}
+
+.feedback-form__input:focus:invalid {
+  border: 1px solid #358cc8;
+  background-color: #fff;
+}
+
+.feedback-form__input:valid {
+  background-color: #fff;
+}
+
+.feedback-form__input:invalid {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: #fffbdc;
 }
 
 .feedback-form__input:focus::-webkit-input-placeholder {
