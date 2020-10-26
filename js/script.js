@@ -29,19 +29,19 @@ $(function () {
 		rr();
 
 		//выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
-		function rr2(e) {
-			// e.preventDefault();
+		// function rr2(e) {
+		// 	// e.preventDefault();
 
-			// console.log($('.feedback').offset());
-			let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
-			let top2 = offset2.top; //фиксируем top блока feedback
-			let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
-			// console.log(top2 + height2);
+		// 	// console.log($('.feedback').offset());
+		// 	let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
+		// 	let top2 = offset2.top; //фиксируем top блока feedback
+		// 	let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
+		// 	// console.log(top2 + height2);
 
-			$('.button-to-top').width($('.feedback__before').width());
-			$('.button-to-top').css({ 'top': top2 + height2 });
-		};
-		rr2();
+		// 	$('.button-to-top').width($('.feedback__before').width());
+		// 	$('.button-to-top').css({ 'top': top2 + height2 });
+		// };
+		// rr2();
 
 
 
@@ -379,17 +379,37 @@ $(function () {
 		ee();
 	});
 
-	//Поднятие наверх при перезагрузке страницы
+	//Поднятие наверх при перезагрузке страницы и выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).on('load', function () {
 		// $('html body').scrollTop(0);
 		// $(document).scrollTop(0);
 		$("html,body").animate({ scrollTop: 0 }, "slow");
 		// $(".projects-all").hide();
+
+		//выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
+		function rr2(e) {
+			// e.preventDefault();
+
+			// console.log($('.feedback').offset());
+			let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
+			let top2 = offset2.top; //фиксируем top блока feedback
+			let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
+			// console.log(top2 + height2);
+
+			$('.button-to-top').width($('.feedback__before').width());
+			$('.button-to-top').css({ 'top': top2 + height2 });
+		};
+		rr2();
 	});
 
 	//Поднятие наверх при клике на лого в шапке
+	// $('.logo-main').on('click touchend', function () {
+	// 	$("html,body").animate({ scrollTop: 0 }, 300);
+	// });
+
+	//Перезагрузка при клике на лого в шапке
 	$('.logo-main').on('click touchend', function () {
-		$("html,body").animate({ scrollTop: 0 }, 300);
+		location.reload();
 	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
@@ -461,6 +481,7 @@ $(function () {
 		let y2 = $('.menu').height();
 
 		// console.log(y);
+		// console.log($('.footer').css('display'));
 
 		//Функция фиксации положения Меню при достижении футера
 		// function ee() {
@@ -477,7 +498,7 @@ $(function () {
 		function eee() {
 
 			//Проверяем не достигнута ли ширина экрана, при которой включается бургер и включен ли Foter
-			if (window.outerWidth > 770 && $('.footer').css('display') == 'grid') {
+			if (window.outerWidth > 770 && $('.footer').css('display') == 'block') {
 
 				if (y <= (y1 + y2 + menuTop)) {
 					$('.menu').css({ 'display': 'none' });
@@ -630,106 +651,108 @@ $(function () {
 
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("map").
-	// var myMap;
-	// $(document).ready(function () {
+	var myMap;
+	$(document).ready(function () {
 
-	// 	// Дождёмся загрузки API и готовности DOM.
-	// 	ymaps.ready(init);
+		// Дождёмся загрузки API и готовности DOM.
+		ymaps.ready(init);
 
-	// 	function init() {
-	// 		// Создание экземпляра карты и его привязка к контейнеру с
-	// 		// заданным id ("map").
-	// 		myMap = new ymaps.Map('map', {
-	// 			// При инициализации карты обязательно нужно указать
-	// 			// её центр и коэффициент масштабирования.
-	// 			center: [55.76, 37.64], // Москва
-	// 			zoom: 10,
-	// 			controls: ['zoomControl']
-	// 		}, {
-	// 			// Зададим ограниченную область прямоугольником
-	// 			// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
-	// 			restrictMapArea: [
-	// 				[56.15, 36], [55.3, 39]
-	// 			]
-	// 		});
+		function init() {
+			// Создание экземпляра карты и его привязка к контейнеру с
+			// заданным id ("map").
+			myMap = new ymaps.Map('map', {
+				// При инициализации карты обязательно нужно указать
+				// её центр и коэффициент масштабирования.
+				center: [55.76, 37.64], // Москва
+				zoom: 10,
+				controls: ['zoomControl'],
+				behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
 
-	// 		// Создаём макет содержимого.
-	// 		MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-	// 			'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-	// 		),
+			}, {
+				// Зададим ограниченную область прямоугольником
+				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+				restrictMapArea: [
+					[56.15, 36], [55.3, 39]
+				]
+			});
 
-	// 			//Создаем геометку
-	// 			balashiha = new ymaps.Placemark([55.77, 37.92], {
-	// 				//Свойства:
+			// Создаём макет содержимого.
+			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+			),
 
-	// 				// hintContent: 'Собственный значок метки',
-	// 				// balloonContent: 'Это красивая метка'
-	// 				// name: 'balashiha'
-	// 			}, {
-	// 				// Опции:
+				//Создаем геометку
+				balashiha = new ymaps.Placemark([55.77, 37.92], {
+					//Свойства:
 
-	// 				// Необходимо указать данный тип макета.
-	// 				iconLayout: 'default#image',
-	// 				// Своё изображение иконки метки.
-	// 				iconImageHref: '../img/placemark.png',
-	// 				// Размеры метки.
-	// 				iconImageSize: [56, 56],
-	// 				name: 'balashiha'
-	// 				// Смещение левого верхнего угла иконки относительно
-	// 				// её "ножки" (точки привязки).
-	// 				// iconImageOffset: [175, -50]
+					// hintContent: 'Собственный значок метки',
+					// balloonContent: 'Это красивая метка'
+					// name: 'balashiha'
+				}, {
+					// Опции:
 
-	// 			}),
+					// Необходимо указать данный тип макета.
+					iconLayout: 'default#image',
+					// Своё изображение иконки метки.
+					iconImageHref: '../img/placemark.png',
+					// Размеры метки.
+					iconImageSize: [56, 56],
+					name: 'balashiha'
+					// Смещение левого верхнего угла иконки относительно
+					// её "ножки" (точки привязки).
+					// iconImageOffset: [175, -50]
 
-	// 			//Создаем геометку
-	// 			dolgoprudniy = new ymaps.Placemark([55.907, 37.49], {
+				}),
 
-	// 			}, {
-	// 				iconLayout: 'default#image',
-	// 				iconImageHref: '../img/placemark.png',
-	// 				iconImageSize: [56, 56],
-	// 				iconContentLayout: MyIconContentLayout,
-	// 				name: 'dolgoprudniy'
-	// 			});
+				//Создаем геометку
+				dolgoprudniy = new ymaps.Placemark([55.907, 37.49], {
 
-
-	// 		//Добавляем геометки на карту
-	// 		myMap.geoObjects
-	// 			.add(balashiha)
-	// 			.add(dolgoprudniy);
-
-	// 		//Отработка клика на любую метку на карте
-	// 		myMap.geoObjects.each(function (el, i) {
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: '../img/placemark.png',
+					iconImageSize: [56, 56],
+					iconContentLayout: MyIconContentLayout,
+					name: 'dolgoprudniy'
+				});
 
 
+			//Добавляем геометки на карту
+			myMap.geoObjects
+				.add(balashiha)
+				.add(dolgoprudniy);
 
-	// 			el.events.add('click', function (e) {
-
-	// 				//Смещаем центр карты, в зависимости от выбранного объекта
-	// 				el.options._options.name == 'dolgoprudniy' ? myMap.setCenter([55.76, 37.5]) : el.options._options.name == 'balashiha' ? myMap.setCenter([55.76, 37.72]) : myMap.setCenter([55.76, 37.64]);
-
-	// 				//Всем меткам устанавливаем иконку по-умолчанию
-	// 				myMap.geoObjects.each(function (elem, i) {
-	// 					elem.options.set('iconImageHref', '../img/placemark.png');
-	// 				});
-
-	// 				//Целевой метке устанавливаем активную иконку
-	// 				e.get('target').options.set('iconImageHref', '../img/placemark-light.png');
+			//Отработка клика на любую метку на карте
+			myMap.geoObjects.each(function (el, i) {
 
 
-	// 				console.log(el.options._options.name == 'dolgoprudniy');
 
-	// 				//Показываем item, соответствующий целевой метке
-	// 				$(`.portfolio__item[data-place != "${el.options._options.name}"]`).css({ 'display': 'none' });
-	// 				$(`.portfolio__item[data-place = "${el.options._options.name}"]`).css({ 'display': 'flex' });
+				el.events.add('click', function (e) {
 
-	// 			});
-	// 		});
+					//Смещаем центр карты, в зависимости от выбранного объекта
+					el.options._options.name == 'dolgoprudniy' ? myMap.setCenter([55.76, 37.5]) : el.options._options.name == 'balashiha' ? myMap.setCenter([55.76, 37.72]) : myMap.setCenter([55.76, 37.64]);
+
+					//Всем меткам устанавливаем иконку по-умолчанию
+					myMap.geoObjects.each(function (elem, i) {
+						elem.options.set('iconImageHref', '../img/placemark.png');
+					});
+
+					//Целевой метке устанавливаем активную иконку
+					e.get('target').options.set('iconImageHref', '../img/placemark-light.png');
 
 
-	// 	}
+					// console.log(el.options._options.name == 'dolgoprudniy');
 
-	// });
+					//Показываем item, соответствующий целевой метке
+					$(`.portfolio__item[data-place != "${el.options._options.name}"]`).css({ 'display': 'none' });
+					$(`.portfolio__item[data-place = "${el.options._options.name}"]`).css({ 'display': 'flex' });
+
+				});
+			});
+
+
+		}
+
+	});
 
 	//Нажатие на кнопку "Показать на карте"
 	$('.portfolio__button').on('click touchend', function (e) {
@@ -830,6 +853,8 @@ $(function () {
 		cssEase: "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
 	});
 
+
+	//Слайдер triple-slider__slider-left include opacity
 	$('.slider-left').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
 
 		$($(`.slider-left__item.slick-slide[data-slick-index = "${nextSlide}"]`)).removeClass('opacity');
@@ -849,6 +874,7 @@ $(function () {
 		// cssEase: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
 	});
 
+	//Слайдер triple-slider__slider-right include opacity
 	$('.slider-right').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
 
 		$($(`.slider-right__item.slick-slide[data-slick-index = "${nextSlide}"]`)).removeClass('opacity');
@@ -872,7 +898,8 @@ $(function () {
 				// её центр и коэффициент масштабирования.
 				center: [59.211377, 39.898646], // Москва
 				zoom: 15,
-				controls: []
+				controls: [],
+				behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
 			}, {
 				// Зададим ограниченную область прямоугольником
 				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
@@ -934,69 +961,70 @@ $(function () {
 
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("contacts-map").
-	var contactsMap;
-	$(document).ready(function () {
+	// var contactsMap;
+	// $(document).ready(function () {
 
-		// Дождёмся загрузки API и готовности DOM.
-		ymaps.ready(init);
+	// 	// Дождёмся загрузки API и готовности DOM.
+	// 	ymaps.ready(init);
 
-		function init() {
-			// Создание экземпляра карты и его привязка к контейнеру с
-			// заданным id ("map").
-			contactsMap = new ymaps.Map('contacts-map', {
-				// При инициализации карты обязательно нужно указать
-				// её центр и коэффициент масштабирования.
-				center: [59.211377, 39.898646], // Москва
-				zoom: 15,
-				controls: []
-			}, {
-				// Зададим ограниченную область прямоугольником
-				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
-				restrictMapArea: [
-					[59.223262, 39.865416], [59.199428, 39.937064]
-				]
-			});
+	// 	function init() {
+	// 		// Создание экземпляра карты и его привязка к контейнеру с
+	// 		// заданным id ("map").
+	// 		contactsMap = new ymaps.Map('contacts-map', {
+	// 			// При инициализации карты обязательно нужно указать
+	// 			// её центр и коэффициент масштабирования.
+	// 			center: [59.211377, 39.898646], // Москва
+	// 			zoom: 15,
+	// 			controls: [],
+	// 			behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
+	// 		}, {
+	// 			// Зададим ограниченную область прямоугольником
+	// 			// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+	// 			restrictMapArea: [
+	// 				[59.223262, 39.865416], [59.199428, 39.937064]
+	// 			]
+	// 		});
 
-			// Создаём макет содержимого.
-			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-			),
+	// 		// Создаём макет содержимого.
+	// 		MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+	// 			'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+	// 		),
 
-				office = new ymaps.Placemark([59.211377, 39.898646], {
-					//Свойства:
+	// 			office = new ymaps.Placemark([59.211377, 39.898646], {
+	// 				//Свойства:
 
-					// hintContent: 'Собственный значок метки',
-					// balloonContent: 'Это красивая метка'
-					// name: 'balashiha'
-					iconCaption: 'Первомайская улица, 12А'
-				}, {
-					// Опции:
+	// 				// hintContent: 'Собственный значок метки',
+	// 				// balloonContent: 'Это красивая метка'
+	// 				// name: 'balashiha'
+	// 				iconCaption: 'Первомайская улица, 12А'
+	// 			}, {
+	// 				// Опции:
 
-					// Необходимо указать данный тип макета.
-					// iconLayout: 'default#image',
-					preset: 'islands#redDotIcon',
+	// 				// Необходимо указать данный тип макета.
+	// 				// iconLayout: 'default#image',
+	// 				preset: 'islands#redDotIcon',
 
-					// Своё изображение иконки метки.
-					// iconImageHref: '../img/placemark.png',
-					// Размеры метки.
-					// iconImageSize: [56, 56],
-					name: 'office'
-					// Смещение левого верхнего угла иконки относительно
-					// её "ножки" (точки привязки).
-					// iconImageOffset: [175, -50]
+	// 				// Своё изображение иконки метки.
+	// 				// iconImageHref: '../img/placemark.png',
+	// 				// Размеры метки.
+	// 				// iconImageSize: [56, 56],
+	// 				name: 'office'
+	// 				// Смещение левого верхнего угла иконки относительно
+	// 				// её "ножки" (точки привязки).
+	// 				// iconImageOffset: [175, -50]
 
-				}),
+	// 			}),
 
-				//Добавляем геометки на карту
-				contactsMap.geoObjects
-					.add(office)
-				;
+	// 			//Добавляем геометки на карту
+	// 			contactsMap.geoObjects
+	// 				.add(office)
+	// 			;
 
 
 
-		}
+	// 	}
 
-	});
+	// });
 
 
 	//Переключение класса active в меню Услуги и замена содержимого блока Услуги
@@ -1030,29 +1058,29 @@ $(function () {
 
 
 	//Pressing to Services in Menu
-	$('.menu__top-link').on('click touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
-		let attr = $(this).attr('data-type');
-		// let list = $('.services__content');
-		// console.log($("body").children().not('script'));
+	// $('.menu__top-link').on('click touchend', function (e) {
+	// 	e.stopPropagation();
+	// 	e.preventDefault();
+	// 	let attr = $(this).attr('data-type');
+	// 	// let list = $('.services__content');
+	// 	// console.log($("body").children().not('script'));
 
-		$(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
-			if ($(elem).attr('data-type') == attr) {
-				let marginTop = $(elem).css('margin-top');
-				let paddingTop = $(elem).css('padding-top');
-				$(elem).css({ 'display': 'grid' });
-				$(elem).css({ 'padding-top': 200 });
-				$('body, html').animate({ scrollTop: 0 }, 0);
+	// 	$(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
+	// 		if ($(elem).attr('data-type') == attr) {
+	// 			let marginTop = $(elem).css('margin-top');
+	// 			let paddingTop = $(elem).css('padding-top');
+	// 			$(elem).css({ 'display': 'grid' });
+	// 			$(elem).css({ 'padding-top': 200 });
+	// 			$('body, html').animate({ scrollTop: 0 }, 0);
 
-			} else {
+	// 		} else {
 
-				$(elem).css({ 'display': 'none' });
-				$('.scroll').css({ 'opacity': '0' });
-			}
-		});
+	// 			$(elem).css({ 'display': 'none' });
+	// 			$('.scroll').css({ 'opacity': '0' });
+	// 		}
+	// 	});
 
-	});
+	// });
 
 
 
