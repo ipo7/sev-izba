@@ -23,8 +23,9 @@ $(function () {
 			let height2 = $('.feedback').height();
 			// console.log(top2 + height2);
 
-			$('.button-to-top').width($('.feedback__before').width());
-			$('.button-to-top').css({ 'top': top2 + height2 });
+			//Отключил
+			// $('.button-to-top').width($('.feedback__before').width());
+			// $('.button-to-top').css({ 'top': top2 + height2 });
 		};
 		rr();
 
@@ -99,14 +100,25 @@ $(function () {
 		// e.stopPropagation();
 		// e.preventDefault();
 
+		//Старая версия (при top: 15%)
+		// if (window.matchMedia('(max-width: 414px)').matches) {
+		// 	// $('.feedback').toggle();
+		// 	return;
+		// } else if (window.matchMedia('(max-width: 1024px)').matches) {
+		// 	$('.feedback').css({ 'transform': 'translate(-265px, 0)' });
+		// }
+		// else if (window.matchMedia('(min-width: 1025px)').matches) {
+		// 	$('.feedback').css({ 'transform': 'translate(-336px, 0)' });
+		// }
+
 		if (window.matchMedia('(max-width: 414px)').matches) {
 			// $('.feedback').toggle();
 			return;
 		} else if (window.matchMedia('(max-width: 1024px)').matches) {
-			$('.feedback').css({ 'transform': 'translate(-265px, 0)' });
+			$('.feedback').css({ 'transform': 'translate(-265px, -50%)' });
 		}
 		else if (window.matchMedia('(min-width: 1025px)').matches) {
-			$('.feedback').css({ 'transform': 'translate(-336px, 0)' });
+			$('.feedback').css({ 'transform': 'translate(-336px, -50%)' });
 		}
 
 	});
@@ -116,12 +128,19 @@ $(function () {
 		// e.stopPropagation();
 		// e.preventDefault();
 
+		//Старая версия (при top: 15%)
+		// if ((window.matchMedia('(max-width: 414px)').matches) || $("#feedbackForm input, #feedbackForm textarea").is(":focus")) {
+		// 	// $('.feedback').toggle();
+		// 	return;
+		// } else {
+		// 	$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+		// }
 
 		if ((window.matchMedia('(max-width: 414px)').matches) || $("#feedbackForm input, #feedbackForm textarea").is(":focus")) {
 			// $('.feedback').toggle();
 			return;
 		} else {
-			$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+			$('.feedback').css({ 'transform': 'translate(0px, -50%)' });
 		}
 
 	});
@@ -134,10 +153,9 @@ $(function () {
 		if (window.matchMedia('(max-width: 414px)').matches) {
 			$('.feedback').toggle();
 		} else {
-			$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+			$('.feedback').css({ 'transform': 'translate(0px, -50%)' });
 		}
 	});
-
 
 	//Нажатие кнопки "Отправить" в форме feedback с валидацией
 	$('#feedbackForm').validate({
@@ -188,7 +206,6 @@ $(function () {
 		// 	$('.feedback__form.feedback-form').submit();
 		// }
 	});
-
 
 	//Отправка формы feedback
 	$('.feedback__form.feedback-form').on('submit', function (e) {
@@ -379,14 +396,95 @@ $(function () {
 		ee();
 	});
 
+	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
+	let state = 0;
+	let count = 0;
+	$(document).on('scroll', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+
+		if ($(window).width() >= 780) {
+
+			let scrollTop = $(document).scrollTop();
+			let y2 = $('.header__container').height();
+			// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
+			let mas = $(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable');
+
+			function ee() {
+				//Проверяем скрол вниз
+				if (state <= scrollTop) {
+
+					if ((mas[count + 1].offsetTop - mas[count].offsetTop + state) > mas[(count + 1)].offsetTop && count < (mas.length - 1)) {
+
+						console.log('mas[(count + 1)].offsetTop', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+						state = mas[(count + 1)].offsetTop;
+						// $("html,body").animate({ scrollTop: state }, "slow");
+						$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
+						count += 1;
+						console.log('state', state);
+						console.log('count', count);
+						console.log('yes');
+						// alert('yes');
+
+					} else {
+						state = scrollTop;
+						console.log('no');
+						console.log(mas[count + 1].offsetTop + state - mas[count].offsetTop);
+						console.log(mas[count + 1].offsetTop + 1);
+					}
+
+				} else {
+
+					//Если скролл вверх
+					if (count >= 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
+						console.log('up + 5');
+						// console.log(mas[(count - 1)].className);
+						state = mas[count - 1].offsetTop;
+						count -= 1;
+						console.log('count', count);
+						console.log('state', state);
+						console.log('scrollTop', scrollTop);
+						console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
+						// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
+
+					} else {
+						console.log('up');
+						console.log('count', count);
+						console.log('state', state);
+						console.log('scrollTop', scrollTop);
+						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
+					}
+
+				}
+				//Проверяем направление скролла (вниз или вверх)
+				// state < scrollTop ? console.log('down') : console.log('up');
+			}
+			ee();
+
+		} else {
+			return;
+		}
+
+
+
+		// console.log(mas[count].offsetTop);
+
+
+	});
+
+
 	//Поднятие наверх при перезагрузке страницы и выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).on('load', function () {
 		// $('html body').scrollTop(0);
 		// $(document).scrollTop(0);
-		$("html,body").animate({ scrollTop: 0 }, "slow");
 		// $(".projects-all").hide();
 
-		//выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
+
+		//Временно отключил
+		// $("html,body").animate({ scrollTop: 0 }, "slow");
+
+
+		// //выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 		function rr2(e) {
 			// e.preventDefault();
 
@@ -394,10 +492,11 @@ $(function () {
 			let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
 			let top2 = offset2.top; //фиксируем top блока feedback
 			let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
+			// console.log(top2);
 			// console.log(top2 + height2);
 
-			$('.button-to-top').width($('.feedback__before').width());
-			$('.button-to-top').css({ 'top': top2 + height2 });
+			// $('.button-to-top').width($('.feedback__before').width());
+			// $('.button-to-top').css({ 'top': top2 + height2 });
 		};
 		rr2();
 	});
@@ -409,6 +508,12 @@ $(function () {
 
 	//Перезагрузка при клике на лого в шапке
 	$('.logo-main').on('click touchend', function () {
+		// location.reload();
+		// $('html body').scrollTop(0);
+		// history.go(0);
+		// $("html,body").animate({ scrollTop: 0 }, "fast");
+		// $('html body').scrollTop(0);
+		$(document).scrollTop(0);
 		location.reload();
 	});
 
@@ -416,7 +521,7 @@ $(function () {
 	$(document).ready(function () {
 		// $('html body').scrollTop(0);
 
-		$('body, html').animate({ scrollTop: 0 }, "fast");
+		// $('body, html').animate({ scrollTop: 0 }, "fast");
 
 		// $(document).scrollTop(0);
 		// console.log($('body, html').scrollTop());
@@ -449,6 +554,7 @@ $(function () {
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
 
+
 		// console.log(y);
 
 		//Disable topic-footer on mobile scroll
@@ -457,6 +563,9 @@ $(function () {
 			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} else {
 			function ee() {
+
+
+
 				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
 			}
 			ee();
@@ -1051,7 +1160,7 @@ $(function () {
 	//Переключение класса active в Menu
 	$('.menu__top-link, .menu__bottom-link').on('click touchend', function (e) {
 		e.stopPropagation();
-		e.preventDefault();
+		// e.preventDefault();
 		$('.menu__top-link, .menu__bottom-link').removeClass('active');
 		$(this).addClass('active');
 	});
