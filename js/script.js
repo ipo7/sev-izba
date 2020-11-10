@@ -573,7 +573,7 @@ $(function () {
 
 	//Фиксируем button-to-top внизу feedback
 	$(function () {
-		let top = $('.feedback').offset().top;
+		let top = $('.feedback').offset().top - $(window).scrollTop();
 		let height = parseInt($('.feedback__before').css('height'));
 		let width = parseInt($('.feedback__before').css('width'));
 		$('.button-to-top').css({ 'top': top + height, 'height': width, 'width': width });
