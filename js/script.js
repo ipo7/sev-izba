@@ -416,66 +416,54 @@ $(function () {
 
 					if ((mas[count + 1].offsetTop - mas[count].offsetTop + state) > mas[(count + 1)].offsetTop && count < (mas.length - 1)) {
 
-						console.log('mas[(count + 1)].offsetTop', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+						// console.log('mas[(count + 1)].offsetTop', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
 						state = mas[(count + 1)].offsetTop;
 						// $("html,body").animate({ scrollTop: state }, "slow");
 						$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
 						count += 1;
-						console.log('state', state);
-						console.log('count', count);
-						console.log('yes');
+						// console.log('state', state);
+						// console.log('count', count);
+						// console.log('yes');
 						// alert('yes');
 
 					} else {
 						state = scrollTop;
-						console.log('no');
-						console.log(mas[count + 1].offsetTop + state - mas[count].offsetTop);
-						console.log(mas[count + 1].offsetTop + 1);
+						// console.log('no');
+						// console.log(mas[count + 1].offsetTop + state - mas[count].offsetTop);
+						// console.log(mas[count + 1].offsetTop + 1);
 					}
 
 				} else {
 
 					//Если скролл вверх
 					if (count > 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
-						console.log('up + 5');
+						// console.log('up + 5');
 						// console.log(mas[(count - 1)].className);
 						state = mas[count - 1].offsetTop;
 						count -= 1;
-						console.log('count', count);
-						console.log('state', state);
-						console.log('scrollTop', scrollTop);
-						console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
+						// console.log('count', count);
+						// console.log('state', state);
+						// console.log('scrollTop', scrollTop);
+						// console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
 						// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
 
 					} else {
-						console.log('up');
-						console.log('count', count);
-						console.log('state', state);
-						console.log('scrollTop', scrollTop);
+						// console.log('up');
+						// console.log('count', count);
+						// console.log('state', state);
+						// console.log('scrollTop', scrollTop);
 						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
 					}
 
+					//Если скролл вверх дошел до самого верха
 					if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
-						console.log('up + 5');
-						// console.log(mas[(count - 1)].className);
 						state = mas[count].offsetTop;
-						// count -= 1;
-						console.log('count', count);
-						console.log('state', state);
-						console.log('scrollTop', scrollTop);
-						console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
-						// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
 
 					} else {
-						console.log('up');
-						console.log('count', count);
-						console.log('state', state);
-						console.log('scrollTop', scrollTop);
-						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
+
 					}
 				}
-				//Проверяем направление скролла (вниз или вверх)
-				// state < scrollTop ? console.log('down') : console.log('up');
+
 			}
 			ee();
 
@@ -582,13 +570,13 @@ $(function () {
 		};
 	});
 
-	//Фиксируем button-to-top внизу feedback
+	//Фиксируем button-to-top внизу feedback и задаем ширину button-to-top
 	$(function () {
 		let top = $('.feedback').offset().top - $(window).scrollTop();
 		let height = parseInt($('.feedback__before').css('height'));
 		let width = parseInt($('.feedback__before').css('width'));
 		$('.button-to-top').css({ 'top': top + height, 'height': width, 'width': width });
-		console.log('new', top, height);
+		// console.log('new', top, height);
 		// console.log($('.feedback').css());
 	});
 
