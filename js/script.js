@@ -436,7 +436,7 @@ $(function () {
 				} else {
 
 					//Если скролл вверх
-					if (count >= 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
+					if (count > 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
 						console.log('up + 5');
 						// console.log(mas[(count - 1)].className);
 						state = mas[count - 1].offsetTop;
@@ -455,6 +455,24 @@ $(function () {
 						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
 					}
 
+					if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
+						console.log('up + 5');
+						// console.log(mas[(count - 1)].className);
+						state = mas[count].offsetTop;
+						// count -= 1;
+						console.log('count', count);
+						console.log('state', state);
+						console.log('scrollTop', scrollTop);
+						console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
+						// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
+
+					} else {
+						console.log('up');
+						console.log('count', count);
+						console.log('state', state);
+						console.log('scrollTop', scrollTop);
+						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
+					}
 				}
 				//Проверяем направление скролла (вниз или вверх)
 				// state < scrollTop ? console.log('down') : console.log('up');
@@ -473,32 +491,25 @@ $(function () {
 	});
 
 
+
 	//Поднятие наверх при перезагрузке страницы и выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).on('load', function () {
-		// $('html body').scrollTop(0);
-		// $(document).scrollTop(0);
+
 		// $(".projects-all").hide();
 
+		// location.reload();
+
+		// location = location;
+		// setTimeout(function () {
+		// 	window.location.reload();
+		// }, 2000);
+
+		// location.href = location.href;
 
 		//Временно отключил
 		// $("html,body").animate({ scrollTop: 0 }, "slow");
+		$("html,body").animate({ scrollTop: 0 });
 
-
-		// //выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
-		function rr2(e) {
-			// e.preventDefault();
-
-			// console.log($('.feedback').offset());
-			let offset2 = $('.feedback').offset(); //вычисляем положение блока feedback
-			let top2 = offset2.top; //фиксируем top блока feedback
-			let height2 = $('.feedback').height(); //вычисляем высоту блока feedback
-			// console.log(top2);
-			// console.log(top2 + height2);
-
-			// $('.button-to-top').width($('.feedback__before').width());
-			// $('.button-to-top').css({ 'top': top2 + height2 });
-		};
-		rr2();
 	});
 
 	//Поднятие наверх при клике на лого в шапке
