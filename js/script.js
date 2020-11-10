@@ -256,21 +256,21 @@ $(function () {
 
 
 	//Временная заглушка на нажатие кнопки "Отправить"
-	// $('.feedback-form__button').on('click touchend', function (e) {
-	// 	e.stopPropagation();
-	// 	e.preventDefault();
+	$('.feedback-form__button').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
 
-	// 	$('.feedback__form.feedback-form').submit();
+		// $('.feedback__form.feedback-form').submit();
 
-	// 	// console.log('hello');
+		// // console.log('hello');
 
-	// 	// if (window.matchMedia('(max-width: 414px)').matches) {
-	// 	// 	// $('.feedback').toggle();
-	// 	// 	return;
-	// 	// } else {
-	// 	// 	$('.feedback').css({ 'transform': 'translate(0px, 0)' });
-	// 	// }
-	// });
+		// // if (window.matchMedia('(max-width: 414px)').matches) {
+		// // 	// $('.feedback').toggle();
+		// // 	return;
+		// // } else {
+		// // 	$('.feedback').css({ 'transform': 'translate(0px, 0)' });
+		// // }
+	});
 
 	//Нажатие на кнопку "Заказать обратный звонок" в мобильной версии
 	$('.topic__footer-button').on('click touchend', function (e) {
@@ -331,18 +331,18 @@ $(function () {
 
 
 	//Нажатие кнопки "Перезвонить" в форме обратного звонка
-	// $('.callback__form .callback-form__button').on('click touchend', function (e) {
-	// 	e.stopPropagation();
-	// 	e.preventDefault();
+	$('.callback__form .callback-form__button').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
 
-	// 	function ee() {
-	// 		$('.callback__form').css({ 'display': 'none' });
-	// 		$('.callback-form_succses').css({ 'display': 'grid' });
+		// function ee() {
+		// 	$('.callback__form').css({ 'display': 'none' });
+		// 	$('.callback-form_succses').css({ 'display': 'grid' });
 
-	// 	};
-	// 	ee();
+		// };
+		// ee();
 
-	// });
+	});
 
 	//Нажатие кнопки "Перезвонить" в форме обратного звонка с валидацией
 	$('.callback__form').validate({
@@ -506,7 +506,7 @@ $(function () {
 	// 	$("html,body").animate({ scrollTop: 0 }, 300);
 	// });
 
-	//Перезагрузка при клике на лого в шапке
+	//Перезагрузка при клике на лого в шапке и очистка формы projects-all__form
 	$('.logo-main').on('click touchend', function () {
 		// location.reload();
 		// $('html body').scrollTop(0);
@@ -515,6 +515,7 @@ $(function () {
 		// $('html body').scrollTop(0);
 		$(document).scrollTop(0);
 		location.reload();
+		$('.projects-form')[0].reset();
 	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
@@ -564,14 +565,21 @@ $(function () {
 		} else {
 			function ee() {
 
-
-
 				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
 			}
 			ee();
 		};
 	});
 
+	//Фиксируем button-to-top внизу feedback
+	$(function () {
+		let top = $('.feedback').offset().top;
+		let height = parseInt($('.feedback__before').css('height'));
+		let width = parseInt($('.feedback__before').css('width'));
+		$('.button-to-top').css({ 'top': top + height, 'height': width, 'width': width });
+		console.log('new', top, height);
+		// console.log($('.feedback').css());
+	});
 
 	//Scrolling, when click on button-to-top
 	$('.button-to-top__image').on('click touchend', function (e) {
@@ -884,6 +892,7 @@ $(function () {
 		e.stopPropagation();
 		e.preventDefault();
 
+		//Скрываем ближайшего предка с классом portfolio__item
 		$(this).closest('.portfolio__item').css({ 'display': 'none' });
 
 		//Всем меткам устанавливаем иконку по-умолчанию
@@ -904,6 +913,16 @@ $(function () {
 		$('.portfolio__map').removeClass('portfolio__map-withoutAfter');
 		$('.portfolio__button').css({ 'display': 'block' });
 		$(this).css({ 'display': 'none' });
+
+		//Скрываем portfolio__item
+		$('.portfolio__item').css({ 'display': 'none' });
+
+		//Всем меткам устанавливаем иконку по-умолчанию
+		myMap.geoObjects.each(function (el, i) {
+			el.options.set('iconImageHref', '../img/placemark.png');
+		});
+
+		myMap.setCenter([55.76, 37.64]);
 
 	});
 
@@ -1070,70 +1089,70 @@ $(function () {
 
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("contacts-map").
-	// var contactsMap;
-	// $(document).ready(function () {
+	var contactsMap;
+	$(document).ready(function () {
 
-	// 	// Дождёмся загрузки API и готовности DOM.
-	// 	ymaps.ready(init);
+		// // Дождёмся загрузки API и готовности DOM.
+		// ymaps.ready(init);
 
-	// 	function init() {
-	// 		// Создание экземпляра карты и его привязка к контейнеру с
-	// 		// заданным id ("map").
-	// 		contactsMap = new ymaps.Map('contacts-map', {
-	// 			// При инициализации карты обязательно нужно указать
-	// 			// её центр и коэффициент масштабирования.
-	// 			center: [59.211377, 39.898646], // Москва
-	// 			zoom: 15,
-	// 			controls: [],
-	// 			behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
-	// 		}, {
-	// 			// Зададим ограниченную область прямоугольником
-	// 			// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
-	// 			restrictMapArea: [
-	// 				[59.223262, 39.865416], [59.199428, 39.937064]
-	// 			]
-	// 		});
+		// function init() {
+		// 	// Создание экземпляра карты и его привязка к контейнеру с
+		// 	// заданным id ("map").
+		// 	contactsMap = new ymaps.Map('contacts-map', {
+		// 		// При инициализации карты обязательно нужно указать
+		// 		// её центр и коэффициент масштабирования.
+		// 		center: [59.211377, 39.898646], // Москва
+		// 		zoom: 15,
+		// 		controls: [],
+		// 		behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
+		// 	}, {
+		// 		// Зададим ограниченную область прямоугольником
+		// 		// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+		// 		restrictMapArea: [
+		// 			[59.223262, 39.865416], [59.199428, 39.937064]
+		// 		]
+		// 	});
 
-	// 		// Создаём макет содержимого.
-	// 		MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-	// 			'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-	// 		),
+		// 	// Создаём макет содержимого.
+		// 	MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+		// 		'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+		// 	),
 
-	// 			office = new ymaps.Placemark([59.211377, 39.898646], {
-	// 				//Свойства:
+		// 		office = new ymaps.Placemark([59.211377, 39.898646], {
+		// 			//Свойства:
 
-	// 				// hintContent: 'Собственный значок метки',
-	// 				// balloonContent: 'Это красивая метка'
-	// 				// name: 'balashiha'
-	// 				iconCaption: 'Первомайская улица, 12А'
-	// 			}, {
-	// 				// Опции:
+		// 			// hintContent: 'Собственный значок метки',
+		// 			// balloonContent: 'Это красивая метка'
+		// 			// name: 'balashiha'
+		// 			iconCaption: 'Первомайская улица, 12А'
+		// 		}, {
+		// 			// Опции:
 
-	// 				// Необходимо указать данный тип макета.
-	// 				// iconLayout: 'default#image',
-	// 				preset: 'islands#redDotIcon',
+		// 			// Необходимо указать данный тип макета.
+		// 			// iconLayout: 'default#image',
+		// 			preset: 'islands#redDotIcon',
 
-	// 				// Своё изображение иконки метки.
-	// 				// iconImageHref: '../img/placemark.png',
-	// 				// Размеры метки.
-	// 				// iconImageSize: [56, 56],
-	// 				name: 'office'
-	// 				// Смещение левого верхнего угла иконки относительно
-	// 				// её "ножки" (точки привязки).
-	// 				// iconImageOffset: [175, -50]
+		// 			// Своё изображение иконки метки.
+		// 			// iconImageHref: '../img/placemark.png',
+		// 			// Размеры метки.
+		// 			// iconImageSize: [56, 56],
+		// 			name: 'office'
+		// 			// Смещение левого верхнего угла иконки относительно
+		// 			// её "ножки" (точки привязки).
+		// 			// iconImageOffset: [175, -50]
 
-	// 			}),
+		// 		}),
 
-	// 			//Добавляем геометки на карту
-	// 			contactsMap.geoObjects
-	// 				.add(office)
-	// 			;
+		// 		//Добавляем геометки на карту
+		// 		contactsMap.geoObjects
+		// 			.add(office)
+		// 		;
 
 
 
-	// 	}
+		// }
 
-	// });
+	});
 
 
 	//Переключение класса active в меню Услуги и замена содержимого блока Услуги
@@ -1167,31 +1186,134 @@ $(function () {
 
 
 	//Pressing to Services in Menu
-	// $('.menu__top-link').on('click touchend', function (e) {
-	// 	e.stopPropagation();
-	// 	e.preventDefault();
-	// 	let attr = $(this).attr('data-type');
-	// 	// let list = $('.services__content');
-	// 	// console.log($("body").children().not('script'));
+	$('.menu__top-link').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+		// let attr = $(this).attr('data-type');
+		// // let list = $('.services__content');
+		// // console.log($("body").children().not('script'));
 
-	// 	$(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
-	// 		if ($(elem).attr('data-type') == attr) {
-	// 			let marginTop = $(elem).css('margin-top');
-	// 			let paddingTop = $(elem).css('padding-top');
-	// 			$(elem).css({ 'display': 'grid' });
-	// 			$(elem).css({ 'padding-top': 200 });
-	// 			$('body, html').animate({ scrollTop: 0 }, 0);
+		// $(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
+		// 	if ($(elem).attr('data-type') == attr) {
+		// 		let marginTop = $(elem).css('margin-top');
+		// 		let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		$(elem).css({ 'padding-top': 200 });
+		// 		$('body, html').animate({ scrollTop: 0 }, 0);
 
-	// 		} else {
+		// 	} else {
 
-	// 			$(elem).css({ 'display': 'none' });
-	// 			$('.scroll').css({ 'opacity': '0' });
-	// 		}
-	// 	});
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
 
-	// });
+	});
+
+	//Фильтр по типу строения в projects-all
+	$('.projects-form__build').on('change', function () {
+
+		// let attr = $('.projects-form__build option:selected')[0].attributes['data-type'].value;
+		// // console.log(attr);
+
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-type') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
+	});
+
+	//Фильтр по материалу в projects-all
+	$('.projects-form__material').on('change', function () {
+
+		// let attr = $('.projects-form__material option:selected')[0].attributes['data-material'].value;
+		// // console.log(attr);
+
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-material') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
+	});
 
 
+	//Фильтр в projects-all
+	$('.projects-form').on('change', ':input', function () {
+		// let build = $('.projects-form__build option:selected')[0].attributes['data-type'].value;
+		// let material = $('.projects-form__material option:selected')[0].attributes['data-material'].value;
+
+
+
+		let attrName = $('option:selected', this)[0].attributes[1].name;
+		let attrValue = $('option:selected', this)[0].attributes[1].value;
+
+		// console.log(attrName);
+		// console.log(attrValue);
+		// console.log($('.projects-form').find('option:not([disabled]):selected').text());
+		// console.log($('.projects-form__material option:selected')[0].attributes['data-material'].value);
+		console.log('start');
+		let mas = $('.projects-form').find('option:not([disabled]):selected');
+
+		mas.each(function (i, elem) {
+
+
+			let masName = $(elem)[0].attributes[1].name;
+			let masValue = $(elem)[0].attributes[1].value;
+			console.log(masName, masValue);
+			// console.log(masValue);
+			$(".item-projects-all").each(function (i, elem1) {
+
+				// console.log($(elem1).attr(masName));
+				if ($(elem1).attr(masName) == masValue) {
+
+					$(elem1).css({ 'display': 'grid' });
+
+
+				} else {
+
+					$(elem1).css({ 'display': 'none' });
+					$('.scroll').css({ 'opacity': '0' });
+				}
+
+
+
+
+			});
+
+		});
+
+		// $('.projects-form')[0].reset();
+
+
+	})
 
 
 });

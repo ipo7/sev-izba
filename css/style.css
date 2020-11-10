@@ -1017,6 +1017,7 @@ div [hidden] {
   line-height: 23px;
   color: #6d7278;
   height: 100%;
+  padding-left: 10px;
 }
 
 .projects-all .projects-form__text:hover,
@@ -3119,21 +3120,19 @@ div [hidden] {
 .button-to-top {
   display: none;
   width: 72px;
-  height: calc(90px + 10px);
   background-color: #fff;
   position: fixed;
-  top: calc(100vh - (100vh - 687px + 20px) / 2);
-  right: 0;
+  right: 0px;
   text-align: center;
 }
 
 .button-to-top__image {
   position: absolute;
-  bottom: 10px;
+  bottom: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  -webkit-transform: translate(-50%, 50%);
+  -ms-transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
   cursor: pointer;
 }
 
@@ -4832,12 +4831,6 @@ body {
     height: 48px;
     line-height: 32px;
     top: -121px;
-  }
-
-  .button-to-top {
-    height: calc(60px + 10px);
-    width: 60px;
-    top: calc(100vh - (100vh - 576px + 28px) / 2);
   }
 
   .callback-form {
