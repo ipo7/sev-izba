@@ -1292,6 +1292,7 @@ div [hidden] {
   position: absolute;
   bottom: 16px;
   left: 16px;
+  cursor: pointer;
 }
 
 .project-solo .slider__portfolio-link-title {
@@ -1332,8 +1333,16 @@ div [hidden] {
   top: 5px;
 }
 
+.project-solo .slider__arrow:hover {
+  background: url("../img/go-left-active.png") 0 0/cover no-repeat;
+}
+
 .project-solo .slider__arrow_right {
   background: url("../img/go-right.png") 0 0/cover no-repeat;
+}
+
+.project-solo .slider__arrow_right:hover {
+  background: url("../img/go-right-active.png") 0 0/cover no-repeat;
 }
 
 .project-solo .slider__button {
@@ -6607,7 +6616,11 @@ body {
 
 .webp .project-solo .slider__arrow{ background: url(../img/go-left.webp) 0 0/cover no-repeat; }
 
+.webp .project-solo .slider__arrow:hover{ background: url(../img/go-left-active.webp) 0 0/cover no-repeat; }
+
 .webp .project-solo .slider__arrow_right{ background: url(../img/go-right.webp) 0 0/cover no-repeat; }
+
+.webp .project-solo .slider__arrow_right:hover{ background: url(../img/go-right-active.webp) 0 0/cover no-repeat; }
 
 .webp .project-solo__material{ background: url(../img/Show.webp) 95% 55% no-repeat; }
 
