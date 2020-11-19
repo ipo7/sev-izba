@@ -1265,54 +1265,262 @@ $(function () {
 
 
 	//Фильтр в projects-all
+	let masNew = []; //Отбор item после каждой фильтрации
+	let countNew = 0;
+	let masAttr = []; //Массив всех выбранных атрибутов (фильтров) из Form
+	let masNameSelected = [];
+	let masValueSelected = [];
+	let masItem = [];
+	let masNumberNew = {};
+
 	$('.projects-form').on('change', ':input', function () {
-		// let build = $('.projects-form__build option:selected')[0].attributes['data-type'].value;
-		// let material = $('.projects-form__material option:selected')[0].attributes['data-material'].value;
 
-
-
-		let attrName = $('option:selected', this)[0].attributes[1].name;
-		let attrValue = $('option:selected', this)[0].attributes[1].value;
-
-		// console.log(attrName);
-		// console.log(attrValue);
-		// console.log($('.projects-form').find('option:not([disabled]):selected').text());
-		// console.log($('.projects-form__material option:selected')[0].attributes['data-material'].value);
 		console.log('start');
-		let mas = $('.projects-form').find('option:not([disabled]):selected');
+		// console.log($(this).serializeArray());
 
-		mas.each(function (i, elem) {
+		masNew = []; //Обнуляем массив
+		countNew = 0; //Обнуляем счетчик массива
+		console.log('masNew == 0', masNew == 0); //Проверяем пустой ли массив
 
+		//Собираем в объект пункты inputs type="number" data-type="price" in form 
+		let masNumberPrice = $('.projects-form :input[type="number"][data-type="price"]');
 
-			let masName = $(elem)[0].attributes[1].name;
-			let masValue = $(elem)[0].attributes[1].value;
-			console.log(masName, masValue);
-			// console.log(masValue);
-			$(".item-projects-all").each(function (i, elem1) {
+		//Атрибуту [data-price] inputs type="number" присваиваем значение value, соответствующего input (one или two). В дальнейшем будем сравнивать значения [data-price] из inputs type="number" со значениями [data-price] у .item-projects-all
+		masNumberPrice.each(function (i, elem) {
 
-				// console.log($(elem1).attr(masName));
-				if ($(elem1).attr(masName) == masValue) {
-
-					$(elem1).css({ 'display': 'grid' });
-
-
-				} else {
-
-					$(elem1).css({ 'display': 'none' });
-					$('.scroll').css({ 'opacity': '0' });
-				}
-
-
-
-
-			});
+			$(elem)[0].attributes['data-price'].value = $(elem)[0].value;
+			console.log('name=', $(elem)[0].attributes['name']);
+			console.log('data-price=', $(elem)[0].attributes['data-price']);
 
 		});
 
-		// $('.projects-form')[0].reset();
+
+		//Собираем в объект пункты inputs type="number" data-type="size" in form 
+		let masNumberSize = $('.projects-form :input[type="number"][data-type="size"]');
+
+		//Атрибуту [data-size] inputs type="number" присваиваем значение value, соответствующего input (one или two). В дальнейшем будем сравнивать значения [data-size] из inputs type="number" со значениями [data-size] у .item-projects-all
+		masNumberSize.each(function (i, elem) {
+
+			$(elem)[0].attributes['data-size'].value = $(elem)[0].value;
+			console.log('name=', $(elem)[0].attributes['name']);
+			console.log('data-size=', $(elem)[0].attributes['data-size']);
+
+		});
+
+
+
+
+		//Собираем в объект ВЫБРАННЫЕ пункты inputs in form
+		let mas = $('.projects-form').find('option:not([disabled]):selected, input:checked');
+
+		console.log('ВЫБРАННЫЕ пункты inputs in form:', mas);
+
+		//Собираем в объект элементы .item-projects-all
+		masItem = $(".item-projects-all");
+
+		// console.log('masItem:', masItem);
+
+		//Собираем masAttr: массив всех выбранных атрибутов (фильтров) из Form
+		mas.each(function (i, elem) {
+			masAttr[i] = $(elem)[0].attributes[1];
+		});
+
+		console.log('masAttr', masAttr);
+		console.log('number of selected attr:', masAttr.length);
+
+
+
+		//Если masNew == 0 (первый обход-фильтрация item) и первым выбирается фильтрация по ЦЕНЕ, применяем к item фильтр по цене
+		if (masNew == 0) {
+
+			$.each(masItem, function (i, elem2) {
+
+				console.log('masItem data-price=', +$(elem2)[0].attributes['data-price'].value);
+				console.log('name="one":', +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value);
+				console.log('name="two":', +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value);
+
+				//Если name="two" == 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value == 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+						// console.log('yes');
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+				};
+
+				//Если name="two" > 0 && name="two" >= name="one" или name="one" == 0 && name="two" > 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value > 0
+					&& +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value
+					||
+
+					+$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value == 0 && +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value > 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value
+						&&
+						+$(elem2)[0].attributes['data-price'].value <= +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+
+				}
+
+				//Если name="two" != 0 && name="two" < name="one"
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value != 0 && +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value < +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value) {
+
+					alert('Правое значение должно превышать значение слева');
+					// 
+					$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].value = '';
+
+					return false;
+
+				}
+
+			});
+
+		}
+
+
+
+		//Если masNew == 0 (первый обход-фильтрация item) и первым выбирается фильтрация по SIZE, применяем к item фильтр по size
+
+
+
+
+
+		//Фильтрация по выпадающим меню
+		let count = 0;
+
+		while (count < (masAttr.length)) {
+			console.log('номер обхода:', count + 1);
+
+			//Если masNew == 0 (первый обход-фильтрация item)
+			if (masNew == 0) {
+
+				masNew = masItem.filter(function (ii, elem2) {
+
+					// console.log('значение атрибута из формы:', masAttr[count].value);
+					// console.log('значение атрибута у item:', $(elem2)[0].attributes[masAttr[count].name].value); //Выводим значение атрибута с названием "masAttr[count].name" у элемента elem2
+					// console.log(masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value);
+
+					return masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value;
+					// console.log('elem2', elem2);
+				});
+
+
+
+
+				// console.log('masNew обход:', count + 1, 'masNew:', masNew, 'masNew.length:', masNew.length);
+
+
+				// console.log(masNameSelected[count]);
+				// console.log(masValueSelected[count]);
+				count++;
+
+				//Иначе фильтруем уже masNew, а не .item-projects-all
+			} else {
+				// alert('no');
+
+				masNew = masNew.filter(function (ii, elem2) {
+
+					// console.log('masNew перед началом обхода:', count + 1, masNew);
+
+					// console.log('значение атрибута из формы:', masAttr[count].value);
+					// console.log(masNew.length);
+					// console.log(this);
+					// console.log('значение атрибута у item:', $(elem2)[0].attributes[masAttr[count].name].value); //Выводим значение атрибута с названием "masAttr[count].name" у элемента elem2
+					// console.log(masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value);
+
+					return masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value;
+
+					// $(elem2).css({ 'display': 'grid' });
+
+				});
+
+
+				// console.log(masNameSelected[count]);
+				// console.log(masValueSelected[count]);
+				count++;
+
+			}
+
+			//Всем первоначально выведенным элементам - 'display': 'none'
+			$.each(masItem, function (ii, elem2) {
+				$(elem2).css({ 'display': 'none' });
+			});
+
+			//Обрабатываем (применяем фильтр по ЦЕНЕ) массив masNew, полученный после применения фильтров из выпадающих списков
+			$.each(masNew, function (ii, elem2) {
+
+				// console.log('masNew data-price=', +$(elem2)[0].attributes['data-price'].value);
+				// console.log(+$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value);
+
+
+				//Проверяем больше ли или равна цена elem2 из masNew цены из input[type="number"][data-type="price"][name="one"]. Если да - 'display': 'grid'
+
+				//Если name="two" == 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value == 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+						// console.log('yes');
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+				};
+
+				//Если name="two" > 0 && name="two" >= name="one" или name="one" == 0 && name="two" > 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value > 0
+					&& +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value
+					||
+
+					+$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value == 0 && +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value > 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value
+						&&
+						+$(elem2)[0].attributes['data-price'].value <= +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+
+				}
+
+				//Если name="two" != 0 && name="two" < name="one"
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value != 0 && +$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].attributes['data-price'].value < +$('.projects-form :input[type="number"][data-type="price"][name="one"]')[0].attributes['data-price'].value) {
+
+					alert('Правое значение должно превышать значение слева');
+					// 
+					$('.projects-form :input[type="number"][data-type="price"][name="two"]')[0].value = '';
+
+					return false;
+
+				}
+
+			});
+
+			console.log('masNew обход:', count + 1, 'masNew:', masNew, 'masNew.length:', masNew.length);
+
+		}
+
+		// console.log(countNew, masNew, masNew.length);
+		// console.log('masNew == 0', masNew == 0);
+
+
 
 
 	})
+
 
 
 });
