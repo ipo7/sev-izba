@@ -405,20 +405,9 @@ $(function () {
 		ee();
 	});
 
-
-
 	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
 	let state = 0;
 	let count = 0;
-	let bodyHeight = $('body').height();
-	// console.log('bodyHeight', bodyHeight);
-	let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable');
-	// console.log('mas', mas);
-
-	$.each(mas, function (i, elem) {
-		// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
-	});
-
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
@@ -426,74 +415,37 @@ $(function () {
 		if ($(window).width() >= 780) {
 
 			let scrollTop = $(document).scrollTop();
-			// console.log('scrollTop', scrollTop);
-			// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
-			// console.log('scrollTop + state', scrollTop + state);
-			// console.log('state', state);
-			// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
-			// console.log(state <= scrollTop);
-
-			// let y2 = $('.header__container').height();
+			let y2 = $('.header__container').height();
 			// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
-
+			let mas = $(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable');
 
 			function ee() {
-				//Проверяем скролл вниз
-				if (state < scrollTop + bodyHeight) {
+				//Проверяем скрол вниз
+				if (state <= scrollTop) {
 
-					// console.log('скролл вниз');
+					if ((mas[count + 1].offsetTop - mas[count].offsetTop + state) > mas[(count + 1)].offsetTop && count < (mas.length - 1)) {
 
-					//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer
-					if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
-						// console.log('yes');
-						// console.log('mas.length', mas.length);
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-						// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
-						// console.log('scrollTop2', scrollTop);
-
+						// console.log('mas[(count + 1)].offsetTop', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
 						state = mas[(count + 1)].offsetTop;
-
 						// $("html,body").animate({ scrollTop: state }, "slow");
 						$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
-
-						scrollTop = $(document).scrollTop();
-
 						count += 1;
 						// console.log('state', state);
 						// console.log('count', count);
-
-
-						// setTimeout(function () {
-						// 	scrollTop = $(document).scrollTop();
-						// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
-						// 	console.log('$(document).scrollTop()', $(document).scrollTop());
-						// }, 700);
-
-
-
-
+						// console.log('yes');
 						// alert('yes');
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+
 					} else {
-						// state = scrollTop;
-						// alert('no');
+						state = scrollTop;
 						// console.log('no');
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
+						// console.log(mas[count + 1].offsetTop + state - mas[count].offsetTop);
 						// console.log(mas[count + 1].offsetTop + 1);
 					}
 
 				} else {
 
 					//Если скролл вверх
-					if (count > 0 && state >= scrollTop + bodyHeight) {
-
-
-						// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
-
-						// console.log('скролл ВВЕРХ');
+					if (count > 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
 						// console.log('up + 5');
 						// console.log(mas[(count - 1)].className);
 						state = mas[count - 1].offsetTop;
@@ -571,7 +523,7 @@ $(function () {
 		// $('html body').scrollTop(0);
 		$(document).scrollTop(0);
 		location.reload();
-		// $('.projects-form')[0].reset(); // Временно отключил, чтобы не выдавало ошибку при отключенном блоке projects-all
+		$('.projects-form')[0].reset();
 	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
@@ -745,21 +697,20 @@ $(function () {
 
 
 	//Отработка клика на Scroll
-	$('.scroll').on('click touchend', function (e) {
+	$(' .scroll').on('click touchend', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
 		let y = $('.projects').offset().top;
 		let y1 = $('.header').outerHeight();
 
-		// console.log("$('.projects').offset().top", $('.projects').offset().top);
+		console.log("$('.projects').offset().top", $('.projects').offset().top);
 		// console.log("$(document).offset().top", $(document).offset().top);
 
 		// $(document).scrollTop(y - y1);
 
 		//Вычел вручную 37рх, чтобы не скакал блок при нажатии на пункт меню Проекты после отработки нажатия на скролл
 		// $("html, body").animate({ scrollTop: (y - y1 - 37) }, 300);
-		$("html, body").animate({ scrollTop: (y - y1 + 1) }, 300);
-
+		$("html, body").animate({ scrollTop: (y - y1) }, 300);
 		// console.log($('.projects').css('padding-top'));
 		// console.log($('.projects').css('margin-top'));
 
@@ -814,7 +765,6 @@ $(function () {
 	//Слайдер в project-solo Plan
 	$('.plan__slider').slick({
 		// infinite: true,
-		slide: 'div', //Добавляем в слайдер только div-элементы
 		slidesToShow: 2,
 		slidesToScroll: 1,
 		prevArrow: $('.plan__arrow'),
@@ -1267,6 +1217,59 @@ $(function () {
 
 	});
 
+	//Фильтр по типу строения в projects-all
+	$('.projects-form__build').on('change', function () {
+
+		// let attr = $('.projects-form__build option:selected')[0].attributes['data-type'].value;
+		// // console.log(attr);
+
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-type') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
+	});
+
+	//Фильтр по материалу в projects-all
+	$('.projects-form__material').on('change', function () {
+
+		// let attr = $('.projects-form__material option:selected')[0].attributes['data-material'].value;
+		// // console.log(attr);
+
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-material') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
+	});
 
 	//Projects-all: oтменяем действие по умолчанию при нажатии Enter in Input и добавляем переход к следующему Input в группе ри нажатии Enter
 	$('.projects-form :input[type="number"]').keypress(function (event) {
@@ -1597,11 +1600,6 @@ $(function () {
 
 	})
 
-	//Подключаю Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select
-	$('.project-solo__material').styler({
-		selectVisibleOptions: '10',
-		selectSmartPositioning: false,
-	});
 
 
 });

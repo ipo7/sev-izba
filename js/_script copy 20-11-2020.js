@@ -389,36 +389,16 @@ $(function () {
 		// e.preventDefault();
 		let y = $('.projects').offset().top;
 		let y1 = $(document).scrollTop();
-		// let y2 = $('.header__container').height();
-		let y2 = $('.header').outerHeight();
-
-		// console.log("$('.header').height()", y2);
-		// console.log("$('.projects').offset().top", $('.projects').offset().top);
-
-
+		let y2 = $('.header__container').height();
 		function ee() {
-
-			if ($(window).width() > tablet) { y - y2 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
-
-			// if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
+			if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
 		}
 		ee();
 	});
 
-
-
 	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
 	let state = 0;
 	let count = 0;
-	let bodyHeight = $('body').height();
-	// console.log('bodyHeight', bodyHeight);
-	let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable');
-	// console.log('mas', mas);
-
-	$.each(mas, function (i, elem) {
-		// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
-	});
-
 	$(document).on('scroll', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
@@ -426,74 +406,37 @@ $(function () {
 		if ($(window).width() >= 780) {
 
 			let scrollTop = $(document).scrollTop();
-			// console.log('scrollTop', scrollTop);
-			// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
-			// console.log('scrollTop + state', scrollTop + state);
-			// console.log('state', state);
-			// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
-			// console.log(state <= scrollTop);
-
-			// let y2 = $('.header__container').height();
+			let y2 = $('.header__container').height();
 			// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
-
+			let mas = $(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable');
 
 			function ee() {
-				//Проверяем скролл вниз
-				if (state < scrollTop + bodyHeight) {
+				//Проверяем скрол вниз
+				if (state <= scrollTop) {
 
-					// console.log('скролл вниз');
+					if ((mas[count + 1].offsetTop - mas[count].offsetTop + state) > mas[(count + 1)].offsetTop && count < (mas.length - 1)) {
 
-					//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer
-					if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
-						// console.log('yes');
-						// console.log('mas.length', mas.length);
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-						// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
-						// console.log('scrollTop2', scrollTop);
-
+						// console.log('mas[(count + 1)].offsetTop', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
 						state = mas[(count + 1)].offsetTop;
-
 						// $("html,body").animate({ scrollTop: state }, "slow");
 						$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
-
-						scrollTop = $(document).scrollTop();
-
 						count += 1;
 						// console.log('state', state);
 						// console.log('count', count);
-
-
-						// setTimeout(function () {
-						// 	scrollTop = $(document).scrollTop();
-						// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
-						// 	console.log('$(document).scrollTop()', $(document).scrollTop());
-						// }, 700);
-
-
-
-
+						// console.log('yes');
 						// alert('yes');
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+
 					} else {
-						// state = scrollTop;
-						// alert('no');
+						state = scrollTop;
 						// console.log('no');
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
+						// console.log(mas[count + 1].offsetTop + state - mas[count].offsetTop);
 						// console.log(mas[count + 1].offsetTop + 1);
 					}
 
 				} else {
 
 					//Если скролл вверх
-					if (count > 0 && state >= scrollTop + bodyHeight) {
-
-
-						// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
-
-						// console.log('скролл ВВЕРХ');
+					if (count > 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
 						// console.log('up + 5');
 						// console.log(mas[(count - 1)].className);
 						state = mas[count - 1].offsetTop;
@@ -571,7 +514,7 @@ $(function () {
 		// $('html body').scrollTop(0);
 		$(document).scrollTop(0);
 		location.reload();
-		// $('.projects-form')[0].reset(); // Временно отключил, чтобы не выдавало ошибку при отключенном блоке projects-all
+		$('.projects-form')[0].reset();
 	});
 
 	//Disable scroll-block если высота экрана больше, чем высота блока Topic
@@ -745,27 +688,21 @@ $(function () {
 
 
 	//Отработка клика на Scroll
-	$('.scroll').on('click touchend', function (e) {
-		// e.stopPropagation();
-		// e.preventDefault();
+	$(' .scroll').on('click touchend', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
 		let y = $('.projects').offset().top;
-		let y1 = $('.header').outerHeight();
+		let y1 = $('.header').height();
+		function ee() {
+			// $(document).scrollTop(y - y1);
 
-		// console.log("$('.projects').offset().top", $('.projects').offset().top);
-		// console.log("$(document).offset().top", $(document).offset().top);
-
-		// $(document).scrollTop(y - y1);
-
-		//Вычел вручную 37рх, чтобы не скакал блок при нажатии на пункт меню Проекты после отработки нажатия на скролл
-		// $("html, body").animate({ scrollTop: (y - y1 - 37) }, 300);
-		$("html, body").animate({ scrollTop: (y - y1 + 1) }, 300);
-
-		// console.log($('.projects').css('padding-top'));
-		// console.log($('.projects').css('margin-top'));
-
+			//Вычел вручную 37рх, чтобы не скакал блок при нажатии на пункт меню Проекты после отработки нажатия на скролл
+			$("html, body").animate({ scrollTop: (y - y1 - 37) }, 300);
+			// console.log($('.projects').css('padding-top'));
+			// console.log($('.projects').css('margin-top'));
+		}
+		ee();
 		// $('.menu-disable').css('display', 'none');
-
-		// console.log("$(document).offset().top", $(document).offset().top);
 	});
 
 	//Отработка клика на пункт "фильтры +" в разделе "Проекты"
@@ -814,7 +751,6 @@ $(function () {
 	//Слайдер в project-solo Plan
 	$('.plan__slider').slick({
 		// infinite: true,
-		slide: 'div', //Добавляем в слайдер только div-элементы
 		slidesToShow: 2,
 		slidesToScroll: 1,
 		prevArrow: $('.plan__arrow'),
@@ -949,6 +885,7 @@ $(function () {
 
 	});
 
+
 	//Нажатие на крест item на карте
 	$('.main-item__exit').on('click touchend', function (e) {
 		e.stopPropagation();
@@ -977,7 +914,7 @@ $(function () {
 		$(this).css({ 'display': 'none' });
 
 		//Скрываем portfolio__item
-		// $('.portfolio__item').css({ 'display': 'none' });
+		$('.portfolio__item').css({ 'display': 'none' });
 
 		//Всем меткам устанавливаем иконку по-умолчанию
 		myMap.geoObjects.each(function (el, i) {
@@ -985,6 +922,7 @@ $(function () {
 		});
 
 		myMap.setCenter([55.76, 37.64]);
+
 	});
 
 
@@ -1153,61 +1091,65 @@ $(function () {
 	var contactsMap;
 	$(document).ready(function () {
 
-		// Дождёмся загрузки API и готовности DOM.
-		ymaps.ready(init);
+		// // Дождёмся загрузки API и готовности DOM.
+		// ymaps.ready(init);
 
-		function init() {
-			// Создание экземпляра карты и его привязка к контейнеру с
-			// заданным id ("map").
-			contactsMap = new ymaps.Map('contacts-map', {
-				// При инициализации карты обязательно нужно указать
-				// её центр и коэффициент масштабирования.
-				center: [59.211377, 39.898646], // Москва
-				zoom: 15,
-				controls: [],
-				behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
-			}, {
-				// Зададим ограниченную область прямоугольником
-				// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
-				restrictMapArea: [
-					[59.223262, 39.865416], [59.199428, 39.937064]
-				]
-			});
+		// function init() {
+		// 	// Создание экземпляра карты и его привязка к контейнеру с
+		// 	// заданным id ("map").
+		// 	contactsMap = new ymaps.Map('contacts-map', {
+		// 		// При инициализации карты обязательно нужно указать
+		// 		// её центр и коэффициент масштабирования.
+		// 		center: [59.211377, 39.898646], // Москва
+		// 		zoom: 15,
+		// 		controls: [],
+		// 		behaviors: ["disable('scrollZoom')"] // Отключаем масштабирование колесом мыши
+		// 	}, {
+		// 		// Зададим ограниченную область прямоугольником
+		// 		// Задаются в географических координатах самой юго-восточной и самой северо-западной точек видимой области.
+		// 		restrictMapArea: [
+		// 			[59.223262, 39.865416], [59.199428, 39.937064]
+		// 		]
+		// 	});
 
-			// Создаём макет содержимого.
-			MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-				'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
-			),
+		// 	// Создаём макет содержимого.
+		// 	MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+		// 		'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+		// 	),
 
-				office = new ymaps.Placemark([59.211377, 39.898646], {
-					//Свойства:
+		// 		office = new ymaps.Placemark([59.211377, 39.898646], {
+		// 			//Свойства:
 
-					// hintContent: 'Собственный значок метки',
-					// balloonContent: 'Это красивая метка'
-					// name: 'balashiha'
-					iconCaption: 'Первомайская улица, 12А'
-				}, {
-					// Опции:
+		// 			// hintContent: 'Собственный значок метки',
+		// 			// balloonContent: 'Это красивая метка'
+		// 			// name: 'balashiha'
+		// 			iconCaption: 'Первомайская улица, 12А'
+		// 		}, {
+		// 			// Опции:
 
-					// Необходимо указать данный тип макета.
-					// iconLayout: 'default#image',
-					preset: 'islands#redDotIcon',
+		// 			// Необходимо указать данный тип макета.
+		// 			// iconLayout: 'default#image',
+		// 			preset: 'islands#redDotIcon',
 
-					// Своё изображение иконки метки.
-					// iconImageHref: '../img/placemark.png',
-					// Размеры метки.
-					// iconImageSize: [56, 56],
-					name: 'office'
-					// Смещение левого верхнего угла иконки относительно
-					// её "ножки" (точки привязки).
-					// iconImageOffset: [175, -50]
-				}),
+		// 			// Своё изображение иконки метки.
+		// 			// iconImageHref: '../img/placemark.png',
+		// 			// Размеры метки.
+		// 			// iconImageSize: [56, 56],
+		// 			name: 'office'
+		// 			// Смещение левого верхнего угла иконки относительно
+		// 			// её "ножки" (точки привязки).
+		// 			// iconImageOffset: [175, -50]
 
-				//Добавляем геометки на карту
-				contactsMap.geoObjects
-					.add(office)
-				;
-		}
+		// 		}),
+
+		// 		//Добавляем геометки на карту
+		// 		contactsMap.geoObjects
+		// 			.add(office)
+		// 		;
+
+
+
+		// }
 
 	});
 
@@ -1267,50 +1209,91 @@ $(function () {
 
 	});
 
+	//Фильтр по типу строения в projects-all
+	$('.projects-form__build').on('change', function () {
 
-	//Projects-all: oтменяем действие по умолчанию при нажатии Enter in Input и добавляем переход к следующему Input в группе ри нажатии Enter
-	$('.projects-form :input[type="number"]').keypress(function (event) {
-		if (event.keyCode == 13) {
-			event.preventDefault();
-			$(this).next().focus();
+		// let attr = $('.projects-form__build option:selected')[0].attributes['data-type'].value;
+		// // console.log(attr);
 
-			//Если это последний input в группе
-			if ($(this).next().length == 0) {
-				$(this).blur();
-			}
-		};
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-type') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
 	});
 
-	//Фильтр в Projects-all
+	//Фильтр по материалу в projects-all
+	$('.projects-form__material').on('change', function () {
+
+		// let attr = $('.projects-form__material option:selected')[0].attributes['data-material'].value;
+		// // console.log(attr);
+
+		// $(".item-projects-all").each(function (i, elem) {
+
+		// 	// console.log($(elem).attr('data-type'));
+		// 	// console.log(elem.attributes['data-type']);
+
+		// 	if ($(elem).attr('data-material') == attr) {
+		// 		// let marginTop = $(elem).css('margin-top');
+		// 		// let paddingTop = $(elem).css('padding-top');
+		// 		$(elem).css({ 'display': 'grid' });
+		// 		// $(elem).css({ 'padding-top': 200 });
+		// 		// $('body, html').animate({ scrollTop: 0 }, 0);
+
+		// 	} else {
+
+		// 		$(elem).css({ 'display': 'none' });
+		// 		$('.scroll').css({ 'opacity': '0' });
+		// 	}
+		// });
+
+	});
+
+
+	//Фильтр в projects-all
+	let masNew = []; //Отбор item после каждой фильтрации
+	let countNew = 0;
+	let masAttr = []; //Массив всех выбранных атрибутов (фильтров) из Form
+	let masNameSelected = [];
+	let masValueSelected = [];
+	let masItem = [];
+	let masNumberNew = {};
+
 	$('.projects-form').on('change', function () {
 
-		let masNew = [];
-		let masNewPrice = [];
-		let masNewSize = [];
-		let masNewTerrace = [];
-		let masTotal = [];
+		console.log('start');
+		console.log($(this).serializeArray());
 
-		// console.log('start');
-		// console.log($(this).serializeArray());
 
-		//Собираем в masItem элементы .item-projects-all
-		let masItem = [];
-		masItem = $(".item-projects-all");
+		masNew = []; //Обнуляем массив
+		countNew = 0; //Обнуляем счетчик массива
+		console.log('masNew == 0', masNew == 0); //Проверяем пустой ли массив
 
 		//Собираем в объект пункты inputs type="number" data-type="price" in form 
 		let masNumberPrice = $('.projects-form :input[type="number"][data-type="price"]');
 
-		//Атрибуту [value] inputs type="number" присваиваем значение value, соответствующего input (priceMin или priceMax). В дальнейшем будем сравнивать значения из inputs type="number" со значениями (priceMin или priceMax) у .item-projects-all
+		//Атрибуту [data-price] inputs type="number" присваиваем значение value, соответствующего input (price-min или price-max). В дальнейшем будем сравнивать значения [data-price] из inputs type="number" со значениями [data-price] у .item-projects-all
 		masNumberPrice.each(function (i, elem) {
 
-			$(elem)[0].attributes['value'].value = $(elem)[0].value;
-			// console.log('name=', $(elem)[0].attributes['name']);
-			// console.log($(elem)[0].attributes['name'].value, $(elem)[0].attributes['value']);
+			$(elem)[0].attributes['data-price'].value = $(elem)[0].value;
+			console.log('name=', $(elem)[0].attributes['name']);
+			console.log('data-price=', $(elem)[0].attributes['data-price']);
 
 		});
-
-		let priceminValue = +$('.projects-form :input[type="number"][data-type="price"][name="data-pricemin"]')[0].attributes['value'].value
-		let pricemaxValue = +$('.projects-form :input[type="number"][data-type="price"][name="data-pricemax"]')[0].attributes['value'].value
 
 
 		//Собираем в объект пункты inputs type="number" data-type="size" in form 
@@ -1319,289 +1302,202 @@ $(function () {
 		//Атрибуту [data-size] inputs type="number" присваиваем значение value, соответствующего input (size-min или size-max). В дальнейшем будем сравнивать значения [data-size] из inputs type="number" со значениями [data-size] у .item-projects-all
 		masNumberSize.each(function (i, elem) {
 
-			$(elem)[0].attributes['value'].value = $(elem)[0].value;
-			// console.log('name=', $(elem)[0].attributes['name']);
-			// console.log('data-size=', $(elem)[0].attributes['value']);
+			$(elem)[0].attributes['data-size'].value = $(elem)[0].value;
+			console.log('name=', $(elem)[0].attributes['name']);
+			console.log('data-size=', $(elem)[0].attributes['data-size']);
 
 		});
 
-		let sizeminValue = +$('.projects-form :input[type="number"][data-type="size"][name="data-sizemin"]')[0].attributes['value'].value
-		let sizemaxValue = +$('.projects-form :input[type="number"][data-type="size"][name="data-sizemax"]')[0].attributes['value'].value
 
-		//Собираем в объект пункты inputs type="number" data-type="terrace" in form 
-		let masNumberTerrace = $('.projects-form :input[type="number"][data-type="terrace"]');
 
-		//Атрибуту [value] присваиваем значение value, соответствующего input (terracemin или terracemax).
-		masNumberTerrace.each(function (i, elem) {
 
-			$(elem)[0].attributes['value'].value = $(elem)[0].value;
+		//Собираем в объект ВЫБРАННЫЕ пункты inputs in form
+		let mas = $('.projects-form').find('option:not([disabled]):selected, input:checked');
+
+		console.log('ВЫБРАННЫЕ пункты inputs in form:', mas);
+
+		//Собираем в объект элементы .item-projects-all
+		masItem = $(".item-projects-all");
+
+		// console.log('masItem:', masItem);
+
+		//Собираем masAttr: массив всех активных атрибутов из выбранных пунктов выпадающих меню Form
+		mas.each(function (i, elem) {
+			masAttr[i] = $(elem)[0].attributes[1];
 		});
 
-		let terraceminValue = +$('.projects-form :input[type="number"][data-type="terrace"][name="data-terracemin"]')[0].attributes['value'].value
-		let terracemaxValue = +$('.projects-form :input[type="number"][data-type="terrace"][name="data-terracemax"]')[0].attributes['value'].value
+		console.log('masAttr', masAttr);
+		console.log('number of selected attr:', masAttr.length);
 
 
-		//Сериализуем форму в массив и отбираем в serializeArrayNoNull не нулевые значения
-		let serializeArrayNoNull = [];
-		$.each($(this).serializeArray(), function (i, elem2) {
-			// console.log(elem2.value);
-			if (+elem2.value != 0) {
-				serializeArrayNoNull[i] = elem2;
-			}
-		});
 
-		//Удаляем из serializeArrayNoNull пустые строки
-		serializeArrayNoNull = serializeArrayNoNull.filter(element => element !== null);
+		//Если masNew == 0 (первый обход-фильтрация item), masAttr == 0 (не выбран ни один пункт выпадающих меню) и первой выбирается фильтрация по ЦЕНЕ, то применяем к item фильтр по цене
+		if (masNew == 0 && masAttr == 0) {
 
-		//Проверяем наличие введенных значений в полях pricemin или pricemax, если они есть, то их добавляем в отдельный массив serializeArrayNoNullPrice и убираем из serializeArrayNoNull
-		let serializeArrayNoNullPrice = [];
-		$.each(serializeArrayNoNull, function (i, elem2) {
-			// console.log(elem2.value);
-			if (elem2.name == 'data-pricemin' || elem2.name == 'data-pricemax') {
-				serializeArrayNoNullPrice[i] = elem2;
-				serializeArrayNoNull = serializeArrayNoNull.filter(element => element !== elem2);
-			}
-		});
-
-		//Удаляем из serializeArrayNoNullPrice пустые строки
-		serializeArrayNoNullPrice = serializeArrayNoNullPrice.filter(element => element !== null);
-
-		let serializeArrayNoNullSize = [];
-		$.each(serializeArrayNoNull, function (i, elem2) {
-			// console.log(elem2.value);
-			if (elem2.name == 'data-sizemin' || elem2.name == 'data-sizemax') {
-				serializeArrayNoNullSize[i] = elem2;
-				serializeArrayNoNull = serializeArrayNoNull.filter(element => element !== elem2);
-			}
-		});
-
-		//Удаляем из serializeArrayNoNullSize пустые строки
-		serializeArrayNoNullSize = serializeArrayNoNullSize.filter(element => element !== null);
-
-		let serializeArrayNoNullTerrace = [];
-		$.each(serializeArrayNoNull, function (i, elem2) {
-			// console.log(elem2.value);
-			if (elem2.name == 'data-terracemin' || elem2.name == 'data-terracemax') {
-				serializeArrayNoNullTerrace[i] = elem2;
-				serializeArrayNoNull = serializeArrayNoNull.filter(element => element !== elem2);
-			}
-		});
-
-		//Удаляем из serializeArrayNoNullTerrace пустые строки
-		serializeArrayNoNullTerrace = serializeArrayNoNullTerrace.filter(element => element !== null);
-
-		// console.log('serializeArrayNoNull', serializeArrayNoNull);
-		// console.log('serializeArrayNoNullPrice', serializeArrayNoNullPrice);
-		// console.log('serializeArrayNoNullSize', serializeArrayNoNullSize);
-		// console.log('serializeArrayNoNullTerrace', serializeArrayNoNullTerrace);
-
-		// masNew = []; //Обнуляем массив
-		// countNew = 0; //Обнуляем счетчик массива
-
-		//Всем элементам masItem - 'display': 'grid'
-		$.each(masItem, function (i, elem2) {
-			$(elem2).css({ 'display': 'grid' });
-		});
-
-		//Если выбраны пункты выпадающих меню, фильтруем masItem на соответствие. Итог: массив masNew
-		if (serializeArrayNoNull.length > 0) {
-
+			// console.log('masNumberSize!!!!!!!!!!!!', +masNumberSize[1].value);
 			$.each(masItem, function (i, elem2) {
-				let count = 0;
-				let masTemp = []; //Обязательно обнулять для каждого elem2
-				// masNew = [];
 
-				while (count < serializeArrayNoNull.length) {
+				console.log('masItem data-price=', +$(elem2)[0].attributes['data-price'].value);
+				console.log('name="price-min":', +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value);
+				console.log('name="price-max":', +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value);
 
-					masTemp[count] = serializeArrayNoNull[count].value ==
-						$(elem2)[0].attributes[serializeArrayNoNull[count].name].value;
+				//Если name="price-max" == 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value == 0) {
 
-					if (masTemp.includes(false)) {
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+						// console.log('yes');
+					}
+
+					else {
 						$(elem2).css({ 'display': 'none' });
 					}
-					else {
+				};
+
+				//Если name="price-max" > 0 && name="price-max" >= name="price-min" или name="price-min" == 0 && name="price-max" > 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value > 0
+					&& +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value
+					||
+
+					+$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value == 0 && +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value > 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value
+						&&
+						+$(elem2)[0].attributes['data-price'].value <= +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value) {
 						$(elem2).css({ 'display': 'grid' });
-						// masNew[i] = elem2;
 					}
 
-					count++;
-				};
-			});
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
 
-			//Добавляем в masNew отфильтрованнные элементы masItem
-			$.each(masItem, function (i, elem2) {
-
-				if ($(elem2).css('display') == 'grid') {
-					masNew[i] = elem2;
 				}
-			});
 
-			//Удаляем из masNew пустые строки
-			masNew = masNew.filter(element => element !== null);
-			masTotal[0] = masNew;
-		};
+				//Если name="price-max" != 0 && name="price-max" < name="price-min"
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value != 0 && +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value < +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value) {
 
-		//Если введены значения в Price, фильтруем masItem на соответствие Price. Итог: массив masNewPrice
-		if (serializeArrayNoNullPrice.length > 0) {
+					alert('Правое значение должно превышать значение слева UP');
+					// 
+					$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].value = '';
 
-			let masTemp = []; //Создаем-обнуляем временный массив
+					return false;
 
-			//Если pricemaxValue != 0 && pricemaxValue < priceminValue
-			if (pricemaxValue != 0 && pricemaxValue < priceminValue) {
-				alert('Правое значение должно превышать значение слева');
-				$('.projects-form :input[type="number"][data-type="price"][name="data-pricemax"]')[0].value = '';
-				$('.projects-form :input[type="number"][data-type="price"][name="data-pricemin"]')[0].value = '';
-				return false;
-			};
-
-			$.each(masItem, function (i, elem2) {
-
-				// console.log(serializeArrayNoNullPrice[countPrice].name);
-				// console.log(serializeArrayNoNullPrice[countPrice].value);
-
-				//Если pricemaxValue == 0
-				if (pricemaxValue == 0) {
-
-					if (+$(elem2)[0].attributes['data-pricemin'].value >= priceminValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-
-				//Если pricemaxValue > 0 && pricemaxValue >= priceminValue или priceminValue == 0 && pricemaxValue > 0
-				if (pricemaxValue > 0 && pricemaxValue >= priceminValue || priceminValue == 0 && pricemaxValue > 0) {
-
-					if (+$(elem2)[0].attributes['data-pricemin'].value >= priceminValue && +$(elem2)[0].attributes['data-pricemax'].value <= pricemaxValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-			});
-
-			//masNewPrice - массив элементов после фильтра по Price
-			masNewPrice = masTemp.filter(element => element !== null);
-			// console.log('masNewPrice', masNewPrice);
-
-			masTotal[1] = masNewPrice;
-		};
-
-		//Если введены значения в Size, фильтруем masItem на соответствие Size. Итог: массив masNewSize
-		if (serializeArrayNoNullSize.length > 0) {
-
-			let masTemp = []; //Создаем-обнуляем временный массив
-
-			//Если sizemaxValue != 0 && sizemaxValue < sizeminValue
-			if (sizemaxValue != 0 && sizemaxValue < sizeminValue) {
-				alert('Правое значение должно превышать значение слева');
-				$('.projects-form :input[type="number"][data-type="size"][name="data-sizemax"]')[0].value = '';
-				return false;
-			};
-
-			$.each(masItem, function (i, elem2) {
-
-				//Если sizemaxValue == 0
-				if (sizemaxValue == 0) {
-
-					if (+$(elem2)[0].attributes['data-sizemin'].value >= sizeminValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-
-				//Если sizemaxValue > 0 && sizemaxValue >= sizeminValue или sizeminValue == 0 && sizemaxValue > 0
-				if (sizemaxValue > 0 && sizemaxValue >= sizeminValue || sizeminValue == 0 && sizemaxValue > 0) {
-
-					if (+$(elem2)[0].attributes['data-sizemin'].value >= sizeminValue && +$(elem2)[0].attributes['data-sizemax'].value <= sizemaxValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-
-			});
-
-			//masNewSize - массив элементов после фильтра по Size
-			masNewSize = masTemp.filter(element => element !== null);
-			masTotal[2] = masNewSize;
-		};
-
-		//Если введены значения в Terrace, фильтруем masItem на соответствие Terrace. Итог: массив masNewTerrace
-		if (serializeArrayNoNullTerrace.length > 0) {
-
-			let masTemp = []; //Создаем-обнуляем временный массив
-
-			//Если sizemaxValue != 0 && sizemaxValue < terraceminValue
-			if (terracemaxValue != 0 && terracemaxValue < terraceminValue) {
-				alert('Правое значение должно превышать значение слева');
-				$('.projects-form :input[type="number"][data-type="terrace"][name="data-terracemin"]')[0].value = '';
-				$('.projects-form :input[type="number"][data-type="terrace"][name="data-terracemax"]')[0].value = '';
-				return false;
-			};
-
-			$.each(masItem, function (i, elem2) {
-
-				// console.log(serializeArrayNoNullSize[countSize].name);
-				// console.log(serializeArrayNoNullSize[countSize].value);
-
-
-				//Если terracemaxValue == 0
-				if (terracemaxValue == 0) {
-
-					if (+$(elem2)[0].attributes['data-terracemin'].value >= terraceminValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-
-				//Если sizemaxValue > 0 && sizemaxValue >= sizeminValue или sizeminValue == 0 && sizemaxValue > 0
-				if (terracemaxValue > 0 && terracemaxValue >= terraceminValue || terraceminValue == 0 && terracemaxValue > 0) {
-
-					if (+$(elem2)[0].attributes['data-terracemin'].value >= terraceminValue && +$(elem2)[0].attributes['data-terracemax'].value <= terracemaxValue) {
-
-						masTemp[i] = elem2;
-					}
-				};
-			});
-
-			//masNewSize - массив элементов после фильтра по Size
-			masNewTerrace = masTemp.filter(element => element !== null);
-			masTotal[3] = masNewTerrace;
-		};
-
-		//В masTotal отбираем не пустые массивы из masNew, masNewPrice, masNewSize
-		masTotal = masTotal.filter(element => element !== null);
-		// console.log('masTotal', masTotal);
-
-		//Если elem2 из masItem находится в каждом массиве из masTotal (удовлетворяет всем фильтрам), выводим его на экран: $(elem2).css({ 'display': 'grid' });
-		$.each(masItem, function (i, elem2) {
-
-			let count = 0;
-			let masTemp = []; //Обязательно обнулять для каждого elem2
-			// masNew = [];
-
-			while (count < masTotal.length) {
-
-				masTemp[count] = masTotal[count].includes(elem2);
-
-				if (masTemp.includes(false)) {
-					$(elem2).css({ 'display': 'none' });
 				}
-				else {
-					$(elem2).css({ 'display': 'grid' });
-				}
+
+			});
+
+		}
+
+
+		//Если masNew == 0 (первый обход-фильтрация item), masAttr == 0 (не выбран ни один пункт выпадающих меню) и первой выбирается фильтрация по SIZE, применяем к item фильтр по size
+
+
+
+
+		//Фильтрация по выпадающим меню
+		let count = 0;
+
+		while (count < (masAttr.length)) {
+			console.log('номер обхода:', count + 1);
+
+			//Если masNew == 0 (первый обход-фильтрация item)
+			if (masNew == 0) {
+
+				masNew = masItem.filter(function (ii, elem2) {
+
+					// console.log('значение атрибута из формы:', masAttr[count].value);
+					// console.log('значение атрибута у item:', $(elem2)[0].attributes[masAttr[count].name].value); //Выводим значение атрибута с названием "masAttr[count].name" у элемента elem2
+					// console.log(masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value);
+
+					return masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value;
+					// console.log('elem2', elem2);
+				});
+
+				// console.log('masNew обход:', count + 1, 'masNew:', masNew, 'masNew.length:', masNew.length);
+				// console.log(masNameSelected[count]);
+				// console.log(masValueSelected[count]);
+				count++;
+
+				//Если masNew != 0, фильтруем уже masNew, а не .item-projects-all
+			} else {
+
+				masNew = masNew.filter(function (ii, elem2) {
+
+					return masAttr[count].value == $(elem2)[0].attributes[masAttr[count].name].value;
+				});
 
 				count++;
-			};
+			}
 
-			// console.log('masTemp', masTemp);
-		});
+			//Всем первоначально выведенным элементам masItem - 'display': 'none'
+			$.each(masItem, function (ii, elem2) {
+				$(elem2).css({ 'display': 'none' });
+			});
+
+			//Обрабатываем (применяем фильтр по ЦЕНЕ) массив masNew, полученный после применения фильтров из выпадающих списков
+			$.each(masNew, function (ii, elem2) {
+
+				// console.log('masNew data-price=', +$(elem2)[0].attributes['data-price'].value);
+				// console.log(+$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value);
+
+
+				//Проверяем больше ли или равна цена elem2 из masNew цены из input[type="number"][data-type="price"][name="price-min"]. Если да - 'display': 'grid'
+
+				//Если name="price-max" == 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value == 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+						// console.log('yes');
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+				};
+
+				//Если name="price-max" > 0 && name="price-max" >= name="price-min" или name="price-min" == 0 && name="price-max" > 0
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value > 0
+					&& +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value
+					||
+
+					+$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value == 0 && +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value > 0) {
+
+					if (+$(elem2)[0].attributes['data-price'].value >= +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value
+						&&
+						+$(elem2)[0].attributes['data-price'].value <= +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value) {
+						$(elem2).css({ 'display': 'grid' });
+					}
+
+					else {
+						$(elem2).css({ 'display': 'none' });
+					}
+
+				}
+
+				//Если name="price-max" != 0 && name="price-max" < name="price-min"
+				if (+$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value != 0 && +$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].attributes['data-price'].value < +$('.projects-form :input[type="number"][data-type="price"][name="price-min"]')[0].attributes['data-price'].value) {
+
+					alert('Правое значение должно превышать значение слева');
+					// 
+					$('.projects-form :input[type="number"][data-type="price"][name="price-max"]')[0].value = '';
+
+					return false;
+
+				}
+
+			});
+
+			console.log('masNew обход:', count + 1, 'masNew:', masNew, 'masNew.length:', masNew.length);
+
+		}
+
+		// console.log(countNew, masNew, masNew.length);
+		// console.log('masNew == 0', masNew == 0);
+
 
 	})
 
-	//Подключаю Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select
-	$('.project-solo__material').styler({
-		selectVisibleOptions: '10',
-		selectSmartPositioning: false,
-	});
 
 
 });
