@@ -4,8 +4,15 @@ $(function () {
 	let tablet = 1024;
 	let mobile = 414;
 
-	//Выравнивание отступов menu по отступам header, выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
+	//Выравнивание отступов Menu по отступам Header, присваивание ширине блока Menu ширину колонки [menu] в .main-wrapper,выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).resize(function () {
+
+		// console.log($('.main-wrapper').css('grid-template-columns').split('px')[0].match(/\d+/)[0]);
+
+		//Вычисляем ширину колонки [menu] в .main-wrapper и ее будем присваивать ширине блока Menu
+		let menuWidth = $('.main-wrapper').css('grid-template-columns').split('px')[0].match(/\d+/)[0];
+
+		$('.menu').css({ 'width': menuWidth });
 
 		function rr(e) {
 			// e.preventDefault();
@@ -253,8 +260,6 @@ $(function () {
 		// }
 	});
 
-
-
 	//Временная заглушка на нажатие кнопки "Отправить"
 	$('.feedback-form__button').on('click touchend', function (e) {
 		// e.stopPropagation();
@@ -329,7 +334,6 @@ $(function () {
 
 	});
 
-
 	//Нажатие кнопки "Перезвонить" в форме обратного звонка
 	$('.callback__form .callback-form__button').on('click touchend', function (e) {
 		// e.stopPropagation();
@@ -384,158 +388,163 @@ $(function () {
 	});
 
 	//Белый фон шапки при достижении блока "Проекты"
-	$(document).on('scroll', function (e) {
-		// e.stopPropagation();
-		// e.preventDefault();
-		let y = $('.projects').offset().top;
-		let y1 = $(document).scrollTop();
-		// let y2 = $('.header__container').height();
-		let y2 = $('.header').outerHeight();
-
-		// console.log("$('.header').height()", y2);
-		// console.log("$('.projects').offset().top", $('.projects').offset().top);
-
-
-		function ee() {
-
-			if ($(window).width() > tablet) { y - y2 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
-
-			// if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
-		}
-		ee();
-	});
-
-
-
-	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
-	let state = 0;
-	let count = 0;
-	let bodyHeight = $('body').height();
-	// console.log('bodyHeight', bodyHeight);
-	let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable');
-	// console.log('mas', mas);
-
-	$.each(mas, function (i, elem) {
-		// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
-	});
-
-	$(document).on('scroll', function (e) {
-		// e.stopPropagation();
-		// e.preventDefault();
-
-		if ($(window).width() >= 780) {
-
-			let scrollTop = $(document).scrollTop();
-			// console.log('scrollTop', scrollTop);
-			// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
-			// console.log('scrollTop + state', scrollTop + state);
-			// console.log('state', state);
-			// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
-			// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
-			// console.log(state <= scrollTop);
-
+	if ($('.topic').length && $('.topic').css('display') != 'none') {
+		$(document).on('scroll', function (e) {
+			// e.stopPropagation();
+			// e.preventDefault();
+			let y = $('.projects').offset().top;
+			let y1 = $(document).scrollTop();
 			// let y2 = $('.header__container').height();
-			// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
+			let y2 = $('.header').outerHeight();
+
+			// console.log("$('.header').height()", y2);
+			// console.log("$('.projects').offset().top", $('.projects').offset().top);
 
 
 			function ee() {
-				//Проверяем скролл вниз
-				if (state < scrollTop + bodyHeight) {
 
-					// console.log('скролл вниз');
+				if ($(window).width() > tablet) { y - y2 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
 
-					//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer
-					if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
-						// console.log('yes');
-						// console.log('mas.length', mas.length);
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-						// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
-						// console.log('scrollTop2', scrollTop);
-
-						state = mas[(count + 1)].offsetTop;
-
-						// $("html,body").animate({ scrollTop: state }, "slow");
-						$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
-
-						scrollTop = $(document).scrollTop();
-
-						count += 1;
-						// console.log('state', state);
-						// console.log('count', count);
-
-
-						// setTimeout(function () {
-						// 	scrollTop = $(document).scrollTop();
-						// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
-						// 	console.log('$(document).scrollTop()', $(document).scrollTop());
-						// }, 700);
-
-
-
-
-						// alert('yes');
-						// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-					} else {
-						// state = scrollTop;
-						// alert('no');
-						// console.log('no');
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
-						// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
-						// console.log(mas[count + 1].offsetTop + 1);
-					}
-
-				} else {
-
-					//Если скролл вверх
-					if (count > 0 && state >= scrollTop + bodyHeight) {
-
-
-						// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
-
-						// console.log('скролл ВВЕРХ');
-						// console.log('up + 5');
-						// console.log(mas[(count - 1)].className);
-						state = mas[count - 1].offsetTop;
-						count -= 1;
-						// console.log('count', count);
-						// console.log('state', state);
-						// console.log('scrollTop', scrollTop);
-						// console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
-						// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
-
-					} else {
-						// console.log('up');
-						// console.log('count', count);
-						// console.log('state', state);
-						// console.log('scrollTop', scrollTop);
-						// console.log('$(".header").outerHeight()', $(".header").outerHeight());
-					}
-
-					//Если скролл вверх дошел до самого верха
-					if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
-						state = mas[count].offsetTop;
-
-					} else {
-
-					}
-				}
-
+				// if ($(window).width() > tablet) { y - y2 * 1.7 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); } else if ($(window).width() <= tablet) { y - y2 * 1 <= y1 ? $('.header').addClass('header_white') : $('.header').removeClass('header_white'); }
 			}
 			ee();
+		});
+	}
 
-		} else {
-			return;
-		}
+	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
+	function scrollFunc() {
+		let state = 0;
+		let count = 0;
+		let bodyHeight = $('body').height(); //Высота экрана
+		// console.log('bodyHeight', bodyHeight);
+		let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable, .projects-all, .project-solo, .contacts, .representations, .services');
+		// console.log('mas', mas);
+
+		$.each(mas, function (i, elem) {
+			// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
+		});
+
+
+		$(document).on('scroll', function scrollFunc(e) {
+
+
+			// e.stopPropagation();
+			// e.preventDefault();
+
+			if ($(window).width() >= 780) {
+
+				let scrollTop = $(document).scrollTop();
+				// console.log('scrollTop', scrollTop);
+				// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
+				// console.log('scrollTop + state', scrollTop + state);
+				// console.log('state', state);
+				// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+				// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
+				// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
+				// console.log(state <= scrollTop);
+
+				// let y2 = $('.header__container').height();
+				// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
+
+
+				function ee() {
+					//Проверяем скролл вниз
+					if (state < scrollTop + bodyHeight) {
+
+						// console.log('скролл вниз');
+
+						//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer. Для более правильной отработки нужно создать условие: если высота экрана больше высоты блока triple-slider ....
+						if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
+							// console.log('yes');
+							// console.log('mas.length', mas.length);
+							// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+							// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
+							// console.log('scrollTop2', scrollTop);
+
+							state = mas[(count + 1)].offsetTop;
+
+							// $("html,body").animate({ scrollTop: state }, "slow");
+							$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
+
+							scrollTop = $(document).scrollTop();
+
+							count += 1;
+							// console.log('state', state);
+							// console.log('count', count);
+
+
+							// setTimeout(function () {
+							// 	scrollTop = $(document).scrollTop();
+							// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
+							// 	console.log('$(document).scrollTop()', $(document).scrollTop());
+							// }, 700);
 
 
 
-		// console.log(mas[count].offsetTop);
+
+							// alert('yes');
+							// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+						} else {
+							// state = scrollTop;
+							// alert('no');
+							// console.log('no');
+							// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
+							// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
+							// console.log(mas[count + 1].offsetTop + 1);
+						}
+
+					} else {
+
+						//Если скролл вверх
+						if (count > 0 && state >= scrollTop + bodyHeight) {
 
 
-	});
+							// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
+
+							// console.log('скролл ВВЕРХ');
+							// console.log('up + 5');
+							// console.log(mas[(count - 1)].className);
+							state = mas[count - 1].offsetTop;
+							count -= 1;
+							// console.log('count', count);
+							// console.log('state', state);
+							// console.log('scrollTop', scrollTop);
+							// console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
+							// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
+
+						} else {
+							// console.log('up');
+							// console.log('count', count);
+							// console.log('state', state);
+							// console.log('scrollTop', scrollTop);
+							// console.log('$(".header").outerHeight()', $(".header").outerHeight());
+						}
+
+						//Если скролл вверх дошел до самого верха
+						if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
+							state = mas[count].offsetTop;
+
+						} else {
+
+						}
+					}
+
+				}
+				ee();
+
+			} else {
+				return;
+			}
 
 
+
+			// console.log(mas[count].offsetTop);
+
+
+		});
+
+	};
+	scrollFunc();
 
 	//Поднятие наверх при перезагрузке страницы и выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).on('load', function () {
@@ -574,58 +583,45 @@ $(function () {
 		// $('.projects-form')[0].reset(); // Временно отключил, чтобы не выдавало ошибку при отключенном блоке projects-all
 	});
 
-	//Disable scroll-block если высота экрана больше, чем высота блока Topic
-	$(document).ready(function () {
-		// $('html body').scrollTop(0);
+	//При скролле вызываем функцию addButtonToTop
+	$(document).on('scroll', addButtonToTop);
 
-		// $('body, html').animate({ scrollTop: 0 }, "fast");
-
-		// $(document).scrollTop(0);
-		// console.log($('body, html').scrollTop());
-		// let y1 = $(document).scrollTop() + $(window).height();
-		let y1 = $(window).height();
-		let y2 = $('.topic').height();
-		let y3 = parseInt($('.topic').css('padding-top'));
-		// console.log('.topic + padding ' + (y2 + y3), 'window height() ' + y1, y3);
-		// console.log(y2 <= y1);
-		function ee() {
-			{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) : $('.scroll').css({ 'display': 'block' }) }
-		}
-		ee();
-
-		//Disable scroll-block на малых экранах
-		if ($(window).width() <= 600) {
-			$('.scroll').hide();
-		}
-
-
-	});
-
-	//Disable scroll-block if scrolling & unable button-to-top
-	$(document).on('scroll', function (e) {
+	//Функция отключения блока scroll-block при скроллинге и показывания кнопки button-to-top
+	function addButtonToTop(e) {
 		// e.stopPropagation();
 		// e.preventDefault();
 		// let y = $('.projects').offset().top;
 		let y = $(document).scrollTop();
+		// let y0 = $(document).scrollTop();
 		let y1 = $(document).scrollTop() + $(window).height();
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
-
-
-		// console.log(y);
 
 		//Disable topic-footer on mobile scroll
 		if ($(window).width() <= mobile) {
 
 			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} else {
-			function ee() {
 
-				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
+			//Если находимся на главной странице
+			if ($('.topic').length > 0 && $('.topic').css('display') != 'none') {
+				function ee() {
+
+					{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
+				}
+				ee();
 			}
-			ee();
+
+			if ($('.topic').length == 0 || $('.topic').css('display') == 'none') {
+				function ee() {
+
+					{ 0 < y ? $('.button-to-top').css({ 'display': 'block' }) : $('.button-to-top').css({ 'display': 'none' }) }
+				}
+				ee();
+			}
+
 		};
-	});
+	};
 
 	//Фиксируем button-to-top внизу feedback и задаем ширину button-to-top
 	$(function () {
@@ -637,58 +633,62 @@ $(function () {
 		// console.log($('.feedback').css());
 	});
 
-	//Scrolling, when click on button-to-top
+	//Нажатие на кнопку button-to-top
 	$('.button-to-top__image').on('click touchend', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
 		$('body, html').animate({ scrollTop: 0 }, 500);
 	});
 
-	//Disable scrolling menu on footer
-	const menuTop = parseInt($('.menu').css('top')); //добавляем в константу текущее положение menu
-	$(document).on('scroll', function (e) {
+	//Скрытие блока Меню при достижении footer
+	if ($('.topic').length && $('.topic').css('display') != 'none') {
+		const menuTop = parseInt($('.menu').css('top')); //добавляем в константу текущее положение menu
+		$(document).on('scroll', function (e) {
+			// e.stopPropagation();
+			// e.preventDefault();
+			let y = $('.footer').offset().top;
+			let y1 = $(document).scrollTop();
+			let y2 = $('.menu').height();
+
+			// console.log(y);
+			// console.log($('.footer').css('display'));
+
+			//Функция фиксации положения Меню при достижении футера
+			// function ee() {
+			// 	if (y <= (y1 + y2 + menuTop)) {
+			// 		$('.menu').css({ 'position': 'absolute', 'top': y - y2 });
+			// 	}
+			// 	else {
+			// 		$('.menu').css({ 'position': 'fixed', 'top': menuTop });
+			// 	}
+			// }
+			// ee();
+
+			//Функция отключения Меню при достижении футера
+			function eee() {
+
+				//Проверяем не достигнута ли ширина экрана, при которой включается бургер и включен ли Foter
+				if (window.outerWidth > 770 && $('.footer').css('display') == 'block') {
+
+					//Сделал (y + 50), чтобы более красиво отображалось при автоматическом скролле между блоками
+					if ((y + 50) < (y1 + y2 + menuTop)) {
+						$('.menu').css({ 'display': 'none' });
+					}
+					else {
+						$('.menu').css({ 'position': 'fixed', 'top': menuTop, 'display': 'grid' });
+					}
+				} else { return }
+			}
+			eee();
+
+		});
+	}
+
+	//Переключение класса active в меню Projects
+	$('.projects__menu-item').on('click touchend', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
-		let y = $('.footer').offset().top;
-		let y1 = $(document).scrollTop();
-		let y2 = $('.menu').height();
-
-		// console.log(y);
-		// console.log($('.footer').css('display'));
-
-		//Функция фиксации положения Меню при достижении футера
-		// function ee() {
-		// 	if (y <= (y1 + y2 + menuTop)) {
-		// 		$('.menu').css({ 'position': 'absolute', 'top': y - y2 });
-		// 	}
-		// 	else {
-		// 		$('.menu').css({ 'position': 'fixed', 'top': menuTop });
-		// 	}
-		// }
-		// ee();
-
-		//Функция отключения Меню при достижении футера
-		function eee() {
-
-			//Проверяем не достигнута ли ширина экрана, при которой включается бургер и включен ли Foter
-			if (window.outerWidth > 770 && $('.footer').css('display') == 'block') {
-
-				if (y <= (y1 + y2 + menuTop)) {
-					$('.menu').css({ 'display': 'none' });
-				}
-				else {
-					$('.menu').css({ 'position': 'fixed', 'top': menuTop, 'display': 'grid' });
-				}
-			} else { return }
-		}
-		eee();
-
-	});
-
-	//Переключение класса active в меню
-	$('.projects__menu-item').on('click touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
+		// console.log(this);
 		$('.projects__menu-item').removeClass('projects__menu-item_active');
 		$(this).addClass('projects__menu-item_active');
 	});
@@ -733,7 +733,6 @@ $(function () {
 
 	});
 
-
 	//Отработка клика на пункт "Дома" в разделе "Проекты"
 	$('.projects__menu-item[data-type="house"]').on('click touchend', function (e) {
 		e.stopPropagation();
@@ -742,7 +741,6 @@ $(function () {
 		$('.projects__item[data-type="house"]').attr('hidden', null);
 
 	});
-
 
 	//Отработка клика на Scroll
 	$('.scroll').on('click touchend', function (e) {
@@ -828,7 +826,6 @@ $(function () {
 				}
 			}]
 	});
-
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("map").
 	var myMap;
@@ -987,7 +984,6 @@ $(function () {
 		myMap.setCenter([55.76, 37.64]);
 	});
 
-
 	//Слайдер triple-slider__slider-main
 	$('.slider-main').slick({
 		// infinite: true,
@@ -1071,7 +1067,6 @@ $(function () {
 
 	});
 
-
 	// Создание экземпляра карты и его привязка к контейнеру с id("mapFooter").
 	var myMapFooter;
 	$(document).ready(function () {
@@ -1138,7 +1133,6 @@ $(function () {
 
 	});
 
-
 	//Нажатие на icon в Реквизитах
 	$('.office__item-text').on('click touchend', function (e) {
 		e.stopPropagation();
@@ -1147,7 +1141,6 @@ $(function () {
 		$(this).toggleClass('office__item-text');
 		$(this).toggleClass('office__item-text_active');
 	});
-
 
 	// Создание экземпляра карты и его привязка к контейнеру с id("contacts-map").
 	var contactsMap;
@@ -1211,11 +1204,11 @@ $(function () {
 
 	});
 
-
 	//Переключение класса active в меню Услуги и замена содержимого блока Услуги
 	$('.services__menu-item').on('click touchend', function (e) {
-		e.stopPropagation();
-		e.preventDefault();
+		// e.stopPropagation();
+		// e.preventDefault();
+
 		$('.services__menu-item').removeClass('active');
 		$(this).addClass('active');
 		let attr = $(this).attr('data-type');
@@ -1235,35 +1228,100 @@ $(function () {
 
 	//Переключение класса active в Menu
 	$('.menu__top-link, .menu__bottom-link').on('click touchend', function (e) {
-		e.stopPropagation();
+		// e.stopPropagation();
 		// e.preventDefault();
 		$('.menu__top-link, .menu__bottom-link').removeClass('active');
 		$(this).addClass('active');
 	});
 
 
-	//Pressing to Services in Menu
+	//Нажатие на пункт из верхнего блока Menu
 	$('.menu__top-link').on('click touchend', function (e) {
-		// e.stopPropagation();
+		e.stopPropagation();
 		// e.preventDefault();
-		// let attr = $(this).attr('data-type');
+		let attr = $(this).attr('data-type');
+
 		// // let list = $('.services__content');
 		// // console.log($("body").children().not('script'));
 
-		// $(".main-wrapper").children().not('script, .header, .menu-wrapper').each(function (i, elem) {
-		// 	if ($(elem).attr('data-type') == attr) {
-		// 		let marginTop = $(elem).css('margin-top');
-		// 		let paddingTop = $(elem).css('padding-top');
-		// 		$(elem).css({ 'display': 'grid' });
-		// 		$(elem).css({ 'padding-top': 200 });
-		// 		$('body, html').animate({ scrollTop: 0 }, 0);
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
 
-		// 	} else {
+			let y = $(document).scrollTop();
 
-		// 		$(elem).css({ 'display': 'none' });
-		// 		$('.scroll').css({ 'opacity': '0' });
-		// 	}
-		// });
+			if ($(elem).attr('data-type') == attr) {
+				$('body, html').animate({ scrollTop: 0 }, 0);
+				let marginTop = $(elem).css('margin-top');
+				let paddingTop = $(elem).css('padding-top');
+				$(elem).css({ 'display': 'grid' });
+				$(elem).css({ 'padding-top': 200 });
+				$('.header').addClass('header_white');
+
+				//Сегмент representations идет отдельно в блоке contacts (для правильного позиционирования в grid .main-wrapper). Ему ставим 'padding-top': 0
+				if (elem.className == 'representations') {
+					$(elem).css({ 'padding-top': 0 });
+				}
+
+
+				// console.log(elem.scrollTop);
+
+			} else {
+
+				$(elem).css({ 'display': 'none' });
+				// $(elem).remove();
+				$('.scroll').css({ 'opacity': '0' });
+			}
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			$(document).on('scroll', addButtonToTop);
+
+			// let marginLeft = 100vw - 100%;
+
+			// $(html).css({ 'margin-left': calc(100vw - 100%),  });
+		});
+
+	});
+
+	//Нажатие на пункт из нижнего блока Menu
+	$('.menu__bottom-link').on('click touchend', function (e) {
+		e.stopPropagation();
+		// e.preventDefault();
+		let attr = $(this).attr('data-type');
+
+		// console.log(attr);
+		// // let list = $('.services__content');
+		// // console.log($("body").children().not('script'));
+
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
+
+			let y = $(document).scrollTop();
+
+			if ($(elem).attr('data-type') == attr) {
+				$('body, html').animate({ scrollTop: 0 }, 0);
+				let marginTop = $(elem).css('margin-top');
+				let paddingTop = $(elem).css('padding-top');
+				$(elem).css({ 'display': 'grid' });
+				$(elem).css({ 'padding-top': 200 });
+				$('.header').addClass('header_white');
+				setHeightFromAbsoluteBlock();
+
+				// console.log(elem.scrollTop);
+
+			} else {
+
+				$(elem).css({ 'display': 'none' });
+				// $(elem).remove();
+				$('.scroll').css({ 'opacity': '0' });
+			}
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			$(document).on('scroll', addButtonToTop);
+
+			// let marginLeft = 100vw - 100%;
+
+			// $(html).css({ 'margin-left': calc(100vw - 100%),  });
+		});
 
 	});
 
@@ -1597,12 +1655,159 @@ $(function () {
 
 	})
 
-	//Подключаю Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select
+	//Подключаем Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select projects-all__form
+	$('.projects-form__build').styler({
+		selectVisibleOptions: '10',
+		selectSmartPositioning: false,
+	});
+
+	$('.projects-form__material').styler({
+		selectVisibleOptions: '10',
+		selectSmartPositioning: false,
+	});
+
+	$('.projects-form__bedroom').styler({
+		selectVisibleOptions: '10',
+		selectSmartPositioning: false,
+	});
+
+	$('.projects-form__season').styler({
+		selectVisibleOptions: '10',
+		selectSmartPositioning: false,
+	});
+
+
+	//Подключаем Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select .project-solo__material
 	$('.project-solo__material').styler({
 		selectVisibleOptions: '10',
 		selectSmartPositioning: false,
 	});
 
+	//Вычисляем высоту дочернего блока с position: absolute в hand-felling__description и эту высоту устанавливаем его родителю с position: relative (when resize)
+
+	$(window).resize(function () {
+		let h1 = $('.description__container').height();
+		let h2 = $('.advantages__container').height();
+		// console.log(h2);
+		$('.description').css({ 'height': h1 });
+		$('.advantages').css({ 'height': h2 });
+
+	});
+	$(window).resize();
+
+	//Вычисляем высоту дочернего блока с position: absolute в hand-felling__description и эту высоту устанавливаем его родителю с position: relative (when load)
+	$(window).on('load', setHeightFromAbsoluteBlock);
+
+	function setHeightFromAbsoluteBlock() {
+
+		let h1 = $('.description__container').height();
+		let h2 = $('.advantages__container').height();
+		// console.log(h2);
+		$('.description').css({ 'height': h1 });
+		$('.advantages').css({ 'height': h2 });
+	};
+
+	//Слайдер в hand-felling__advantages on Mobile
+	$(window).resize(function () {
+		if (window.innerWidth > 550) {
+			$('.advantages__slider-group').filter('.slick-initialized').slick('unslick');
+		}
+		else {
+			$('.advantages__slider-group').slick({
+				// infinite: true,
+				slide: 'div', //Добавляем в слайдер только div-элементы
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				dots: true,
+				prevArrow: $('.advantages__arrow'),
+				nextArrow: $('.advantages__arrow_right'),
+				// adaptiveHeight: true
+
+
+			});
+
+			//Изменение высоты блока, в случае если следующий слайд выше предыдущего
+			$('.advantages__slider-group').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+
+				// $('.advantages__slider-group').slick('setPosition');
+
+				setTimeout(function () {
+					let h2 = $('.advantages__container').height();
+					$('.advantages').css({ 'height': h2 });
+				}, 1);
+
+
+			});
+
+
+		}
+	});
+	$(window).resize();
+
+	//Нажатие на кнопку main-item__button в блоке main-item
+	$('.main-item__button, .item-projects-all__button').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
+
+
+			$(elem).css({ 'display': 'none' });
+			// $(elem).remove();
+			$('.scroll').css({ 'opacity': '0' });
+			$('body, html').animate({ scrollTop: 0 }, 0);
+			$('.project-solo').css({ 'display': 'grid' });
+			$('.header').addClass('header_white');
+			//Реанимация слайдера
+			$('.project-solo .slick-slider').slick('setPosition');
+			// }
+
+			$('.menu__top-link, .menu__bottom-link').removeClass('active');
+
+			$('.menu__top-link, .menu__bottom-link').on('click touchend', function (e) {
+				// e.stopPropagation();
+				// e.preventDefault();
+				// $('.menu__top-link, .menu__bottom-link').removeClass('active');
+
+			});
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			$(document).on('scroll', addButtonToTop);
+
+
+		});
+
+	});
+
+
+
+	//Нажатие на Проекты в блоке project-solo
+	$('.project-solo__navigation-top-item').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
+
+
+			$(elem).css({ 'display': 'none' });
+			// $(elem).remove();
+			$('.scroll').css({ 'opacity': '0' });
+			$('body, html').animate({ scrollTop: 0 }, 0);
+			$('.projects').css({ 'display': 'grid' });
+			$('.projects').css({ 'padding-top': 200 });
+			$('.menu__top-link[data-type="projects-all"]').addClass('active');
+			$('.header').addClass('header_white');
+
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			$(document).on('scroll', addButtonToTop);
+
+
+		});
+
+	});
 
 });
 
