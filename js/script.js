@@ -1268,7 +1268,7 @@ $(function () {
 
 				$(elem).css({ 'display': 'none' });
 				// $(elem).remove();
-				$('.scroll').css({ 'opacity': '0' });
+				$('.scroll').css({ 'display': 'none' });
 			}
 
 			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
@@ -1310,8 +1310,7 @@ $(function () {
 			} else {
 
 				$(elem).css({ 'display': 'none' });
-				// $(elem).remove();
-				$('.scroll').css({ 'opacity': '0' });
+				$('.scroll').css({ 'display': 'none' });
 			}
 
 			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
@@ -1677,12 +1676,6 @@ $(function () {
 	});
 
 
-	//Подключаем Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select .project-solo__material
-	$('.project-solo__material').styler({
-		selectVisibleOptions: '10',
-		selectSmartPositioning: false,
-	});
-
 	//Вычисляем высоту дочернего блока с position: absolute в hand-felling__description и эту высоту устанавливаем его родителю с position: relative (when resize)
 
 	$(window).resize(function () {
@@ -1753,14 +1746,18 @@ $(function () {
 
 
 			$(elem).css({ 'display': 'none' });
-			// $(elem).remove();
-			$('.scroll').css({ 'opacity': '0' });
+			$('.scroll').css({ 'display': 'none' });
 			$('body, html').animate({ scrollTop: 0 }, 0);
 			$('.project-solo').css({ 'display': 'grid' });
 			$('.header').addClass('header_white');
 			//Реанимация слайдера
 			$('.project-solo .slick-slider').slick('setPosition');
-			// }
+
+			//Подключаем Plugin Form-styler для кроссбраузерной стилизации выпадающего списка select .project-solo__material
+			$('.project-solo__material').styler({
+				selectVisibleOptions: '10',
+				selectSmartPositioning: false,
+			});
 
 			$('.menu__top-link, .menu__bottom-link').removeClass('active');
 

@@ -1333,6 +1333,8 @@ div [hidden] {
   margin-bottom: 150px;
   grid-area: project-solo;
   padding-top: 200px;
+  display: -ms-grid;
+  display: grid;
   display: none;
   grid: repeat(3, auto) [gap] 20px [title] auto [text] auto/[slider] minmax(900px, auto) [gap] minmax(20px, 100px) [description] minmax(235px, auto);
   grid-gap: 30px 0px;
@@ -1555,6 +1557,10 @@ div [hidden] {
   font-size: 20px;
   line-height: 23px;
   color: #2c6b97;
+}
+
+.project-solo .jq-selectbox__dropdown ul {
+  max-height: auto !important;
 }
 
 .project-solo .jq-selectbox__dropdown ul li {
@@ -2909,6 +2915,7 @@ div [hidden] {
   -ms-grid-row: 13;
   -ms-grid-column: 2;
   grid-area: services;
+  margin-bottom: 150px;
   display: none;
   grid: auto/[title] 1fr;
   grid-gap: 30px 20px;
