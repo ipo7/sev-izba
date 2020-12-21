@@ -412,139 +412,143 @@ $(function () {
 	}
 
 	//Переход к следующему блоку при скролле вниз при разрешениях свыше 780px
-	function scrollFunc() {
-		let state = 0;
-		let count = 0;
-		let bodyHeight = $('body').height(); //Высота экрана
-		// console.log('bodyHeight', bodyHeight);
-		let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable, .projects-all, .project-solo, .contacts, .representations, .services');
-		// console.log('mas', mas);
+	$(window).on("load", function () {
+		function scrollFunc() {
+			let state = 0;
+			let count = 0;
+			let bodyHeight = $('body').height(); //Высота экрана
+			// console.log('bodyHeight', bodyHeight);
+			let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable, .projects-all, .project-solo, .contacts, .representations, .services');
+			// console.log('mas', mas);
 
-		$.each(mas, function (i, elem) {
-			// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
-		});
-
-
-		$(document).on('scroll', function scrollFunc(e) {
+			$.each(mas, function (i, elem) {
+				// console.log(elem.className, 'offsetTop:', elem.offsetTop, 'outerHeight', $(elem).outerHeight());
+			});
 
 
-			// e.stopPropagation();
-			// e.preventDefault();
-
-			if ($(window).width() >= 780) {
-
-				let scrollTop = $(document).scrollTop();
-				// console.log('scrollTop', scrollTop);
-				// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
-				// console.log('scrollTop + state', scrollTop + state);
-				// console.log('state', state);
-				// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-				// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
-				// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
-				// console.log(state <= scrollTop);
-
-				// let y2 = $('.header__container').height();
-				// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
+			$(document).on('scroll', function scrollFunc(e) {
 
 
-				function ee() {
-					//Проверяем скролл вниз
-					if (state < scrollTop + bodyHeight) {
+				// e.stopPropagation();
+				// e.preventDefault();
 
-						// console.log('скролл вниз');
+				if ($(window).width() >= 780) {
 
-						//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer. Для более правильной отработки нужно создать условие: если высота экрана больше высоты блока triple-slider ....
-						if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
-							// console.log('yes');
-							// console.log('mas.length', mas.length);
-							// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-							// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
-							// console.log('scrollTop2', scrollTop);
+					let scrollTop = $(document).scrollTop();
+					// console.log('scrollTop', scrollTop);
+					// console.log('main scrollTop + bodyHeight', scrollTop + bodyHeight);
+					// console.log('scrollTop + state', scrollTop + state);
+					// console.log('state', state);
+					// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+					// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop);
+					// console.log('mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight:', mas[(count + 1)].className, mas[(count + 1)].offsetTop - mas[count].offsetTop + bodyHeight);
+					// console.log(state <= scrollTop);
 
-							state = mas[(count + 1)].offsetTop;
-
-							// $("html,body").animate({ scrollTop: state }, "slow");
-							$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
-
-							scrollTop = $(document).scrollTop();
-
-							count += 1;
-							// console.log('state', state);
-							// console.log('count', count);
+					// let y2 = $('.header__container').height();
+					// console.log($(".main-wrapper").children().not('script, .header, .menu-wrapper, .menu-disable')[1]);
 
 
-							// setTimeout(function () {
-							// 	scrollTop = $(document).scrollTop();
-							// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
-							// 	console.log('$(document).scrollTop()', $(document).scrollTop());
-							// }, 700);
+					function ee() {
+						//Проверяем скролл вниз
+						if (state < scrollTop + bodyHeight) {
+
+							// console.log('скролл вниз');
+
+							//Указал count < (mas.length - 2), чтобы не срабатывал скролл перед Footer. Для более правильной отработки нужно создать условие: если высота экрана больше высоты блока triple-slider ....
+							if (count < (mas.length - 2) && (scrollTop + bodyHeight) > mas[(count + 1)].offsetTop + 30) {
+								// console.log('yes');
+								// console.log('mas.length', mas.length);
+								// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+								// console.log('mas[(count + 2)].offsetTop:', mas[(count + 2)].className, mas[(count + 2)].offsetTop);
+								// console.log('scrollTop2', scrollTop);
+
+								state = mas[(count + 1)].offsetTop;
+
+								// $("html,body").animate({ scrollTop: state }, "slow");
+								$("html,body").animate({ scrollTop: state - $(".header").outerHeight() }, "slow");
+
+								scrollTop = $(document).scrollTop();
+
+								count += 1;
+								// console.log('state', state);
+								// console.log('count', count);
+
+
+								// setTimeout(function () {
+								// 	scrollTop = $(document).scrollTop();
+								// 	console.log('scrollTop + bodyHeight', scrollTop + bodyHeight);
+								// 	console.log('$(document).scrollTop()', $(document).scrollTop());
+								// }, 700);
 
 
 
 
-							// alert('yes');
-							// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
-						} else {
-							// state = scrollTop;
-							// alert('no');
-							// console.log('no');
-							// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
-							// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
-							// console.log(mas[count + 1].offsetTop + 1);
-						}
-
-					} else {
-
-						//Если скролл вверх
-						if (count > 0 && state >= scrollTop + bodyHeight) {
-
-
-							// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
-
-							// console.log('скролл ВВЕРХ');
-							// console.log('up + 5');
-							// console.log(mas[(count - 1)].className);
-							state = mas[count - 1].offsetTop;
-							count -= 1;
-							// console.log('count', count);
-							// console.log('state', state);
-							// console.log('scrollTop', scrollTop);
-							// console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
-							// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
-
-						} else {
-							// console.log('up');
-							// console.log('count', count);
-							// console.log('state', state);
-							// console.log('scrollTop', scrollTop);
-							// console.log('$(".header").outerHeight()', $(".header").outerHeight());
-						}
-
-						//Если скролл вверх дошел до самого верха
-						if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
-							state = mas[count].offsetTop;
+								// alert('yes');
+								// console.log('mas[(count + 1)].offsetTop:', mas[(count + 1)].className, mas[(count + 1)].offsetTop);
+							} else {
+								// state = scrollTop;
+								// alert('no');
+								// console.log('no');
+								// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state);
+								// console.log(mas[count + 1].className, mas[count + 1].offsetTop + state - mas[count].offsetTop);
+								// console.log(mas[count + 1].offsetTop + 1);
+							}
 
 						} else {
 
+							//Если скролл вверх
+							if (count > 0 && state >= scrollTop + bodyHeight) {
+
+
+								// if (count > 0 && state >= scrollTop + bodyHeight + $(".header").outerHeight() && scrollTop <= mas[(count - 1)].offsetTop) {
+
+								// console.log('скролл ВВЕРХ');
+								// console.log('up + 5');
+								// console.log(mas[(count - 1)].className);
+								state = mas[count - 1].offsetTop;
+								count -= 1;
+								// console.log('count', count);
+								// console.log('state', state);
+								// console.log('scrollTop', scrollTop);
+								// console.log('scrollTop + header', scrollTop + $(".header").outerHeight());
+								// console.log('mas[(count - 1)].offsetTop', mas[(count - 1)].offsetTop);
+
+							} else {
+								// console.log('up');
+								// console.log('count', count);
+								// console.log('state', state);
+								// console.log('scrollTop', scrollTop);
+								// console.log('$(".header").outerHeight()', $(".header").outerHeight());
+							}
+
+							//Если скролл вверх дошел до самого верха
+							if (count == 0 && state >= scrollTop + $(".header").outerHeight() && scrollTop <= mas[(count)].offsetTop) {
+								state = mas[count].offsetTop;
+
+							} else {
+
+							}
 						}
+
 					}
+					ee();
 
+				} else {
+					return;
 				}
-				ee();
-
-			} else {
-				return;
-			}
 
 
 
-			// console.log(mas[count].offsetTop);
+				// console.log(mas[count].offsetTop);
 
 
-		});
+			});
 
-	};
-	scrollFunc();
+		};
+		//Задержка, чтобы скролл не прыгал при начальной загрузке
+		setTimeout(scrollFunc, 500);
+	});
+
 
 	//Поднятие наверх при перезагрузке страницы и выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).on('load', function () {
