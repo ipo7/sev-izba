@@ -1328,6 +1328,61 @@ $(function () {
 
 	});
 
+	//Нажатие на пункт из верхнего блока Menu-disable
+	$('.menu-disable__top-link').on('click touchend', function (e) {
+		e.stopPropagation();
+		// e.preventDefault();
+		let attr = $(this).attr('data-type');
+
+
+		$('.burger-disable').addClass('burger');
+		$('.burger').removeClass('burger-disable');
+
+		if (window.matchMedia('(max-width: 414px)').matches) {
+			$('.header__mail, .logo-main').toggle();
+		} else {
+			$('.header__callback, .logo-main').toggle();
+		}
+
+		$('.menu-disable').toggle(200);
+
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
+
+			let y = $(document).scrollTop();
+
+			if ($(elem).attr('data-type') == attr) {
+				$('body, html').animate({ scrollTop: 0 }, 0);
+				let marginTop = $(elem).css('margin-top');
+				let paddingTop = $(elem).css('padding-top');
+				$(elem).css({ 'display': 'grid' });
+				$(elem).css({ 'padding-top': 70 });
+				$('.header').addClass('header_white');
+
+				//Сегмент representations идет отдельно в блоке contacts (для правильного позиционирования в grid .main-wrapper). Ему ставим 'padding-top': 0
+				if (elem.className == 'representations') {
+					$(elem).css({ 'padding-top': 0 });
+				}
+
+
+				// console.log(elem.scrollTop);
+
+			} else {
+
+				$(elem).css({ 'display': 'none' });
+				// $(elem).remove();
+				$('.scroll').css({ 'display': 'none' });
+			}
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			$(document).on('scroll', addButtonToTop);
+
+			// let marginLeft = 100vw - 100%;
+
+			// $(html).css({ 'margin-left': calc(100vw - 100%),  });
+		});
+
+	});
 
 	//Projects-all: oтменяем действие по умолчанию при нажатии Enter in Input и добавляем переход к следующему Input в группе ри нажатии Enter
 	$('.projects-form :input[type="number"]').keypress(function (event) {
