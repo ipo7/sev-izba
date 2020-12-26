@@ -1384,6 +1384,86 @@ $(function () {
 
 	});
 
+	//Нажатие на пункт из нижнего блока Menu-disable
+	$('.menu-disable__bottom-link').on('click touchend', function (e) {
+		e.stopPropagation();
+		// e.preventDefault();
+
+		//Определяем атрибут пункта меню
+		let attr = $(this).attr('data-type');
+
+		//Меняем иконку бургера
+		$('.burger-disable').addClass('burger');
+		$('.burger').removeClass('burger-disable');
+
+		//Показываем header
+		if (window.matchMedia('(max-width: 414px)').matches) {
+			$('.header__mail, .logo-main').toggle();
+		} else {
+			$('.header__callback, .logo-main').toggle();
+		}
+
+		//Скрываем menu-disable
+		$('.menu-disable').toggle(200);
+
+		//Сравниваем атрибут пункта меню с атрибутами других блоков и выводим целевой блок, остальные скрываем
+		$(".main-wrapper").children().not('script, .header, .menu').each(function (i, elem) {
+
+			let y = $(document).scrollTop();
+
+			if ($(elem).attr('data-type') == attr) {
+				$('body, html').animate({ scrollTop: 0 }, 0);
+				$(elem).css({ 'display': 'grid' });
+				$(elem).css({ 'margin-top': 90 });
+				$('.header').addClass('header_white');
+
+			} else {
+
+				$(elem).css({ 'display': 'none' });
+				$('.scroll').css({ 'display': 'none' });
+			}
+
+
+			//При отображении блока hand-felling делаем дополнительные манипуляции для правильного отображения элементов и запускаем слайдер 
+			if (attr == 'hand-felling') {
+				setTimeout(function () {
+					setHeightFromAbsoluteBlock();
+				}, 1);
+
+				$('.advantages__slider-group').filter('.slick-initialized').slick('unslick');
+				$('.advantages__slider-group').slick({
+					// infinite: true,
+					slide: 'div', //Добавляем в слайдер только div-элементы
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					dots: true,
+					prevArrow: $('.advantages__arrow'),
+					nextArrow: $('.advantages__arrow_right'),
+					// adaptiveHeight: true
+				});
+
+				//Изменение высоты блока, в случае если следующий слайд выше предыдущего
+				$('.advantages__slider-group').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+
+					// $('.advantages__slider-group').slick('setPosition');
+
+					setTimeout(function () {
+						let h2 = $('.advantages__container').height();
+						$('.advantages').css({ 'height': h2 });
+					}, 1);
+
+
+				});
+			}
+
+			//Отключаем все назначенные события на scroll, чтобы не было дерганий при скролле вновь открывающихся блоков и оставляем только addButtonToTop
+			$(document).off('scroll');
+			// $(document).on('scroll', addButtonToTop);
+
+		});
+
+	});
+
 	//Projects-all: oтменяем действие по умолчанию при нажатии Enter in Input и добавляем переход к следующему Input в группе ри нажатии Enter
 	$('.projects-form :input[type="number"]').keypress(function (event) {
 		if (event.keyCode == 13) {
@@ -1747,6 +1827,7 @@ $(function () {
 	});
 	$(window).resize();
 
+
 	//Вычисляем высоту дочернего блока с position: absolute в hand-felling__description и эту высоту устанавливаем его родителю с position: relative (when load)
 	$(window).on('load', setHeightFromAbsoluteBlock);
 
@@ -1759,44 +1840,44 @@ $(function () {
 		$('.advantages').css({ 'height': h2 });
 	};
 
-	//Слайдер в hand-felling__advantages on Mobile
-	$(window).resize(function () {
-		if (window.innerWidth > 550) {
-			$('.advantages__slider-group').filter('.slick-initialized').slick('unslick');
-		}
-		else {
-			$('.advantages__slider-group').slick({
-				// infinite: true,
-				slide: 'div', //Добавляем в слайдер только div-элементы
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				dots: true,
-				prevArrow: $('.advantages__arrow'),
-				nextArrow: $('.advantages__arrow_right'),
-				// adaptiveHeight: true
+	//Инициализация слайдера в hand-felling__advantages on Mobile (Width < 550px) при изменении ширины экрана 
+	// $(window).resize(function () {
+	// 	if (window.innerWidth > 550) {
+	// 		$('.advantages__slider-group').filter('.slick-initialized').slick('unslick');
+	// 	}
+	// 	else {
+	// 		$('.advantages__slider-group').slick({
+	// 			// infinite: true,
+	// 			slide: 'div', //Добавляем в слайдер только div-элементы
+	// 			slidesToShow: 1,
+	// 			slidesToScroll: 1,
+	// 			dots: true,
+	// 			prevArrow: $('.advantages__arrow'),
+	// 			nextArrow: $('.advantages__arrow_right'),
+	// 			// adaptiveHeight: true
 
 
-			});
+	// 		});
 
-			//Изменение высоты блока, в случае если следующий слайд выше предыдущего
-			$('.advantages__slider-group').on('afterChange', function (event, slick, currentSlide, nextSlide) {
+	// 		//Изменение высоты блока, в случае если следующий слайд выше предыдущего
+	// 		$('.advantages__slider-group').on('afterChange', function (event, slick, currentSlide, nextSlide) {
 
-				// $('.advantages__slider-group').slick('setPosition');
+	// 			// $('.advantages__slider-group').slick('setPosition');
 
-				setTimeout(function () {
-					let h2 = $('.advantages__container').height();
-					$('.advantages').css({ 'height': h2 });
-				}, 1);
-
-
-			});
+	// 			setTimeout(function () {
+	// 				let h2 = $('.advantages__container').height();
+	// 				$('.advantages').css({ 'height': h2 });
+	// 			}, 1);
 
 
-		}
-	});
-	$(window).resize();
+	// 		});
 
-	//Нажатие на кнопку main-item__button в блоке main-item
+
+	// 	}
+	// });
+	// $(window).resize();
+
+	//Нажатие на кнопку Button в блоке main-item, Реанимация слайдера
 	$('.main-item__button, .item-projects-all__button').on('click touchend', function (e) {
 		// e.stopPropagation();
 		// e.preventDefault();
@@ -1835,8 +1916,6 @@ $(function () {
 		});
 
 	});
-
-
 
 	//Нажатие на Проекты в блоке project-solo
 	$('.project-solo__navigation-top-item').on('click touchend', function (e) {
