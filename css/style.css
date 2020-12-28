@@ -983,7 +983,6 @@ div [hidden] {
   row-gap: 16px;
   grid-auto-rows: 48px;
   padding-bottom: 50px;
-  max-width: 90%;
 }
 
 .projects-all .projects-form__clear-block-mobile {
@@ -3139,7 +3138,7 @@ div [hidden] {
   background: url("../img/mail_icon.svg") 0 0/contain no-repeat;
   width: 32px;
   height: 32px;
-  bottom: -5px;
+  bottom: -8px;
   left: -27px;
   -webkit-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
@@ -5496,7 +5495,6 @@ input[type="number"] {
   .feedback__before p::before {
     width: 24px;
     height: 24px;
-    bottom: -6px;
     left: -25px;
   }
 
@@ -6008,6 +6006,12 @@ input[type="number"] {
 @media screen and (max-width: 770px) and (min-height: 700px) {
   .topic {
     background: url("../img/main-background-new.jpg") 60% 0%/200vw auto no-repeat;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .projects-all .projects-form {
+    max-width: 90%;
   }
 }
 
