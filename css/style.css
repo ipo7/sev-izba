@@ -2296,8 +2296,36 @@ div [hidden] {
   justify-items: center;
 }
 
-.export {
+.portfolio-all {
   -ms-grid-row: 8;
+  -ms-grid-column: 2;
+  grid-area: portfolio-all;
+  display: none;
+}
+
+.portfolio-all__title {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.portfolio-all__body {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+  width: 100%;
+  margin-top: 48px;
+  margin-bottom: 50px;
+  display: grid;
+  grid-template: auto/repeat(auto-fit, minmax(464px, 1fr));
+  -webkit-column-gap: 16px;
+  -moz-column-gap: 16px;
+  column-gap: 16px;
+  row-gap: 48px;
+  justify-items: center;
+}
+
+.export {
+  -ms-grid-row: 9;
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: export;
@@ -2352,7 +2380,7 @@ div [hidden] {
 }
 
 .company {
-  -ms-grid-row: 9;
+  -ms-grid-row: 10;
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: company;
@@ -2425,7 +2453,7 @@ div [hidden] {
 }
 
 .triple-slider {
-  -ms-grid-row: 10;
+  -ms-grid-row: 11;
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: triple-slider;
@@ -2612,7 +2640,7 @@ div [hidden] {
 }
 
 .contacts {
-  -ms-grid-row: 11;
+  -ms-grid-row: 12;
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: contacts;
@@ -2783,7 +2811,7 @@ div [hidden] {
 }
 
 .representations {
-  -ms-grid-row: 12;
+  -ms-grid-row: 13;
   -ms-grid-column: 2;
   -ms-grid-column-span: 2;
   grid-area: representations;
@@ -2899,7 +2927,7 @@ div [hidden] {
 }
 
 .services {
-  -ms-grid-row: 13;
+  -ms-grid-row: 14;
   -ms-grid-column: 2;
   grid-area: services;
   margin-bottom: 150px;
@@ -3010,7 +3038,7 @@ div [hidden] {
 }
 
 .footer {
-  -ms-grid-row: 15;
+  -ms-grid-row: 16;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: foot;
@@ -3586,7 +3614,7 @@ div [hidden] {
 }
 
 .hand-felling {
-  -ms-grid-row: 14;
+  -ms-grid-row: 15;
   -ms-grid-column: 2;
   grid-area: hand-felling;
   display: -ms-grid;
@@ -4030,7 +4058,7 @@ body {
   grid-template-columns: [menu] 280px [body] 1fr [feedback] 0px;
   -ms-grid-rows: auto;
   grid-template-rows: auto;
-  grid-template-areas: "head head head" "topic topic topic" ". projects ." ". projects-all ." ". project-solo ." ". portfolio portfolio" ". portfolio-items ." ". export export" ". company company" ". triple-slider triple-slider" ". contacts contacts" ". representations representations" ". services ." ". hand-felling ." "foot foot foot";
+  grid-template-areas: "head head head" "topic topic topic" ". projects ." ". projects-all ." ". project-solo ." ". portfolio portfolio" ". portfolio-items ." ". portfolio-all ." ". export export" ". company company" ". triple-slider triple-slider" ". contacts contacts" ". representations representations" ". services ." ". hand-felling ." "foot foot foot";
 }
 
 .title-main {
@@ -5337,6 +5365,10 @@ input[type="number"] {
     grid-template: auto/repeat(auto-fit, minmax(233px, 1fr));
   }
 
+  .portfolio-all__body {
+    grid-template: auto/repeat(auto-fit, minmax(233px, 1fr));
+  }
+
   .export {
     grid: [gap-top] minmax(20px, 45px) [title] auto [middle-gap] minmax(30px, 70px) [text] auto [bottom-gap] minmax(20px, 40px) [button] auto minmax(20px, 1fr)/[title] minmax(auto, 1fr) [image] minmax(auto, 1fr);
   }
@@ -6514,7 +6546,7 @@ input[type="number"] {
   .main-wrapper {
     -ms-grid-columns: [menu] 20px [body] 1fr [feedback] 20px;
     grid-template-columns: [menu] 20px [body] 1fr [feedback] 20px;
-    grid-template-areas: "head head head" "topic topic topic" ". projects ." ". projects-all ." ". project-solo ." ". portfolio portfolio" ". portfolio-items ." "export export export" "company company company" "triple-slider triple-slider triple-slider" ". contacts contacts" "representations representations representations" ". services ." ". hand-felling ." "foot foot foot";
+    grid-template-areas: "head head head" "topic topic topic" ". projects ." ". projects-all ." ". project-solo ." ". portfolio portfolio" ". portfolio-items ." ". portfolio-all ." "export export export" "company company company" "triple-slider triple-slider triple-slider" ". contacts contacts" "representations representations representations" ". services ." ". hand-felling ." "foot foot foot";
   }
 
   .header {
@@ -6550,49 +6582,54 @@ input[type="number"] {
     -ms-grid-column-span: 2;
   }
 
-  .export {
+  .portfolio-all {
     -ms-grid-row: 8;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
+    -ms-grid-column: 2;
   }
 
-  .company {
+  .export {
     -ms-grid-row: 9;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
 
-  .triple-slider {
+  .company {
     -ms-grid-row: 10;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
 
-  .contacts {
+  .triple-slider {
     -ms-grid-row: 11;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+
+  .contacts {
+    -ms-grid-row: 12;
     -ms-grid-column: 2;
     -ms-grid-column-span: 2;
   }
 
   .representations {
-    -ms-grid-row: 12;
+    -ms-grid-row: 13;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
 
   .services {
-    -ms-grid-row: 13;
+    -ms-grid-row: 14;
     -ms-grid-column: 2;
   }
 
   .footer {
-    -ms-grid-row: 15;
+    -ms-grid-row: 16;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
   }
 
   .hand-felling {
-    -ms-grid-row: 14;
+    -ms-grid-row: 15;
     -ms-grid-column: 2;
   }
 
@@ -7096,6 +7133,14 @@ input[type="number"] {
   }
 
   .portfolio-items {
+    display: none;
+  }
+
+  .portfolio-all__title {
+    display: none;
+  }
+
+  .portfolio-all__body {
     display: none;
   }
 
