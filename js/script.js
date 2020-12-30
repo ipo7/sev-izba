@@ -1384,7 +1384,7 @@ $(function () {
 
 	});
 
-	//Нажатие на пункт из нижнего блока Menu-disable
+	//Нажатие на пункт из нижнего блока Menu-disable (При отображении блока hand-felling делаем дополнительные манипуляции для правильного отображения элементов и запускаем слайдер)
 	$('.menu-disable__bottom-link').on('click touchend', function (e) {
 		e.stopPropagation();
 		// e.preventDefault();
