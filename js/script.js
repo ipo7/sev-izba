@@ -418,7 +418,8 @@ $(function () {
 			let count = 0;
 			let bodyHeight = $('body').height(); //Высота экрана
 			// console.log('bodyHeight', bodyHeight);
-			let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable, .projects-all, .project-solo, .portfolio-all, .contacts, .representations, .services');
+			// let mas = $(".main-wrapper").children().not('script, .header, .menu, .menu-disable, .projects-all, .project-solo, .portfolio-all, .contacts, .representations, .services, .hand-felling');
+			let mas = $(".main-wrapper").children('[data-startPage]');
 			// console.log('mas', mas);
 
 			$.each(mas, function (i, elem) {
