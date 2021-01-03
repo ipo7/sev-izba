@@ -1028,6 +1028,7 @@ div [hidden] {
   row-gap: 16px;
   grid-auto-rows: 48px;
   padding-bottom: 50px;
+  background-color: #ccdce0;
 }
 
 .projects-all .projects-form__clear-block-mobile {
@@ -1074,8 +1075,9 @@ div [hidden] {
 .projects-all .projects-form__text {
   -ms-grid-column-span: 1;
   grid-column: span 1;
-  width: 304px;
+  width: 280px;
   background: url(../img/Show.png) 95% 55% no-repeat;
+  background-color: #fff;
 }
 
 .projects-all .projects-form__text .jq-selectbox__dropdown {
