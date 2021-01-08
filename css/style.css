@@ -5020,6 +5020,9 @@ input[type="number"] {
   }
 
   .menu {
+    -ms-grid-rows: 70px 1fr auto 1fr auto;
+    -ms-grid-columns: auto;
+    grid-template: [header] 70px 1fr [menu] auto 1fr [social] auto/auto;
     left: 18px;
   }
 
