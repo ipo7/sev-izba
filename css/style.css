@@ -1075,7 +1075,7 @@ div [hidden] {
 .projects-all .projects-form__text {
   -ms-grid-column-span: 1;
   grid-column: span 1;
-  width: 280px;
+  width: 304px;
   background: url(../img/Show.png) 95% 55% no-repeat;
   background-color: #fff;
 }
@@ -4381,6 +4381,20 @@ input[type="number"] {
   }
 }
 
+@media screen and (max-width: 1800px) {
+  .projects-all .projects-form__text {
+    width: 275px;
+  }
+
+  .projects-all .projects-form__text-mini {
+    width: 250px;
+  }
+
+  .projects-all .projects-form__number {
+    width: 170px;
+  }
+}
+
 @media screen and (max-width: 1730px) {
   .triple-slider .slider-left__item,
   .triple-slider .slider-right__item {
@@ -5819,11 +5833,6 @@ input[type="number"] {
     font-size: 18px;
     height: 40px;
     padding: 2px 28px 5px;
-  }
-
-  .button_white,
-  .button_white_big {
-    padding: 6px 28px 5px;
   }
 }
 
