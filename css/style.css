@@ -667,26 +667,16 @@ h6 {
 
 .topic__footer {
   display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 65px;
-  width: 100vw;
-  background-color: #d6e8f0;
-  z-index: 2;
 }
 
-.topic__footer-button {
-  width: 329px;
-  height: 40px;
+.topic__footer .topic__footer-button {
   background-color: #d6e8f0;
   border: 1px solid #2c6b97;
   color: #2c6b97;
-  font-size: 18px;
   white-space: nowrap;
 }
 
-.topic__footer-button:hover {
+.topic__footer .topic__footer-button:hover {
   background-color: #69bbf3;
   border: 1px solid #69bbf3;
   color: #fff;
@@ -6815,6 +6805,11 @@ input[type="number"] {
     -ms-flex-direction: column;
     flex-direction: column;
     min-width: 290px;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    left: 0;
+    background: url("../img/main-background-new.jpg") 0% 0%/200vw auto no-repeat;
   }
 
   .topic__top {
@@ -6837,6 +6832,13 @@ input[type="number"] {
   }
 
   .topic__footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 65px;
+    width: 100vw;
+    background-color: #d6e8f0;
+    z-index: 1000;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -6853,11 +6855,6 @@ input[type="number"] {
     -ms-grid-row-align: center;
     align-self: center;
     min-width: 290px;
-    position: absolute;
-  }
-
-  .topic__footer-button {
-    width: calc(100vw - 20px);
   }
 
   .main-item {
@@ -6942,6 +6939,7 @@ input[type="number"] {
 
   .projects {
     margin-right: 0;
+    margin-bottom: 20px;
   }
 
   .projects__title {
@@ -7283,6 +7281,7 @@ input[type="number"] {
     padding: 0;
     padding-left: 5%;
     justify-items: stretch;
+    margin-bottom: 100px;
   }
 
   .footer__title {
@@ -7855,6 +7854,11 @@ input[type="number"] {
 @media screen and (max-width: 770px) and (min-height: 700px){
 
   .webp .topic{ background: url(../img/main-background-new.webp) 60% 0%/200vw auto no-repeat; }
+}
+
+@media screen and (max-width: 414px){
+
+  .webp .topic{ background: url(../img/main-background-new.webp) 0% 0%/200vw auto no-repeat; }
 }
 
 @media screen and (max-width: 414px) and (min-height: 400px){

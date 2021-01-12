@@ -626,7 +626,7 @@ $(function () {
 		//Disable topic-footer on mobile scroll
 		if ($(window).width() <= mobile) {
 
-			{ 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+			// { 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 		} else {
 
 			//Если находимся на главной странице
