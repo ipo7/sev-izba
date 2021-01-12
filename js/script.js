@@ -623,10 +623,11 @@ $(function () {
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
 
-		//Disable topic-footer on mobile scroll
+		//Disable scroll-block on mobile scroll
 		if ($(window).width() <= mobile) {
 
 			// { 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+			$('.scroll').css({ 'display': 'none' });
 		} else {
 
 			//Если находимся на главной странице
