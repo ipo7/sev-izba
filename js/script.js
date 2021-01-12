@@ -4,6 +4,27 @@ $(function () {
 	let tablet = 1024;
 	let mobile = 414;
 
+
+	//Выявление блоков, превышающих ширину экрана
+	// $(window).resize(function () {
+
+	// 	let docWidth = document.documentElement.offsetWidth;
+
+	// 	[].forEach.call(
+	// 		document.querySelectorAll('*'),
+	// 		function (el) {
+
+	// 			if (el.offsetWidth > docWidth) {
+	// 				console.log(el);
+	// 			}
+	// 		}
+	// 	);
+
+	// 	// console.log(docWidth);
+
+	// });
+	// $(window).resize();
+
 	//Выравнивание отступов Menu по отступам Header, присваивание ширине блока Menu ширину колонки [menu] в .main-wrapper,выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).resize(function () {
 
@@ -628,15 +649,16 @@ $(function () {
 		};
 	};
 
-	//Фиксируем button-to-top внизу feedback и задаем ширину button-to-top
-	$(function () {
+	//Создаем button-to-top внизу feedback и задаем ширину button-to-top
+	function makeButtonToTop() {
 		let top = $('.feedback').offset().top - $(window).scrollTop();
 		let height = parseInt($('.feedback__before').css('height'));
 		let width = parseInt($('.feedback__before').css('width'));
 		$('.button-to-top').css({ 'top': top + height, 'height': width, 'width': width });
 		// console.log('new', top, height);
 		// console.log($('.feedback').css());
-	});
+	};
+	makeButtonToTop();
 
 	//Нажатие на кнопку button-to-top
 	$('.button-to-top__image').on('click touchend', function (e) {
@@ -1238,7 +1260,6 @@ $(function () {
 		$('.menu__top-link, .menu__bottom-link').removeClass('active');
 		$(this).addClass('active');
 	});
-
 
 	//Нажатие на пункт из верхнего блока Menu
 	$('.menu__top-link').on('click touchend', function (e) {

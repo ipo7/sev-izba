@@ -1022,13 +1022,8 @@ div [hidden] {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-column-gap: 16px;
-  -moz-column-gap: 16px;
-  column-gap: 16px;
-  row-gap: 16px;
   grid-auto-rows: 48px;
-  padding-bottom: 50px;
-  background-color: #ccdce0;
+  padding-bottom: 34px;
 }
 
 .projects-all .projects-form__clear-block-mobile {
@@ -1078,6 +1073,8 @@ div [hidden] {
   width: 304px;
   background: url(../img/Show.png) 95% 55% no-repeat;
   background-color: #fff;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 .projects-all .projects-form__text .jq-selectbox__dropdown {
@@ -1105,6 +1102,8 @@ div [hidden] {
   -ms-grid-column-span: 1;
   grid-column: span 1;
   width: 250px;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 .projects-all .projects-form__number {
@@ -1215,6 +1214,8 @@ div [hidden] {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 .projects-all .projects-form__radio-group {
@@ -1347,11 +1348,7 @@ div [hidden] {
 .projects-all__button {
   -ms-grid-row: 4;
   grid-row: 4;
-  width: 464px;
-  height: 48px;
   color: #2c6b97;
-  font-size: 18px;
-  line-height: 32px;
   text-align: center;
   background-color: #fff;
   border: 2px solid #2c6b97;
@@ -5228,10 +5225,7 @@ input[type="number"] {
   }
 
   .projects-all .projects-form {
-    -webkit-column-gap: 13px;
-    -moz-column-gap: 13px;
-    column-gap: 13px;
-    row-gap: 13px;
+    padding-bottom: 31px;
   }
 
   .projects-all .projects-form__text,
@@ -5243,6 +5237,8 @@ input[type="number"] {
 
   .projects-all .projects-form__text {
     width: 193px;
+    margin-right: 13px;
+    margin-bottom: 13px;
   }
 
   .projects-all .projects-form__text .jq-selectbox__dropdown {
@@ -5260,6 +5256,8 @@ input[type="number"] {
 
   .projects-all .projects-form__text-mini {
     width: 148px;
+    margin-right: 13px;
+    margin-bottom: 13px;
   }
 
   .projects-all .projects-form__text-mini .jq-selectbox__dropdown {
@@ -5294,6 +5292,8 @@ input[type="number"] {
   .projects-all .projects-form__container {
     -ms-grid-column-span: 2;
     grid-column: span 2;
+    margin-right: 13px;
+    margin-bottom: 13px;
   }
 
   .projects-all .projects-form__radio-group {
@@ -5324,13 +5324,6 @@ input[type="number"] {
 
   .projects-all__body {
     grid-template-columns: repeat(auto-fit, minmax(357px, 1fr));
-  }
-
-  .projects-all__button {
-    max-width: 90%;
-    width: 399px;
-    height: 33px;
-    font-size: 16px;
   }
 
   .project-solo__navigation-top {
@@ -6112,12 +6105,6 @@ input[type="number"] {
   }
 }
 
-@media screen and (max-width: 700px) {
-  .projects-all .projects-form {
-    max-width: 90%;
-  }
-}
-
 @media screen and (max-width: 685px) {
   .project-solo .slider__portfolio-link {
     display: none;
@@ -6344,38 +6331,36 @@ input[type="number"] {
   }
 
   .export {
-    grid: repeat(2, auto) 100px repeat(2, auto)/20px 40px [title] auto 40px 20px;
+    grid: 375px 100px repeat(2, auto)/20px 40px [title] auto 40px 20px;
     grid-gap: 0px 0px;
   }
 
   .export__wrapper {
     display: block;
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 3;
-    grid-column: 2 / span 3;
-    -ms-grid-row: 3;
-    grid-row: 3;
+    grid-column: 2 / -2;
+    -ms-grid-row: 2;
+    grid-row: 2;
     z-index: 1;
     background-color: #fff;
   }
 
   .export__title.title-one {
-    -ms-grid-row: 3;
-    grid-row: 3;
+    -ms-grid-row: 2;
+    grid-row: 2;
     z-index: 2;
     -ms-grid-row-align: center;
     align-self: center;
   }
 
   .export__text {
-    -ms-grid-row: 4;
-    grid-row: 4;
+    -ms-grid-row: 3;
+    grid-row: 3;
     z-index: 2;
   }
 
   .export__button {
-    -ms-grid-row: 5;
-    grid-row: 5;
+    -ms-grid-row: 4;
+    grid-row: 4;
     z-index: 2;
     -ms-grid-column-align: center;
     justify-self: center;
@@ -6383,16 +6368,14 @@ input[type="number"] {
   }
 
   .export__image-container {
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 5;
-    grid-column: 1 / span 5;
+    grid-column: 1 / -1;
     -ms-grid-row: 1;
-    -ms-grid-row-span: 3;
-    grid-row: 1 / span 3;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / span 2;
   }
 
   .company {
-    grid: repeat(2, auto) 100px repeat(2, auto)/20px 40px [title] auto 40px 20px;
+    grid: 375px 100px repeat(2, auto)/20px 40px [title] auto 40px 20px;
     grid-gap: 0px 0px;
   }
 
@@ -6405,34 +6388,42 @@ input[type="number"] {
     -ms-grid-column: 2;
     -ms-grid-column-span: 3;
     grid-column: 2 / span 3;
-    -ms-grid-row: 3;
-    -ms-grid-row-span: 2;
-    grid-row: 3 / span 2;
+    -ms-grid-row: 2;
+    grid-row: 2;
   }
 
   .company__photo-wrapper {
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 5;
-    grid-column: 1 / span 5;
+    grid-column: 1 / -1;
     -ms-grid-row: 1;
-    -ms-grid-row-span: 3;
-    grid-row: 1 / span 3;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .company__photo {
+    grid-column: title;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+
+  .company__image {
+    -o-object-position: 0 -30%;
+    object-position: 0 -30%;
   }
 
   .company__title {
-    -ms-grid-row: 3;
-    grid-row: 3;
+    -ms-grid-row: 2;
+    grid-row: 2;
     z-index: 1;
   }
 
   .company__text {
-    -ms-grid-row: 4;
-    grid-row: 4;
+    -ms-grid-row: 3;
+    grid-row: 3;
   }
 
   .company__button {
-    -ms-grid-row: 5;
-    grid-row: 5;
+    -ms-grid-row: 4;
+    grid-row: 4;
     margin: 30px 0;
   }
 
@@ -6989,7 +6980,6 @@ input[type="number"] {
     -ms-flex-item-align: start;
     -ms-grid-row-align: start;
     align-self: start;
-    padding: 48px 0 0 0px;
     -ms-grid-column-align: left;
     justify-self: left;
     width: 100%;
@@ -7013,7 +7003,6 @@ input[type="number"] {
   .projects-all .projects-form {
     display: none;
     max-width: 100%;
-    row-gap: 0;
   }
 
   .projects-all .projects-form__clear-block-mobile {
@@ -7069,13 +7058,6 @@ input[type="number"] {
 
   .projects-all__body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
-  .projects-all__button {
-    width: 248px;
-    height: 40px;
-    font-size: 18px;
-    line-height: 21px;
   }
 
   .project-solo {
@@ -7672,11 +7654,11 @@ input[type="number"] {
 
 @media screen and (max-width: 400px) {
   .export {
-    grid: repeat(2, auto) 100px repeat(2, auto)/20px 20px [title] auto 20px 20px;
+    grid: 375px 100px repeat(2, auto)/20px 20px [title] auto 20px 20px;
   }
 
   .company {
-    grid: repeat(2, auto) 100px repeat(2, auto)/20px 20px [title] auto 20px 20px;
+    grid: 375px 100px repeat(2, auto)/20px 20px [title] auto 20px 20px;
   }
 }
 
