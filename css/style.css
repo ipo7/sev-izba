@@ -2505,7 +2505,6 @@ div [hidden] {
   -ms-grid-column-span: 2;
   grid-area: triple-slider;
   width: 100%;
-  margin-top: 100px;
   display: -ms-grid;
   display: grid;
   grid: 110px repeat(3, auto)/[title] 65px [text] minmax(auto, 305px) [slider] auto [center] 150px auto [right] 0px;
