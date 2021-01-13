@@ -1912,6 +1912,7 @@ $(function () {
 			$('.scroll').css({ 'display': 'none' });
 			$('body, html').animate({ scrollTop: 0 }, 0);
 			$('.project-solo').css({ 'display': 'grid' });
+			$('.header').css({ 'display': 'block' });
 			$('.header').addClass('header_white');
 			//Реанимация слайдера
 			$('.project-solo .slick-slider').slick('setPosition');
