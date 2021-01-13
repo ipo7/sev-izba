@@ -7305,6 +7305,7 @@ input[type="number"] {
 
   .footer__title {
     font-size: 26px;
+    padding-top: 0;
     padding-bottom: 33px;
   }
 
