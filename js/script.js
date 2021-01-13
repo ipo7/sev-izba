@@ -1437,7 +1437,7 @@ $(function () {
 			if ($(elem).attr('data-type') == attr) {
 				$('body, html').animate({ scrollTop: 0 }, 0);
 				$(elem).css({ 'display': 'grid' });
-				$(elem).css({ 'margin-top': 90 });
+				$(elem).css({ 'margin-top': 70 });
 				$('.header').addClass('header_white');
 
 			} else {

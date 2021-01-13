@@ -4657,7 +4657,6 @@ input[type="number"] {
     -ms-grid-column-align: center;
     justify-self: center;
     margin-top: 10px;
-    width: 183px;
   }
 
   .representations .content__line-bottom {
@@ -5511,10 +5510,6 @@ input[type="number"] {
   .representations .content__item {
     grid: auto/minmax(170px, 1fr) minmax(180px, 1fr) 160px;
     margin-bottom: 30px;
-  }
-
-  .representations .content__button {
-    width: 160px;
   }
 
   .representations .content__line-bottom {
@@ -6694,6 +6689,13 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 450px) {
+  .representations .content__item {
+    grid: auto/minmax(170px, 1fr) 0px minmax(100px, 160px);
+    -webkit-column-gap: 5px;
+    -moz-column-gap: 5px;
+    column-gap: 5px;
+  }
+
   .services {
     grid: auto/0px [title] 1fr 0px;
     grid-gap: 20px 20px;
@@ -7247,6 +7249,7 @@ input[type="number"] {
 
   .contacts {
     grid: 80px auto/20px [title] 1fr 20px;
+    margin-top: 0;
   }
 
   .contacts__title-main {
@@ -7263,6 +7266,7 @@ input[type="number"] {
 
   .contacts__foreing-offices {
     display: block;
+    margin-bottom: 30px;
   }
 
   .foreing-offices .title-two::after {
@@ -7271,6 +7275,22 @@ input[type="number"] {
 
   .representations {
     display: none;
+    max-width: 400px;
+  }
+
+  .representations .content__item {
+    grid: auto / 1fr 0px 0.9fr;
+    max-width: 100%;
+  }
+
+  .representations .content__phone {
+    font-size: 3.2vw;
+    white-space: nowrap;
+  }
+
+  .services__title {
+    -ms-grid-column-align: start;
+    justify-self: start;
   }
 
   .services .item .title-two::after {
@@ -7584,10 +7604,12 @@ input[type="number"] {
   }
 
   .hand-felling .items-block__title {
-    -ms-flex-item-align: start;
+    grid-column: 1/-1;
     -ms-grid-row-align: start;
     align-self: start;
-    padding: 48px 0 0 10px;
+    -ms-grid-column-align: start;
+    justify-self: start;
+    padding: 20px 0 0 0px;
   }
 
   .hand-felling .items-block__body {
@@ -7658,6 +7680,10 @@ input[type="number"] {
 
   .company {
     grid: 375px 100px repeat(2, auto)/20px 20px [title] auto 20px 20px;
+  }
+
+  .title-main {
+    font-size: 10vw;
   }
 }
 
@@ -7749,11 +7775,12 @@ input[type="number"] {
     align-self: start;
     margin-top: 10px;
   }
-}
 
-@media screen and (max-width: 300px) {
-  .title-main {
-    font-size: 35px;
+  .representations .content__button {
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
