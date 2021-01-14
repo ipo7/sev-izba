@@ -529,7 +529,7 @@ h6 {
 
 .menu-disable {
   display: none;
-  z-index: 1000;
+  z-index: 1002;
   font-family: FS-Medium;
   background-color: #fff;
   width: 100vw;
@@ -5196,6 +5196,10 @@ input[type="number"] {
     font-size: 16px;
   }
 
+  .projects-all {
+    margin-bottom: 0;
+  }
+
   .projects-all__container {
     padding-top: 20px;
     padding-bottom: 40px;
@@ -6891,10 +6895,6 @@ input[type="number"] {
     font-size: 14px;
   }
 
-  .item-projects-all__foto {
-    height: 192px;
-  }
-
   .item-projects-all__category {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -6960,10 +6960,6 @@ input[type="number"] {
     height: 40px;
     font-size: 18px;
     line-height: 21px;
-  }
-
-  .projects-all {
-    margin-bottom: 0;
   }
 
   .projects-all__title {
