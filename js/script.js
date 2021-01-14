@@ -6,24 +6,24 @@ $(function () {
 
 
 	//Выявление блоков, превышающих ширину экрана
-	$(window).resize(function () {
+	// $(window).resize(function () {
 
-		let docWidth = document.documentElement.offsetWidth;
+	// 	let docWidth = document.documentElement.offsetWidth;
 
-		[].forEach.call(
-			document.querySelectorAll('*'),
-			function (el) {
+	// 	[].forEach.call(
+	// 		document.querySelectorAll('*'),
+	// 		function (el) {
 
-				if (el.offsetWidth > docWidth) {
-					console.log(el);
-				}
-			}
-		);
+	// 			if (el.offsetWidth > docWidth) {
+	// 				console.log(el);
+	// 			}
+	// 		}
+	// 	);
 
-		// console.log(docWidth);
+	// 	// console.log(docWidth);
 
-	});
-	$(window).resize();
+	// });
+	// $(window).resize();
 
 	//Выравнивание отступов Menu по отступам Header, присваивание ширине блока Menu ширину колонки [menu] в .main-wrapper,выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).resize(function () {
@@ -623,31 +623,38 @@ $(function () {
 		let y2 = $('.topic').height();
 		let y3 = parseInt($('.topic').css('padding-top'));
 
-		//Disable scroll-block on mobile scroll
+		//Если находимся на главной странице
+		if ($('.topic').length > 0 && $('.topic').css('display') != 'none') {
+			function ee() {
+
+				{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
+			}
+			ee();
+		}
+
+		if ($('.topic').length == 0 || $('.topic').css('display') == 'none') {
+			function ee() {
+
+				{ 0 < y ? $('.button-to-top').css({ 'display': 'block' }) : $('.button-to-top').css({ 'display': 'none' }) }
+			}
+			ee();
+		}
+
+		//Отключаем scroll-block при малых разрешениях экрана
 		if ($(window).width() <= mobile) {
 
 			// { 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
 			$('.scroll').css({ 'display': 'none' });
-		} else {
+		}
 
-			//Если находимся на главной странице
-			if ($('.topic').length > 0 && $('.topic').css('display') != 'none') {
-				function ee() {
+		//Отключаем button-to-top при малых разрешениях экрана
+		if ($(window).width() <= 550 || $(window).height() <= 700) {
 
-					{ y2 + y3 < y1 ? $('.scroll').css({ 'display': 'none' }) && $('.button-to-top').css({ 'display': 'block' }) : $('.scroll').css({ 'display': 'block' }) && $('.button-to-top').css({ 'display': 'none' }) }
-				}
-				ee();
-			}
+			// { 10 <= y ? $('.topic__footer').css({ 'display': 'none' }) : $('.topic__footer').css({ 'display': 'flex' }) }
+			$('.button-to-top').css({ 'display': 'none' });
+		}
 
-			if ($('.topic').length == 0 || $('.topic').css('display') == 'none') {
-				function ee() {
 
-					{ 0 < y ? $('.button-to-top').css({ 'display': 'block' }) : $('.button-to-top').css({ 'display': 'none' }) }
-				}
-				ee();
-			}
-
-		};
 	};
 
 	//Создаем button-to-top внизу feedback и задаем ширину button-to-top

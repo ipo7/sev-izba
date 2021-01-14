@@ -7830,6 +7830,16 @@ input[type="number"] {
   }
 }
 
+@media screen and (max-height: 700px) {
+  .feedback {
+    display: none;
+  }
+
+  .button-to-top {
+    display: none;
+  }
+}
+
 .webp .topic{ background: url(../img/main-background-new.webp) 0% 36%/cover no-repeat; }
 
 .webp .projects-all .projects-form__clear-block-mobile-exit{ background: url(../img/close-button.webp) 0 0/cover no-repeat; }
