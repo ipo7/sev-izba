@@ -4328,6 +4328,10 @@ input[type="number"] {
     font-size: calc(28 / 1920 * 100vw);
   }
 
+  .project-solo .plan__wrapper {
+    width: 100vw;
+  }
+
   .export {
     height: calc((100vw - 1024px) / (1920 - 1024) * (1080 - 700) + 700px);
   }
@@ -5364,6 +5368,10 @@ input[type="number"] {
     padding-left: 45px;
   }
 
+  .project-solo .plan__wrapper {
+    left: -190px;
+  }
+
   .project-solo .plan__button {
     padding-top: 9px;
   }
@@ -6008,6 +6016,10 @@ input[type="number"] {
 
   .project-solo {
     grid: repeat(3, auto) [gap] 26px [title] auto [text] auto/[slider] minmax(460px, 1fr);
+  }
+
+  .project-solo .plan__wrapper {
+    left: -20px;
   }
 
   .portfolio {
@@ -7113,6 +7125,10 @@ input[type="number"] {
 
   .project-solo__title {
     margin-bottom: 20px;
+  }
+
+  .project-solo .plan__wrapper {
+    left: -10px;
   }
 
   .project-solo .similar-projects {
