@@ -7095,10 +7095,7 @@ input[type="number"] {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
+    left: 0;
     bottom: 13px;
     z-index: 2;
   }
