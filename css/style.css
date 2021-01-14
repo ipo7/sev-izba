@@ -6959,6 +6959,10 @@ input[type="number"] {
     line-height: 21px;
   }
 
+  .projects-all {
+    margin-bottom: 0;
+  }
+
   .projects-all__title {
     -ms-flex-item-align: start;
     -ms-grid-row-align: start;
