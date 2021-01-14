@@ -770,13 +770,6 @@ div [hidden] {
   font-weight: 400;
 }
 
-.main-item .button {
-  width: auto;
-  -ms-flex-item-align: center;
-  -ms-grid-row-align: center;
-  align-self: center;
-}
-
 div [hidden] {
   display: none;
 }
@@ -1480,13 +1473,9 @@ div [hidden] {
 }
 
 .project-solo .slider__button {
-  font-size: 20px;
-  line-height: 32px;
   text-align: center;
   color: #ffffff;
   background-color: #69bbf3;
-  width: 304px;
-  height: 48px;
   position: absolute;
   bottom: 16px;
   right: 16px;
@@ -2089,10 +2078,10 @@ div [hidden] {
   -ms-grid-row: 13;
   grid-row: 13;
   grid-column: slider / span 3;
-  width: 336px;
   -ms-grid-column-align: center;
   justify-self: center;
   margin-top: 50px;
+  padding: 7px 28px 5px;
 }
 
 .portfolio {
@@ -4192,6 +4181,9 @@ body {
   font-size: 20px;
   text-align: center;
   cursor: pointer;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
 }
 
 .button:hover,
@@ -5347,12 +5339,6 @@ input[type="number"] {
   .project-solo .slider__portfolio-link-text {
     font-size: 8px;
     line-height: 8px;
-  }
-
-  .project-solo .slider__button {
-    width: 233px;
-    font-size: 18px;
-    line-height: 48px;
   }
 
   .project-solo .solo-description__price {
@@ -6897,11 +6883,6 @@ input[type="number"] {
     font-size: 15px;
   }
 
-  .main-item .button {
-    max-width: 392px;
-    width: calc(100vw - 20px);
-  }
-
   .item-projects-all {
     grid: [title] auto [contain] auto [top-gap] 0px [photo] auto [middle-gap] 10px [category] auto [bottom-gap] 0px [square] auto [bedroom] auto [price] auto [new-gap] 10px [button] auto/[left-gap] 15px [square] auto [bedroom] auto [price] auto [right-gap] 15px;
     min-width: 100%;
@@ -7103,23 +7084,24 @@ input[type="number"] {
   }
 
   .project-solo .slider__button {
+    white-space: nowrap;
     position: fixed;
-    height: 40px;
-    width: 80%;
-    right: 50%;
-    -webkit-transform: translate(50%, -12.5px);
-    -ms-transform: translate(50%, -12.5px);
-    transform: translate(50%, -12.5px);
-    bottom: 0;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: 13px;
     z-index: 2;
-    line-height: 38px;
   }
 
   .project-solo .slider__button-wrapper {
     position: fixed;
     display: block;
     width: 100vw;
-    height: 65px;
+    height: 66px;
     background-color: #d6e8f0;
     bottom: 0px;
     left: 0px;
@@ -7150,10 +7132,7 @@ input[type="number"] {
   .project-solo .button_white {
     -ms-grid-row: 12;
     grid-row: 12;
-    width: 329px;
-    height: 40px;
     margin-top: 0px;
-    margin-bottom: 90px;
   }
 
   .portfolio {
@@ -7688,6 +7667,11 @@ input[type="number"] {
   .text-main {
     font-size: 15px;
     line-height: 24px;
+  }
+
+  .button_white,
+  .button_white_big {
+    padding: 8px 28px 5px;
   }
 }
 

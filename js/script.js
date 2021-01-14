@@ -6,24 +6,24 @@ $(function () {
 
 
 	//Выявление блоков, превышающих ширину экрана
-	// $(window).resize(function () {
+	$(window).resize(function () {
 
-	// 	let docWidth = document.documentElement.offsetWidth;
+		let docWidth = document.documentElement.offsetWidth;
 
-	// 	[].forEach.call(
-	// 		document.querySelectorAll('*'),
-	// 		function (el) {
+		[].forEach.call(
+			document.querySelectorAll('*'),
+			function (el) {
 
-	// 			if (el.offsetWidth > docWidth) {
-	// 				console.log(el);
-	// 			}
-	// 		}
-	// 	);
+				if (el.offsetWidth > docWidth) {
+					console.log(el);
+				}
+			}
+		);
 
-	// 	// console.log(docWidth);
+		// console.log(docWidth);
 
-	// });
-	// $(window).resize();
+	});
+	$(window).resize();
 
 	//Выравнивание отступов Menu по отступам Header, присваивание ширине блока Menu ширину колонки [menu] в .main-wrapper,выравнивание положения и ширины кнопки Вверх по габаритам блока Feedback
 	$(window).resize(function () {
@@ -1912,7 +1912,7 @@ $(function () {
 			$('.scroll').css({ 'display': 'none' });
 			$('body, html').animate({ scrollTop: 0 }, 0);
 			$('.project-solo').css({ 'display': 'grid' });
-			$('.header').css({ 'display': 'block' });
+			// $('.header').css({ 'display': 'block' });
 			$('.header').addClass('header_white');
 			//Реанимация слайдера
 			$('.project-solo .slick-slider').slick('setPosition');
