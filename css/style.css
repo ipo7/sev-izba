@@ -5140,7 +5140,7 @@ input[type="number"] {
   }
 
   .item-projects-all__foto {
-    max-height: 192px;
+    height: 192px;
     margin-top: 7px;
   }
 
