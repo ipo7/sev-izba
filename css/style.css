@@ -854,10 +854,8 @@ div [hidden] {
 .item-projects-all__button {
   grid-row: category;
   grid-column: button;
-  -ms-grid-column-align: end;
-  justify-self: end;
-  -ms-grid-row-align: center;
-  align-self: center;
+  -ms-grid-column-align: center;
+  justify-self: center;
 }
 
 .projects {
@@ -5161,7 +5159,6 @@ input[type="number"] {
   .item-projects-all__button {
     grid-row: button;
     grid-column: 1/-1;
-    width: 100%;
   }
 
   .projects {
@@ -6923,11 +6920,6 @@ input[type="number"] {
     grid-column: 2/-2;
     -ms-grid-column-align: start;
     justify-self: start;
-  }
-
-  .item-projects-all__button {
-    max-width: 392px;
-    width: calc(100vw - 20px);
   }
 
   .projects {
