@@ -814,6 +814,35 @@ $(function () {
 		ee();
 	});
 
+	//Отработка клика на 'Очистить фильтры' в разделе "фильтры +"
+	$('.projects-form__clear-block-mobile-text').on('click touchend', function (e) {
+		// e.stopPropagation();
+		// e.preventDefault();
+
+		function ee() {
+			{
+				// $('.projects-form').trigger('reset');
+
+				$('.projects-form :input')
+					.not(':button, :submit, :reset, :hidden')
+					.val('')
+					.prop('checked', false)
+					.prop('selected', false);
+
+				// $('.projects-form jq-selectbox__select').prop('selectedIndex', 0);
+
+
+
+				// console.log('888');
+			}
+		}
+		ee();
+	});
+
+	// $('.projects-form select').on('click touchend', function (e) {
+	// 	console.log('000');
+	// });
+
 	//Отработка клика на X в разделе "фильтры +"
 	$('.projects-form__clear-block-mobile-exit').on('click touchend', function (e) {
 		e.stopPropagation();

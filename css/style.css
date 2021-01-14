@@ -1013,6 +1013,9 @@ div [hidden] {
   line-height: 24px;
   color: #3a4c65;
   display: none;
+}
+
+.projects-all .projects-form__clear-block-mobile-text {
   cursor: pointer;
 }
 
