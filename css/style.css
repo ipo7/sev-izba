@@ -4197,7 +4197,6 @@ body {
   background-color: #fff;
   color: #2c6b97;
   border: 2px solid #2c6b97;
-  padding: 10px 35px 5px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -7667,11 +7666,6 @@ input[type="number"] {
   .text-main {
     font-size: 15px;
     line-height: 24px;
-  }
-
-  .button_white,
-  .button_white_big {
-    padding: 8px 28px 5px;
   }
 }
 
