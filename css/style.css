@@ -3384,13 +3384,8 @@ div [hidden] {
 .feedback-form__button {
   position: relative;
   top: -141px;
-  width: 176px;
-  height: 48px;
   background-color: #69bbf3;
   color: #fff;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
 }
 
 .feedback-form__button:hover {
@@ -5649,9 +5644,6 @@ input[type="number"] {
   }
 
   .feedback-form__button {
-    width: 233px;
-    height: 48px;
-    line-height: 32px;
     top: -121px;
   }
 
@@ -7364,7 +7356,7 @@ input[type="number"] {
     overflow-x: hidden;
     position: fixed;
     height: 100%;
-    padding: 71px 0 19px;
+    padding: 71px 0 0px;
     left: 0;
     top: 0;
   }
@@ -7466,8 +7458,6 @@ input[type="number"] {
   }
 
   .feedback-form__button {
-    width: 312px;
-    height: 40px;
     top: -147px;
   }
 

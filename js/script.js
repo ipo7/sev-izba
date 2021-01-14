@@ -831,7 +831,25 @@ $(function () {
 
 				// $('.projects-form jq-selectbox__select').prop('selectedIndex', 0);
 
+				$('.projects-form .jq-selectbox').each(function (i, item) {
+					var options = $(this).find('option'),
+						optionFirst = options.first();
+					// $(this).prop('selectedIndex', 0);
+					// $(this).selectedIndex = 0;
+					// console.log($(this).selectedIndex);
 
+					$(this)[0].selectedIndex = -1;
+
+					// optionsCustom = $(this).find('.jq-selectbox__dropdown li'),
+					// optionsCustomFirst = optionsCustom.first();
+
+					// 	options.attr('selected', false);
+					// optionFirst.attr('selected', true);
+
+					// optionsCustom.removeClass('sel selected');
+					// optionsCustomFirst.addClass('sel selected');
+					// $('.jq-selectbox__select-text').text(optionsCustomFirst.text())
+				})
 
 				// console.log('888');
 			}
