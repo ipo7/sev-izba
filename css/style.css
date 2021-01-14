@@ -809,7 +809,6 @@ div [hidden] {
 
 .item-projects-all__image {
   width: 100%;
-  height: auto;
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
@@ -6890,6 +6889,10 @@ input[type="number"] {
 
   .item-projects-all__contain {
     font-size: 14px;
+  }
+
+  .item-projects-all__foto {
+    height: 192px;
   }
 
   .item-projects-all__category {
