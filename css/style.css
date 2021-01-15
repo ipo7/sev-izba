@@ -214,7 +214,7 @@ h6 {
   transform: translateX(-50%);
   padding-top: 43px;
   padding-bottom: 20px;
-  z-index: 1001;
+  z-index: 1002;
 }
 
 .header_white {
@@ -529,7 +529,7 @@ h6 {
 
 .menu-disable {
   display: none;
-  z-index: 1002;
+  z-index: 1001;
   font-family: FS-Medium;
   background-color: #fff;
   width: 100vw;
@@ -3234,29 +3234,31 @@ div [hidden] {
 
 .feedback-form label[for="text"] {
   position: absolute;
-  top: 48.5%;
-  left: 8%;
+  top: 334px;
+  left: 30px;
+  white-space: nowrap;
   color: red;
 }
 
 .feedback-form label[for="yourname"] {
   position: absolute;
-  top: 57.8%;
-  left: 8%;
+  top: 398px;
+  left: 30px;
+  white-space: nowrap;
   color: red;
 }
 
 .feedback-form label[for="telephone"] {
-  position: absolute;
-  top: 61%;
-  left: 8%;
+  position: relative;
+  white-space: nowrap;
   color: red;
 }
 
 .feedback-form label[for="email"] {
   position: absolute;
-  top: 76.5%;
-  left: 8%;
+  top: 526px;
+  left: 30px;
+  white-space: nowrap;
   color: red;
 }
 
@@ -3367,7 +3369,7 @@ div [hidden] {
 }
 
 .feedback-form input:last-of-type {
-  margin-bottom: 48px;
+  margin-bottom: 0px;
 }
 
 .feedback-form__accept {
@@ -3378,12 +3380,12 @@ div [hidden] {
   color: #84abbc;
   margin: 0 auto;
   background-color: #e9f1f5;
-  padding: 38px 31px 0;
+  padding: 43px 31px 0;
 }
 
 .feedback-form__button {
   position: relative;
-  top: -141px;
+  top: 23px;
   background-color: #69bbf3;
   color: #fff;
 }
@@ -5584,6 +5586,27 @@ input[type="number"] {
     height: 576px;
   }
 
+  .feedback-form label[for="text"] {
+    top: 286px;
+    left: 25px;
+  }
+
+  .feedback-form label[for="yourname"] {
+    top: 335px;
+    left: 25px;
+  }
+
+  .feedback-form label[for="telephone"] {
+    top: -17px;
+    left: -9px;
+    color: aqua;
+  }
+
+  .feedback-form label[for="email"] {
+    top: 431px;
+    left: 25px;
+  }
+
   .feedback-form__exit-image {
     width: 16px;
     height: 16px;
@@ -5638,13 +5661,18 @@ input[type="number"] {
     padding-left: 8px;
   }
 
+  .feedback-form input:last-of-type {
+    margin-bottom: 7px;
+  }
+
   .feedback-form__accept {
     width: 265px;
     height: 96px;
+    padding: 26px 31px 0;
   }
 
   .feedback-form__button {
-    top: -121px;
+    top: 20px;
   }
 
   .callback-form {
@@ -6959,7 +6987,9 @@ input[type="number"] {
   }
 
   .projects__body {
-    grid-template: auto/repeat(auto-fit, minmax(300px, 1fr));
+    -ms-grid-rows: auto;
+    -ms-grid-columns: 1fr;
+    grid-template: auto / 1fr;
   }
 
   .projects__button {
@@ -7361,6 +7391,21 @@ input[type="number"] {
     top: 0;
   }
 
+  .feedback-form label[for="text"] {
+    top: 362px;
+    left: 58px;
+  }
+
+  .feedback-form label[for="yourname"] {
+    top: 425px;
+    left: 58px;
+  }
+
+  .feedback-form label[for="email"] {
+    top: 551px;
+    left: 58px;
+  }
+
   .feedback-form__exit-image {
     left: 21px;
     top: 34px;
@@ -7378,6 +7423,7 @@ input[type="number"] {
     font-size: 15px;
     line-height: 24px;
     width: 312px;
+    max-width: 95%;
     height: 70px;
     margin-bottom: 29px;
   }
@@ -7414,6 +7460,7 @@ input[type="number"] {
 
   .feedback-form textarea {
     width: 328px;
+    max-width: 95%;
     height: 137px;
     margin-bottom: 23px;
   }
@@ -7440,6 +7487,7 @@ input[type="number"] {
 
   .feedback-form__input {
     width: 328px;
+    max-width: 95%;
     height: 40px;
     margin-bottom: 23px;
     padding-left: 14px;
@@ -7453,12 +7501,8 @@ input[type="number"] {
     width: 100vw;
     height: 128px;
     font-size: 12px;
-    padding: 52px 49px 0;
+    padding: 40px 49px 0;
     text-align: left;
-  }
-
-  .feedback-form__button {
-    top: -147px;
   }
 
   .feedback-form-succses {
@@ -7789,6 +7833,10 @@ input[type="number"] {
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .feedback-form__accept {
+    padding: 40px 5% 0;
   }
 }
 
