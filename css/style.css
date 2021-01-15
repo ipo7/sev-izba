@@ -3235,7 +3235,10 @@ div [hidden] {
 .feedback-form label[for="text"] {
   position: absolute;
   top: 334px;
-  left: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   white-space: nowrap;
   color: red;
 }
@@ -3243,7 +3246,10 @@ div [hidden] {
 .feedback-form label[for="yourname"] {
   position: absolute;
   top: 398px;
-  left: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   white-space: nowrap;
   color: red;
 }
@@ -3257,7 +3263,10 @@ div [hidden] {
 .feedback-form label[for="email"] {
   position: absolute;
   top: 526px;
-  left: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   white-space: nowrap;
   color: red;
 }
@@ -3430,7 +3439,7 @@ div [hidden] {
   height: 400px;
   right: 216px;
   top: 48px;
-  z-index: 1001;
+  z-index: 1002;
 }
 
 .callback-form {
@@ -5588,12 +5597,10 @@ input[type="number"] {
 
   .feedback-form label[for="text"] {
     top: 286px;
-    left: 25px;
   }
 
   .feedback-form label[for="yourname"] {
     top: 335px;
-    left: 25px;
   }
 
   .feedback-form label[for="telephone"] {
@@ -5604,7 +5611,6 @@ input[type="number"] {
 
   .feedback-form label[for="email"] {
     top: 431px;
-    left: 25px;
   }
 
   .feedback-form__exit-image {
@@ -7393,17 +7399,14 @@ input[type="number"] {
 
   .feedback-form label[for="text"] {
     top: 362px;
-    left: 58px;
   }
 
   .feedback-form label[for="yourname"] {
     top: 425px;
-    left: 58px;
   }
 
   .feedback-form label[for="email"] {
     top: 551px;
-    left: 58px;
   }
 
   .feedback-form__exit-image {
@@ -7554,7 +7557,8 @@ input[type="number"] {
     display: none;
     width: 100vw;
     right: 0;
-    top: 65px;
+    top: 0;
+    padding-top: 65px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -7570,12 +7574,19 @@ input[type="number"] {
   .callback-form {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: auto;
     padding: 28px 0 0;
     margin-bottom: 23px;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  .callback-form label[for="yourname"] {
+    top: 124px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 
   .callback-form__exit {
