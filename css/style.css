@@ -3470,7 +3470,10 @@ div [hidden] {
 .callback-form label[for="yourname"] {
   position: absolute;
   top: 44%;
-  left: 8%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   color: #f14848;
   font-size: 11px;
   white-space: nowrap;
@@ -3482,7 +3485,10 @@ div [hidden] {
   white-space: nowrap;
   font-size: 11px;
   top: 60%;
-  left: 8%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
   color: #f14848;
 }
 
@@ -5689,6 +5695,18 @@ input[type="number"] {
     height: 100%;
   }
 
+  .callback-form label[for="yourname"] {
+    position: relative;
+    top: -16px;
+    left: 77px;
+  }
+
+  .callback-form label[for="telephone"] {
+    position: relative;
+    top: -35px;
+    left: 77px;
+  }
+
   .callback-form__exit {
     font-size: 13px;
     line-height: 15px;
@@ -7582,11 +7600,21 @@ input[type="number"] {
   }
 
   .callback-form label[for="yourname"] {
-    top: 124px;
+    position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+    top: 124px;
+  }
+
+  .callback-form label[for="telephone"] {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 183px;
   }
 
   .callback-form__exit {
