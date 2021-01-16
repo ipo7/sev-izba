@@ -3594,13 +3594,8 @@ div [hidden] {
 .callback-form__button {
   position: relative;
   top: -141px;
-  width: 176px;
-  height: 48px;
   background-color: #69bbf3;
   color: #fff;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 22px;
 }
 
 .callback-form__button:hover {
@@ -4271,7 +4266,6 @@ input[type="number"] {
     position: absolute;
     top: 257px;
     left: 48px;
-    width: 160px;
   }
 
   .hand-felling .items-block {
@@ -5780,9 +5774,6 @@ input[type="number"] {
   }
 
   .callback-form__button {
-    width: 321px;
-    height: 48px;
-    line-height: 32px;
     top: -13px;
   }
 
@@ -7614,7 +7605,7 @@ input[type="number"] {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    top: 183px;
+    top: 184px;
   }
 
   .callback-form__exit {
@@ -7679,9 +7670,7 @@ input[type="number"] {
   }
 
   .callback-form__button {
-    width: 168px;
-    height: 40px;
-    top: -150px;
+    bottom: 0px;
   }
 
   .hand-felling {
