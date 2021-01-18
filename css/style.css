@@ -3738,6 +3738,7 @@ div [hidden] {
   -ms-grid-row-align: center;
   align-self: center;
   margin-top: 50px;
+  padding: 9px 35px 0px;
 }
 
 .hand-felling .description__image-container-one {
@@ -5793,6 +5794,10 @@ input[type="number"] {
     width: calc(100vw - 190px);
   }
 
+  .hand-felling .description__button {
+    padding: 8px 35px 0px;
+  }
+
   .hand-felling .advantages__container {
     grid: [top] 70px [top-gap] 70px [title] auto [text] 1fr [bottom-gap] 70px [bottom] 70px/[menu] 190px [main] 1fr [gap] 70px;
     -webkit-column-gap: 30px;
@@ -6252,6 +6257,11 @@ input[type="number"] {
     gap: 40px 10px;
   }
 
+  .hand-felling .description__button {
+    padding: 8px 10% 0px;
+    white-space: nowrap;
+  }
+
   .main-wrapper {
     -ms-grid-columns: [menu] 20px [body] 1fr [feedback] 60px;
     grid-template-columns: [menu] 20px [body] 1fr [feedback] 60px;
@@ -6558,6 +6568,7 @@ input[type="number"] {
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;
     align-self: center;
+    padding: 8px 35px 0px;
   }
 
   .hand-felling .description__image-container-one {
